@@ -1,0 +1,143 @@
+.designContainer {
+    position: relative;
+}
+.rectangulo {
+	width: 0;
+	height: 0;
+    -webkit-transform: skewY(15deg);
+    -moz-transform: skewY(15deg);
+    -o-transform: skewY(15deg);
+    transform: skewY(15deg);
+}
+
+.rectangulo .uno {
+    border-radius: 4px;
+    position: absolute;
+    width: 100px; 
+    height: 160px; 
+    top: 59px;
+    left: 8px;
+    background: #74AAFC;
+
+    -webkit-animation: 2.5s rectagleOne infinite;
+    -moz-animation: 2.5s rectagleOne infinite;
+    -o-animation: 2.5s rectagleOne infinite;
+    animation: 2.5s rectagleOne infinite;    
+}
+
+.dos {
+    border-radius: 4px;
+    position: absolute;
+    width: 55px;
+    height: 112px;
+    left: 130px;
+    top: 20px;
+    background: #d6d6d6;
+}
+
+.rectangulo .tres {
+    border-radius: 4px;
+    position: absolute;
+    width: 100px; 
+    height: 160px; 
+    top: -56px;
+    left: 460px;
+    background: #74AAFC;
+    -webkit-animation: 4s rectagleThre infinite;
+    -moz-animation: 4s rectagleThre infinite;
+    -o-animation: 4s rectagleThre infinite;
+    animation: 4s rectagleThre infinite;
+}
+
+.rectangulo .cuatro {
+    border-radius: 4px;
+    position: absolute;
+    width: 100px; 
+    height: 160px; 
+    top: -10px;
+    left: 487px;
+    background: #74aafcc4;
+    -webkit-animation: 3s rectagleFour infinite;
+    -moz-animation: 3s rectagleFour infinite;
+    -o-animation: 3s rectagleFour infinite;
+    animation: 3s rectagleFour infinite;
+}
+
+.rectangulo .cinco {
+    background: #d6d6d6;
+    border-radius: 4px;
+    position: absolute;
+    width: 100px; 
+    height: 160px; 
+    top: 400px;
+    left: 8px;
+    z-index:3;
+
+    -webkit-animation: 3s rectagleFour infinite;
+    -moz-animation: 3s rectagleFour infinite;
+    -o-animation: 3s rectagleFour infinite;
+    animation: 3s rectagleFour infinite;
+}
+
+.rectangulo .seis {
+    border-radius: 4px;
+    position: absolute;
+    width: 100px; 
+    height: 160px; 
+    top: 438px;
+    left: 61px;
+    background: #74aafcc4;
+}
+
+.siete {
+    border-radius: 4px;
+    position: absolute;
+    width: 50px; 
+    height: 80px; 
+    top: 500px;
+    left: 540px;
+    background: #205690;
+}
+
+.ocho {
+    border-radius: 4px;
+    position: absolute;
+    width: 50px; 
+    height: 80px; 
+    top: 580px;
+    left: 600px;
+    background: #205690;
+}
+
+.IconTse {
+    position: absolute;
+    top: 200px;
+    left: 20%;
+}
+
+@keyframes rectagleOne {
+    0%, 100% {
+      transform: translate(0, 10px);
+    }
+    50% {
+      transform: translate(0, 0);
+    }
+  }
+
+@keyframes rectagleThre {
+    0%, 100% {
+      transform: translate(0, 10px);
+    }
+    50% {
+      transform: translate(0, 0);
+    }
+  }
+
+@keyframes rectagleFour {
+    0%, 100% {
+      transform: translate(0, 10px);
+    }
+    50% {
+      transform: translate(0, 0);
+    }
+  }

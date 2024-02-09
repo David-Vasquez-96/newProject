@@ -1,0 +1,31 @@
+version: '3.0'
+services:
+  tse_external_frontend_web_dev:
+    container_name: tse_external_frontend_web_dev
+    build:
+      context: .
+      # dockerfile: Dockerfile
+      dockerfile: Dockerfile-dev
+      args:
+        - REACT_APP_SECRET_NAME=PORTAL-TSE
+        - REACT_APP_NODE_ENV=dev
+        - REACT_APP_PORT=80
+        # - REACT_APP_PORT=3001
+        # - REACT_APP_API_SSO=http://192.168.79.67:9761
+        # - REACT_APP_API_BACKEND=http://192.168.79.66:5001
+    image: tse_external_frontend_web_dev
+    restart: unless-stopped
+    ports:
+      # - '3001:80'
+      - '80:80'
+    networks:
+      - default
+    environment:
+      - NODE_ENV=prod
+      - API_SSO=http://192.168.79.67:9761
+      - API_BACKEND=http://192.168.79.66:5001
+
+networks:
+  default:
+    external:
+      name: tse_external      

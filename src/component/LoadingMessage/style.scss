@@ -1,0 +1,42 @@
+body {
+	// background: #c5e0dc;
+}
+.container {
+	position: relative;
+	height: 20vh;
+}
+.center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.svg{
+	height: 230px;
+	width: 230px;
+    margin: 0 auto;
+    transform: scale(.5);	
+}
+.logo {
+	fill: #0b486b;
+}
+.logo-back {
+	fill: rgba(#0b486b, 0.08);
+}
+.clip {
+	animation: slide 1s infinite;
+}
+@keyframes slide {
+	from {
+		transform: translateY(-160px);
+	}
+	45% {
+		transform: translateY(0px);
+	}
+	55% {
+		transform: translateY(0px);
+	}
+	to {
+		transform: translateY(-160px);
+	}
+}

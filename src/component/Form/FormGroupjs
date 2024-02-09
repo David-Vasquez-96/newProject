@@ -1,0 +1,214 @@
+import React, { useEffect } from 'react';
+import clsx from 'clsx';
+import {Icon,Grid, Button, CircularProgress } from '@material-ui/core/';
+import SaveIcon from '@material-ui/icons/Save';
+import CancelIcon from '@material-ui/icons/Cancel';
+import FormControlInput from 'component/Form/InputControl';
+import FormControlPassword from 'component/Form/PasswordControl';
+import FormControlSelect from 'component/Form/SelectControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControlDate from 'component/Form/DateControl';
+import Checkbox from '@material-ui/core/Checkbox';
+import {useStyles} from './style';
+
+export default function Table(props) {
+    const classes = useStyles();
+    const [elements,setElements] = React.useState(props.elements);
+    const [apiErrors,setApiErrors] = React.useState(props.apiErrors);
+
+    const isValidForm=function(){
+        var isValid = true;
+        Object.keys(elements).forEach(function (key) {
+            elements[key].isError=isErrorInElementWithPattern(key, elements[key].value); 
+            isValid= (elements[key].isError) ? false : true;
+         });
+          
+        setElements({ ...elements});
+        return isValid;
+    }
+
+    useEffect(() => {
+        setApiErrors(props.apiErrors);
+    },[props.apiErrors]);
+    
+    const handleChange = event => { 
+        isErrorInElementWithPattern(event.target.name, event.target.value);
+
+        if (elements[event.target.name].elementType!=="checkbox") {
+            elements[event.target.name].isError= ((event.target.value.toString().match(elements[event.target.name].pattern))===null) ? true : false;
+            elements[event.target.name].value = event.target.value;
+        }else{
+            var value= JSON.parse(event.target.value.toLowerCase());
+            elements[event.target.name].value = (value===elements[event.target.name].value) ? !value : value ;
+        }       
+        
+        if (elements[event.target.name].handler!==undefined){
+            event.target.index=parseInt(event.currentTarget.dataset.index);
+            elements[event.target.name].handler(event);
+        }
+        
+        setElements({ ...elements});
+        setApiErrors([]);
+    };
+
+    const isErrorInElementWithPattern=(key, value )=>{
+        let isError= false;
+        switch(elements[key].elementType) {
+            case "checkbox": 
+                elements[key].value = (typeof value==='string') ? JSON.parse(value): value;
+                break;
+            case "date":
+                isError= (value.toLocaleDateString("es-ES").match(elements[key].pattern)===null) ? true : false;
+                elements[key].value = value;
+                break;
+            case "hidden":
+                isError=false;
+                elements[key].value = value;
+                break;
+            default:
+                isError= (( (value ===null ? "": value.toString()).match(elements[key].pattern))===null) ? true : false;
+                elements[key].value = value;
+                break;
+        }
+        elements[key].isError= isError;
+        return isError;
+    }
+
+    const saveAndClean= function(){
+        var isValid = isValidForm();        
+        if(isValid===true)  props.saveAndClean(getData(),false);
+    }
+
+    const getData=function(){
+        var data = {};
+        Object.keys(elements).map(key => data[key]=elements[key].value)
+        return data;
+    }
+
+    const saveAndBack = function(){
+        var isValid = isValidForm();        
+        if(isValid===true)  props.saveAndBack(getData(),true);
+    }
+
+    const getApiErrorByKeyElement=(key)=>{
+        let data ={"message":null, 'isError':false}
+        if (apiErrors===null || apiErrors===undefined || apiErrors.length===0) return data;       
+        apiErrors.forEach(item => {
+            if (key===item.attribute){
+                data.message=item.message;
+                data.isError=true;
+            }
+        });
+        return data;
+    }
+
+    let buttonListHtml =(props.buttonList!==undefined) ? Object.keys(props.buttonList).map(key => {
+        let item=props.buttonList[key];
+        return (
+            <Button name={key} key={key}
+                    variant="contained" 
+                    style={{    color: (item.color!==undefined) ?  item.color :"", 
+                                background:(item.background!==undefined) ?  item.background :"", 
+                            }}
+                    className={classes.button} 
+                    size={item.size}
+                    onClick={()=>{
+                        var isValid = isValidForm();        
+                        if(isValid===true)  item.callback(getData(),isValid);
+                    }}>
+                    {item.loading ?  (<div className={classes.circularProgress}><CircularProgress /></div>) : (<Icon>{item.icon}</Icon>) }
+                    {" "+item.label}
+            </Button>
+        )
+    }) : "";
+
+    var html =  Object.keys(elements).map(key => {
+
+        let messageError= elements[key].errorMessages,
+            isError = elements[key].isError;
+
+        let apiErrorOfKey= getApiErrorByKeyElement(key);
+        if (apiErrorOfKey.isError){
+            messageError=apiErrorOfKey.message;
+            isError=true;
+        }
+        
+        switch(elements[key].elementType) {
+            case "input": return(
+                <FormControlInput       key={key} label={elements[key].label} isError={isError}  
+                                        name={elements[key].idelement} value={elements[key].value}
+                                        handleChange={handleChange} errorMessages={messageError}
+                                        keyPress={elements[key].keyPress}
+                                        disabled={elements[key].disabled}
+                ></FormControlInput>
+            );
+            case "password": return(
+                <FormControlPassword    key={key} label={elements[key].label} isError={isError}  
+                                        name={elements[key].idelement} value={elements[key].value}
+                                        handleChange={handleChange} 
+                                        keyPress={elements[key].keyPress}
+                                        errorMessages={messageError}
+                ></FormControlPassword>
+            );
+            case "dropdown": return(
+                <Grid className={classes.grid} key={key}>
+                    <FormControlSelect  className={classes.select}  label={elements[key].label} isError={isError}  
+                                        name={elements[key].idelement} value={elements[key].value}
+                                        handleChange={handleChange} errorMessages={messageError} list={elements[key].list}
+                                        onChange={ (elements[key].handler!==undefined) ? elements[key].handler : null }
+                                        disabled={elements[key].disabled}
+                    ></FormControlSelect>
+                </Grid>
+            );
+            case "checkbox": return(
+                <FormControlLabel  className={classes.checkbox} key={key}
+                    control={
+                    <Checkbox checked={elements[key].value} name={elements[key].idelement}  
+                                onChange={handleChange} value={elements[key].value}  color="primary"
+                    />
+                    }
+                    disabled={elements[key].disabled}
+                    label={elements[key].label}
+                />
+            );
+            case "date": return(
+                <FormControlDate    key={key} label={elements[key].label} isError={isError}  
+                                    name={elements[key].idelement} value={elements[key].value}
+                                    handleChange={handleChange} errorMessages={messageError}
+                                    disabled={elements[key].disabled}
+                ></FormControlDate>
+            )
+            default: return(null);
+          }
+    });
+  
+    return (
+        <div className={classes.root}>
+            {html}
+            {buttonListHtml}
+            <Grid item xs={12}>     
+                {props.saveAndClean ? (
+                    <Button variant="contained" color="primary" className={classes.button} onClick={saveAndClean}>
+                        <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
+                        Guardar y limpiar
+                    </Button>
+                ):""}
+                
+                {props.saveAndBack ? (
+                    <Button variant="contained" color="primary" className={classes.button} onClick={saveAndBack}>
+                        <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
+                        Guardar y regresar                    
+                    </Button>
+                ):""}
+                
+                {props.handleShowList ? (
+                    <Button variant="contained" color="secondary" className={classes.button} 
+                    onClick={props.handleShowList} >
+                    <CancelIcon className={classes.leftIcon} />
+                    Cancelar
+                </Button>
+                ):("")}
+            </Grid>
+        </div>
+    );
+} 

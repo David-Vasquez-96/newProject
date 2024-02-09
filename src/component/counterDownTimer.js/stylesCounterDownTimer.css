@@ -1,0 +1,73 @@
+.AppContador {
+  display: flex;
+  justify-content: center;
+  font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.containerTime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+  border: 5px solid #205690   ;
+  box-shadow: 0 3px 5px 2px rgb(33 203 243 / 30%);
+  color: #205690  ;
+  margin-right: 5px;
+ font-weight: 500;
+}
+
+.time {
+  width: 100%;
+  height: 45%;
+  font-size: 2.5rem;
+  /* animation: 1s scaleTime alternate-reverse infinite; */
+}
+
+.title {
+  font-size: 1rem;
+  /* animation: 1s scaleTime alternate-reverse infinite; */
+}
+
+@keyframes scaleTime {
+  0% {
+    transform: translateY(-2px);
+    opacity: .8;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .containerTime {
+    height: 100px;
+    width: 100px;
+  }
+
+  .time {
+    font-size: 2rem;
+  }
+  .title {
+    font-size: .9rem;
+  }
+}
+@media screen and (max-width: 576px) {
+  .containerTime {
+    height: 90px;
+    width: 90px;
+  }
+
+  .time {
+    font-size: 1.8rem;
+  }
+  .title {
+    font-size: .8rem;
+  }
+}

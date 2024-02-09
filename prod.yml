@@ -1,0 +1,28 @@
+version: '3.0'
+services:
+  tse_external_web_prod:
+    container_name: tse_external_web_prod
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_SECRET_NAME=PORTAL-TSE
+        - REACT_APP_NODE_ENV=prod
+        - REACT_APP_PORT=4002
+        - REACT_APP_API_SSO=https://seguridadexternaop.tse.org.gt/api
+        - REACT_APP_API_BACKEND=https://tse-portal-externo-prod.tse.org.gt/api
+    image: tse_external_web_prod
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "512m"
+    ports:
+      - '80:80'
+    networks:
+      - default
+
+networks:
+  default:
+    external:
+      name: tse_external      
