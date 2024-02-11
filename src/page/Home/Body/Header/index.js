@@ -2,7 +2,7 @@ import React from 'react';
 import {AppBar, Toolbar, ButtonBase} from '@material-ui/core/';
 import {useStyles} from './style';
 
-const LandingUSer=(props)=> {
+const Header=(props)=> {
     const classes = useStyles(props);
     return (
         <div className={classes.headerPrincipal}>
@@ -12,4 +12,4 @@ const LandingUSer=(props)=> {
         </div> 
     )
 }
-export default (LandingUSer);
+export default (Header);

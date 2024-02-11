@@ -2,20 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme=>({
     DocumentsPrincipal:{
-        // backgroundImage: `url(assets/vectorWave.svg)`,
-        // backgroundRepeat: "no-repeat",
-        // backgroundSize: '100% 100%',
-        // display: 'flex',
-        // width: '100%',
-        // textAlign: 'center',
-        // height: '100%',
-        // background: "linear-gradient(0deg, #1d5079 20%, #205690 62%)",
-        // display: 'flex',
-        // flexDirection: 'column',
-        // alignItems: 'center',
-        // padding: '5px 15px',
-        // backgroundColor: 'white'
-        backgroundColor: '#F2F6FA',
+        backgroundColor: '#F1F1F1',
         padding: '15px 0px',
     },
     titlePrincipal:{
@@ -23,7 +10,6 @@ export const useStyles = makeStyles(theme=>({
         color: 'black',
         margin: 0,
         padding: '0px 15px',
-        wordWrap: 'break-word',
         ['@media (max-width: 1920px)']:{ //desktop
             fontSize: '3.5rem',
         },
@@ -82,9 +68,8 @@ export const useStyles = makeStyles(theme=>({
     listDocumentsPrincipal: {
         display: 'flex',
         flexWrap: 'wrap',
-        // justifyContent: 'space-evenly',
-        justifyContent: 'center',
-        // backgroundColor: 'red',
+        justifyContent: 'space-evenly',
+        // justifyContent: 'center',
         padding: '30px 0px',
     },
 }));
