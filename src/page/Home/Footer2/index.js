@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import { AppBar, CssBaseline, Toolbar, Button, Grid } from "@material-ui/core/";
 import { CheckBoxOutlineBlank, MailOutline, Phone } from "@material-ui/icons";
 import { useStyles } from "./style";
-import AsistenciaTecnica from "../AsistenciaTecnica";
 import Media from "react-media";
 
 export default function Footer() {
@@ -82,8 +81,6 @@ export default function Footer() {
           {/* <img className={classes.imgTwo} src={fbLogo} alt="facebook Qmi Teaches"/>
                 <img className={classes.imgTwo} src={YtLogo} alt="youtube"/>
             <img className={classes.imgTwo} src={TwLogo} alt="twitter"/>   */}
-          {/* <Button className={classes.button} onClick={AbrirModal}>{"Asistencia Técnica"}</Button>
-                <AsistenciaTecnica open={open} handleClose={CerrarModal}/> */}
         </Toolbar>
       </AppBar>
   );

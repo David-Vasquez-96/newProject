@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import { AppBar, CssBaseline, Toolbar, Button, Grid } from "@material-ui/core/";
 import { CheckBoxOutlineBlank, MailOutline, Phone } from "@material-ui/icons";
 import { useStyles } from "./style";
-import AsistenciaTecnica from "../AsistenciaTecnica";
 import Media from "react-media";
 
 export default function Footer() {

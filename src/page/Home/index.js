@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import LoadingIndicator  from 'common/LoadingIndicator';
 import { Redirect } from 'react-router-dom'
 import Body from './Body/index';
-import Menu from './Menu';
-import Footer from './Footer2';
 
 class Home extends Component {
     constructor(props) {
