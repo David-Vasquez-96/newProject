@@ -71,5 +71,6 @@ export const useStyles = makeStyles(theme=>({
         justifyContent: 'space-evenly',
         // justifyContent: 'center',
         padding: '30px 0px',
+        textAlign: 'center',
     },
 }));

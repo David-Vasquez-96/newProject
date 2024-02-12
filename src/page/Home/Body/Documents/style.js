@@ -86,5 +86,6 @@ export const useStyles = makeStyles(theme=>({
         justifyContent: 'center',
         // backgroundColor: 'red',
         padding: '30px 0px',
+        textAlign: 'center',
     },
 }));
