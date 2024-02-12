@@ -9,6 +9,7 @@ import { AppBar, Button, Icon, IconButton, ListItemIcon, MenuItem, MenuList, Pop
 import { AccountCircle, ArrowBack, AssignmentInd, Menu, Input } from '@material-ui/icons';
 import {useStyles} from './style';
 import { publicMenu } from 'constant/index';
+import MenuDesplegable from './MenuDesplegable'
 
 
 const AppBarComponent=(props)=> {
@@ -16,7 +17,7 @@ const AppBarComponent=(props)=> {
     var authenticated = props.authenticated;
     let history = useHistory();
 
-    //menu desplegable
+    //menu desplegable de perfil
     const [anchorEl, setAnchorEl] = useState(null);
     const handleClickMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -34,13 +35,25 @@ const AppBarComponent=(props)=> {
         handleCloseMenu()
         history.push("/login", {})
     }
+
+    //menu desplegable principal
+    const [menuDirection] = useState('left')
+    const [abrirMenuPrincipal, setAbrirMenuPrincipal] = useState(false);
+    
+    const FuncionOpenMenu = () => {
+        setAbrirMenuPrincipal(true)
+    };
+
+    const FuncionCerrarOpenMenu = () => {
+        setAbrirMenuPrincipal(false);
+    }
     return (
         <div className={classes.root}>            
             {
                 authenticated ? (
                     <AppBar position="fixed" className={classes.appBar}>
                         <Toolbar className={classes.toolbar} variant="dense">
-                            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <Menu /></IconButton>
+                            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={FuncionOpenMenu}> <Menu /></IconButton>
                             <Typography variant="h6" className={classes.appTitle}>New Project</Typography>
                                  <div>                
                                      {/* <Button className={classes.button} color="inherit"  to='/' component={Link}><span className={classes.title_text}>Menú Principal</span></Button>  */}
@@ -87,6 +100,7 @@ const AppBarComponent=(props)=> {
                   </AppBar>
                 ):''
             }
+            <MenuDesplegable menuDirection={menuDirection} openMenu={abrirMenuPrincipal} FuncionCerrarOpenMenu={FuncionCerrarOpenMenu} onLogout={onLogout}/>
         </div>
     )
 }

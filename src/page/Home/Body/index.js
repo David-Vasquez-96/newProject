@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {useStyles} from './style';
 import AppBarComponent from './AppBarPrincipal'
 import Header from './Header/index'
@@ -11,10 +11,11 @@ import Footer from './Footer'
 const LandingUSer=(props)=> {
     const classes = useStyles(props);
     var anchoDePantalla = window.innerWidth;
-    var altoDePantalla = window.innerHeight;;
+    var altoDePantalla = window.innerHeight;
+
     return (
-        <div className={classes.BodyPrincipal}>
-            <AppBarComponent />
+        <div className={classes.BodyPrincipal}>        
+            <AppBarComponent/>
             <Header />
             <Documents />
             <Process />
