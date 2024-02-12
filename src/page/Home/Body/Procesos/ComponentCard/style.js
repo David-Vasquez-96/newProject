@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = props => makeStyles(theme=>({
-    listDocumentsSecondary: {
+    listProcessSecondary: {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'initial',

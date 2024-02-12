@@ -1,15 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme=>({
-    ProcesosPrincipal:{
-        backgroundColor: 'white',
-        padding: '15px 0px',
+    ContainerPrincipal:{
+        backgroundColor: '#F2F6FA',
+        padding: '15px 10px',
     },
     titlePrincipal:{
         textAlign: 'center',
         color: 'black',
         margin: 0,
         padding: '0px 15px',
+        wordWrap: 'break-word',
         ['@media (max-width: 1920px)']:{ //desktop
             fontSize: '3.5rem',
         },
@@ -65,12 +66,45 @@ export const useStyles = makeStyles(theme=>({
             fontSize: '1rem',
         },
     },
-    listaDeProcesosPrincipal: {
+    containerImage: {
+        width: '100%',
         display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
-        // justifyContent: 'center',
-        padding: '30px 0px',
-        textAlign: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
+    mobileIcon:{
+        paddingTop: '10px',
+        ['@media (max-width: 1920px)']:{ //desktop
+            width: '60%',
+            height: '100%',
+        },
+        ['@media (max-width:1366px)']:{ //ipad
+            width: '60%',
+            height: '100%',
+        },
+        ['@media (max-width:1024px)']:{ //ipad
+            width: '60%',
+            height: '100%',
+        },
+       '@media (max-width:768px)':{ //ipad
+            width: '100%',
+            height: '100%',
+        },
+        ['@media (max-width: 460px)']:{ //mobile 
+            width: '100%',
+            height: '100%',
+        },
+        ['@media (max-width: 430px)']:{ //mobile Iphone 14 pro max
+            width: '100%',
+            height: '100%',
+        },
+        ['@media (max-width: 390px)']:{ //mobile Iphone 14 normal
+            width: '100%',
+            height: '100%',
+        },
+        ['@media (max-width: 320px)']:{ //mobile Iphone 14 normal
+            width: '100%',
+            height: '100%',
+        }, 
+    },      
 }));

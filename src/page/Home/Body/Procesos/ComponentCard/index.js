@@ -6,7 +6,7 @@ const ComponentCard=(props)=> {
     const classes = useStyles(props)();
 
     return (
-        <div className={classes.listDocumentsSecondary}>                            
+        <div className={classes.listProcessSecondary}>                            
             <Card className={classes.cardPrincipal}>
                 <div className={classes.containerImage}>                    
                     <img className={classes.mobileIcon} src={props.label?.icon} />
