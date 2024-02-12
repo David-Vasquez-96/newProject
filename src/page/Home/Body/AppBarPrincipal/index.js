@@ -37,8 +37,8 @@ const AppBarComponent=(props)=> {
     return (
         <div className={classes.root}>            
             {
-                props.authenticated ? (
-                    <AppBar position="static" className={classes.appBar}>
+                authenticated ? (
+                    <AppBar position="fixed" className={classes.appBar}>
                         <Toolbar className={classes.toolbar} variant="dense">
                             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <Menu /></IconButton>
                             <Typography variant="h6" className={classes.appTitle}>New Project</Typography>

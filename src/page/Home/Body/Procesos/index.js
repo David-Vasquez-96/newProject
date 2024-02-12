@@ -16,11 +16,10 @@ const PageProcess=(props)=> {
         {order: 1, backgroundColor:'#36B66F', icon: 'assets/subir.svg', title: 'Comunicados', titleColor: '#034DA1'},
         {order: 1, backgroundColor:'#FDBD00', icon: 'assets/subir.svg', title: 'Auditoría', titleColor: '#034DA1'},
     ]);
-    var anchoDePantalla = window.innerWidth;
 
     return (
         <div className={classes.ProcesosPrincipal}>
-            <h1 className={classes.titlePrincipal} variant="h5" color="initial">{'Procesos'+ anchoDePantalla}</h1>
+            <h1 className={classes.titlePrincipal} variant="h5" color="initial">{'Procesos'}</h1>
             <p className={classes.titleSecondary} variant="h5" color="initial">{'Selecciona uno de los subprocesos y explora los documentos que necesitas.'}</p>
             <div className={classes.listaDeProcesosPrincipal}>
                 {

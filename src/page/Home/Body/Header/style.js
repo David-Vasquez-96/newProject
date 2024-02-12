@@ -9,7 +9,7 @@ export const useStyles = makeStyles(theme=>({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: '15px',
+        padding: '50px 15px 15px 15px',
     },
 	img: {
         ['@media (max-width: 1920px)']:{ //desktop

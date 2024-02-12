@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {useStyles} from './style';
-import { Card, Typography } from '@material-ui/core';
 import ComponentCircle from './ComponentCircle'
 
 const PageDocuments=(props)=> {
@@ -17,11 +16,10 @@ const PageDocuments=(props)=> {
         {order: 1, borderColor: '#36B66F', icon: 'assets/PerfilUsuario.png', title: 'Comunicados', titleColor: '#034DA1'},
         {order: 1, borderColor: '#FDBD00', icon: 'assets/PerfilUsuario.png', title: 'Auditoría', titleColor: '#034DA1'},
     ]);
-    var anchoDePantalla = window.innerWidth;
 
     return (
         <div className={classes.DocumentsPrincipal}>
-            <h1 className={classes.titlePrincipal} variant="h5" color="initial">{'Documentos'+ anchoDePantalla}</h1>
+            <h1 className={classes.titlePrincipal} variant="h5" color="initial">{'Documentos'}</h1>
             <p className={classes.titleSecondary} variant="h5" color="initial">{'Navega en las siguientes categorías y encuentra fácilmente los documentos que necesites.'}</p>
             <div className={classes.listDocumentsPrincipal}>
                 {
