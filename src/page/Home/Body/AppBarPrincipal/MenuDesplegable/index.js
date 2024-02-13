@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import {SwipeableDrawer, Divider, List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import {SwipeableDrawer, Divider, List, ListItem, ListItemIcon, ListItemText, ListSubheader} from '@material-ui/core';
 import { Description, ExitToApp, People } from '@material-ui/icons';
 
 const useStyles = makeStyles({
@@ -16,6 +16,7 @@ const useStyles = makeStyles({
 export default function SwipeableTemporaryDrawer(props) {
     const classes = useStyles();
     const [menuList] = useState([
+        {title: 'Categorias', icon: <Description />, to: '/'},
         {title: 'Usuarios', icon: <People />, to: '/'},
         {title: 'Documentos', icon: <Description />, to: '/'},
     ])
@@ -26,7 +27,12 @@ export default function SwipeableTemporaryDrawer(props) {
             onClick={props.FuncionCerrarOpenMenu}
             onKeyDown={props.FuncionCerrarOpenMenu}
         >
-            <List>
+            <List
+                subheader={
+                    <ListSubheader component="div" id="nested-list-subheader">Menú</ListSubheader>
+                }            
+            >
+                <Divider />
                 {
                     menuList.map((label, index)=>(                        
                         <ListItem button>
@@ -35,11 +41,11 @@ export default function SwipeableTemporaryDrawer(props) {
                         </ListItem>
                     ))
                 }
-                <Divider />
-                <ListItem button onClick={props.onLogout}>
+                {/* <Divider /> */}
+                {/* <ListItem button onClick={props.onLogout}>
                     <ListItemIcon> <ExitToApp /></ListItemIcon>
                     <ListItemText primary="Cerrar sesión" />
-                </ListItem>
+                </ListItem> */}
             </List>
         </div>
     );

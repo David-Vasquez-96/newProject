@@ -9,7 +9,11 @@ export const useStyles = makeStyles(theme=>({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: '50px 15px 15px 15px',
+        padding: '50px 0px 15px 0px',
+        // padding: '50px 15px 15px 15px',
+    },
+    waveImage: {
+        width: '100%',
     },
 	img: {
         ['@media (max-width: 1920px)']:{ //desktop
