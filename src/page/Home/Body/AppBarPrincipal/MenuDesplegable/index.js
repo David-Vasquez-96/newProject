@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import {SwipeableDrawer, Divider, List, ListItem, ListItemIcon, ListItemText, ListSubheader} from '@material-ui/core';
-import { Description, ExitToApp, People } from '@material-ui/icons';
+import { Description, People } from '@material-ui/icons';
+import {Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     list: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles({
 export default function SwipeableTemporaryDrawer(props) {
     const classes = useStyles();
     const [menuList] = useState([
-        {title: 'Categorias', icon: <Description />, to: '/'},
+        {title: 'Categorias', icon: <Description />, to: '/categorias'},
         {title: 'Usuarios', icon: <People />, to: '/'},
         {title: 'Documentos', icon: <Description />, to: '/'},
     ])
@@ -35,7 +36,7 @@ export default function SwipeableTemporaryDrawer(props) {
                 <Divider />
                 {
                     menuList.map((label, index)=>(                        
-                        <ListItem button>
+                        <ListItem button to={label.to} component={Link}>
                             <ListItemIcon>{label.icon} </ListItemIcon>
                             <ListItemText primary={label.title} />
                         </ListItem>

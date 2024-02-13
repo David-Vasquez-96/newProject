@@ -1,0 +1,23 @@
+.MuiToolbar-gutters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+    .MTableToolbar-actions-607 {
+        margin: 20px 0;
+    }
+}
+
+
+@media screen and (max-width: 567px) {
+    .MuiToolbar-gutters .MuiTypography-h6  {
+        margin: 20px 0;
+    }
+    .MuiToolbar-gutters:nth-child(2) {
+        display: none;
+    }
+}
+

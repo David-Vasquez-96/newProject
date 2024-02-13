@@ -8,7 +8,6 @@ import constanciaDirectivoMandatarioOrganizacionPolitica from "./ConstanciaDirec
 import constanciaAfiliacionAPartidosPoliticos from "./constanciaAfiliacionAPartidosPoliticos";
 import asociarUsuarios from "./asociarUsuarios";
 import solicitudEmpadronamiento from './solicitudEmpadronamiento';
-import citaDeEmpadronamiento from "./citaDeEmpadronamiento";
 import solicitudAfiliacion from './solicitudAfiliacion';
 import solicitudHojasDeAdhesion from './solicitudHojasDeAdhesion';
 
@@ -26,8 +25,6 @@ const allReducers = combineReducers({
   constanciaDirectivoMandatarioOrganizacionPolitica: constanciaDirectivoMandatarioOrganizacionPolitica,
   constanciaAfiliacionAPartidosPoliticos: constanciaAfiliacionAPartidosPoliticos,
   asociarUsuarios: asociarUsuarios,
-  solicitudEmpadronamiento: solicitudEmpadronamiento,
-  citaDeEmpadronamiento: citaDeEmpadronamiento,
   solicitudAfiliacion: solicitudAfiliacion,
   solicitudHojasDeAdhesion: solicitudHojasDeAdhesion,
   signUp: signUp,

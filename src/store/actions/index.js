@@ -8,8 +8,6 @@ import constanciaCandidatoEleccionPopular from "./constanciaCandidatoEleccionPop
 import constanciaDirectivoMandatarioOrganizacionPolitica from "./constanciaDirectivoMandatarioOrganizacionPolitica";
 import ConstanciaAfiliacionAPartidosPoliticos from "./constanciaAfiliacionAPartidosPoliticos";
 import asociarUsuarios from "./asociarUsuarios";
-import solicitudEmpadronamiento from "./solicitudEmpadronamiento";
-import citaDeEmpadronamiento from "./citaDeEmpadronamiento";
 import solicitudAfiliacion from "./solicitudAfiliacion";
 
 
@@ -24,8 +22,6 @@ const allActions = {
   constanciaDeInscripcionComoDirectivo,
   signUp: signUp,
   asociarUsuarios: asociarUsuarios,
-  solicitudEmpadronamiento: solicitudEmpadronamiento,
-  citaDeEmpadronamiento: citaDeEmpadronamiento,
   solicitudAfiliacion: solicitudAfiliacion,
 };
 

@@ -1,4 +1,4 @@
-import { actionNames } from "constants/index";
+import { actionNames } from "constant/index";
 const actions = {};
 
 actions.ASOCIAR_USUARIOS_SET_DATA_USUARIO_POR_ASOCIAR = (state) => {

@@ -17,6 +17,8 @@ import CambiarContrseña from '../../page/UserProfile/CambiarContreña/Form'
 import CambiarContrseñaSinCode from 'page/UserProfile/CambiarContreñaSinCode/Form'
 import MensajeConfirmacionCambioContraseña from '../../page/UserProfile/MensajeConfirmacionCambioContraseña'
 import ObtenerCodigoCambiarContraseña from '../../page/UserProfile/ObtenerCodigo'
+// NUEVOS COMPONENTES
+import ComponenteCategorias from 'page/Modules/Categorias'
 // publico
 import ObtenerCorreoUsuario from 'page/Security/Login/CambiarContraseña/ObtenerCorreo'
 import ObtenerCodigoExterno from 'page/Security/Login/CambiarContraseña/ObtenerCodigo'
@@ -45,7 +47,7 @@ const Template = (props) => {
                     <Route exact path="/cambiarContraseña/obtenerCodigoExterno" render={(props) => <ObtenerCodigoExterno />}></Route>
                     <Route exact path="/cambiarContraseña/nuevaContraseña" render={(props) => <CambiarContraseñaExterno />}></Route>
                     <Route exact path="/cambiarContraseña/contraseñaActualizada" render={(props) => <MensajeConfirmacionCambioContraseñaExterno />}></Route>
-
+                    <Route exact path="/categorias" render={(props) => <ComponenteCategorias authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
 
                     <PrivateRoute path="/PerfilDelUsuario" authenticated={authenticated} currentUser={props.currentUser} component={PerfilDelUsuario}></PrivateRoute>
                     <Route path="/signup" render={(props) => <Signup authenticated={authenticated} {...props} />}></Route>

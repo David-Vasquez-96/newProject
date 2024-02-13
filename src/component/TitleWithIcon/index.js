@@ -10,13 +10,15 @@ export default function Title(props) {
                 <Toolbar variant="dense" className={classes.AppBar}>
                 <Grid container direction="row" justify="center" alignItems="center">
                     {
-                        props.icon && (
+                        props.icon ? (
+                            <Grid item xs={12} > { props.icon }</Grid>                            
+                        ): props.image ? (
                             <Grid item xs={12} >
                                 <ButtonBase className={classes.image}>
-                                    <img className={classes.img} alt="complex" src={props.icon} />
+                                    <img className={classes.img} alt="complex" src={props.image} />
                                 </ButtonBase>
                             </Grid>
-                        )
+                        ):('')
                     }
                         <h1 className={classes.h1} variant="h5" color="initial">{props.title}</h1>   
                 </Grid>

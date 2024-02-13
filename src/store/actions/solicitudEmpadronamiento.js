@@ -1,4 +1,4 @@
-import {actionNames} from 'constants/index';
+import {actionNames} from 'constant/index';
 const actions ={};
 
 actions.SOLICITUD_EMPADRONAMIENTO_SET_LUGAR_RESIDENCIA =(state)=>{

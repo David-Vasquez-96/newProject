@@ -40,7 +40,7 @@ export const useStyles = makeStyles(theme=>({
 		maxHeight: '100%',
 	},    
     AppBar : {
-        // paddingTop: '10px',
+        padding: '15px 0px',
         backgroundColor: 'white',
         color:'#000000',
         display: 'flex',
