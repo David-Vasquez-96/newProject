@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { InputAdornment, InputLabel, OutlinedInput } from "@material-ui/core/";
@@ -8,6 +8,7 @@ import { useStyles } from "./style";
 
 export default function FormControlInputOutlined(props) {
     const classes = useStyles(props)();
+    const [self, setSelf] = useState(props.this);
 
     return (
         <FormControl variant="outlined" className={(props.style) ? props.style : classes.formControl}>
@@ -26,7 +27,17 @@ export default function FormControlInputOutlined(props) {
                 name={props.name}
                 value={props.value}
                 inputProps={{ maxLength: props.maxLength }}
-                onChange={props.handleChange}
+                // onChange={props.handleChange}
+                onChange={(event) => {
+                    props.handleChange(event, self);
+                }}                      
+                // onChange={(event, newValue) => {
+                //     if (newValue) {
+                //         props.handleChange({ target: { value: newValue?.id, name: props.name, text: newValue?.name } });
+                //     } else {
+                //         props.handleChange({ target: { value: '', name: props.name, text: '' } });
+                //     }
+                // }}                
                 onKeyPress={props.keyPress}
                 disabled={props.disabled}
                 placeholder={ props.placeholder || ""}

@@ -12,7 +12,7 @@ const ComponentCircle=(props)=> {
                 <img className={classes.mobileIcon} src={props.label?.icon} />
             </Card>
             <div className={classes.containerTitle}>                                
-                <Typography className={classes.cardTitle}>{props.label?.title}</Typography>
+                <Typography className={classes.cardTitle}>{ props.title || props.label?.title}</Typography>
             </div>
         </div>
     )

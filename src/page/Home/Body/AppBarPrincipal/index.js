@@ -54,9 +54,9 @@ const AppBarComponent=(props)=> {
                     <AppBar position="fixed" className={classes.appBar}>
                         <Toolbar className={classes.toolbar} variant="dense">
                             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={FuncionOpenMenu}> <Menu /></IconButton>
-                            <Typography variant="h6" className={classes.appTitle}>
+                            <div variant="h6" className={classes.appTitle}>
                             <Link className={classes.appTitle} to="/" >New Project</Link>
-                            </Typography>
+                            </div>
                                  <div>                
                                      {/* <Button className={classes.button} color="inherit"  to='/' component={Link}><span className={classes.title_text}>Menú Principal</span></Button>  */}
                                      <Button className={classes.button} color="inherit" aria-describedby={id} onClick={handleClickMenu}>

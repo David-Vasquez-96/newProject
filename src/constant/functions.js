@@ -338,7 +338,16 @@ const base64ToFile = (url, filename, mimeType) => {
       .then(function(buf){return new File([buf], filename,{type:mimeType});})
   );
 }
-
+const splitBase64 = function (base64) {
+  if (base64 !== undefined) {
+    if (base64 !== null) {
+        var getBase64 = base64.split("base64,");
+        if(getBase64.length > 0){
+            return getBase64[1];
+        }
+    }
+  }
+}; 
 export const functions = {
   isMobile: isMobile,
   downloadPDFFromStringBase64: downloadPDFFromStringBase64,
@@ -354,4 +363,5 @@ export const functions = {
   aplicarDiferenciaHoraria: aplicarDiferenciaHoraria,
   clearElementValuesNoDate: clearElementValuesNoDate,
   base64ToFile,
+  splitBase64,
 };
