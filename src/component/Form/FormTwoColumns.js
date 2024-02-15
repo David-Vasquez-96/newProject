@@ -94,8 +94,6 @@ export default function Table(props) {
 
   const handleChange = (event) => {
     if( event.target.value?.length > elements[event.target.name].finalRequiredLength){
-      // elements[event.target.name].isError = true;
-      // elements[event.target.name].value = event.target.value;
       return setElements({ ...elements });
     }
     if((event.target.value?.length === 0) && elements[event.target.name].isError && elements[event.target.name].validators[0]==='requireds'){
@@ -106,6 +104,9 @@ export default function Table(props) {
     if((event.target.value?.length === 0) && elements[event.target.name].validators[0]==='required'){
       elements[event.target.name].value = event.target.value;
       elements[event.target.name].isError = true;    
+      if (elements[event.target.name].handler !== undefined) {
+        elements[event.target.name].handler(event);
+      }
       return setElements({ ...elements });
     }
     if((event.target.value?.length === 0) && elements[event.target.name].validators[0]==='requireds'){
@@ -118,7 +119,6 @@ export default function Table(props) {
       elements[event.target.name].isError = true;
       return setElements({ ...elements });
     }
-    
 
     if (elements[event.target.name].pattern === numericPattern) {
       // Condición a la que se entra si el input tiene un pattern numérico.
@@ -221,7 +221,6 @@ export default function Table(props) {
     if (elements[event.target.name].handler !== undefined) {
       // event.target.index=parseInt(event.currentTarget.dataset.index);
       elements[event.target.name].handler(event);
-      
     }
     setElements({ ...elements });
     setApiErrors([]);
@@ -700,6 +699,7 @@ export default function Table(props) {
                   name={key}
                   key={key}
                   variant={item.variant}
+                  className={classes.buttonVariant}
                   color={item.color}
                   disabled={item.disabled}
                   size={item.size}
@@ -1031,6 +1031,9 @@ export default function Table(props) {
                   showInputFile={elements[key].showInputFile}
                   value={elements[key].value}
                   fileType={elements[key].fileType}
+                  onChange={
+                    elements[key].handler !== undefined ? elements[key].handler : null
+                  }                    
               />
           </Fragment>
       )
@@ -1292,7 +1295,7 @@ export default function Table(props) {
                   {
                       props.description.map((text, index) => {
                           return (
-                              <ListItem>
+                              <ListItem style={{padding: '0px'}}>
                                   <ListItemIcon>
                                       <Send color="primary"/>
                                   </ListItemIcon>

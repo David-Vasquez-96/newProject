@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(theme=>({
+export const useStyles =  makeStyles(theme=>({
     containerPrincipalCategoria:{
         textAlign: 'center',
         display: 'flex',
@@ -9,6 +9,9 @@ export const useStyles = makeStyles(theme=>({
         alignItems: 'stretch',
         justifyContent: 'center',
         margin: '25px',
+        borderTop: '15px solid #80c3ff',
+        borderRadius: '10px',        
+        background: 'white',        
         '@media (max-width:768px)':{ //ipad
             margin: '25px'
         },
@@ -26,10 +29,7 @@ export const useStyles = makeStyles(theme=>({
     containerForm: {
         width: '100%',
         height: 'auto',
-        borderTop: '15px solid #80c3ff',
-        borderRadius: '10px',        
-        background: 'white',
-        margin: '0px 20px 0px 0px',
+        margin: '0px 0px 0px 0px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -40,9 +40,6 @@ export const useStyles = makeStyles(theme=>({
     containerVisualize:{
         width: '100%',
         height: 'auto',
-        borderTop: '15px solid #80c3ff',
-        borderRadius: '10px',        
-        background: 'white',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -58,5 +55,5 @@ export const useStyles = makeStyles(theme=>({
         // ['@media (max-width: 460px)']:{ //mobile
         //     margin: '5px 10px',
         // },
-    },      
+    },
 }));

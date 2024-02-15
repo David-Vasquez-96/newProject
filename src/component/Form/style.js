@@ -134,6 +134,9 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor:'#EDEDED',
     borderRadius: '0px',
   },
+  buttonVariant:{
+    margin: '0px 20px',
+  }, 
   bottonPrincipal: {
     background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
     border: 0,

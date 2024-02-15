@@ -2,7 +2,7 @@ const initialState= {data:[]};
 
 const reducer = (state = initialState, action )=>{
     switch(action.type){
-        case "CONSTANCIAAFILIACIONAPARTIDOSPOLITICOS_SET_DATA":
+        case "CATEGORIAS_SET_DATA":
             var newStateList = Object.assign({}, state);
             newStateList.data=action.state.data;
             return newStateList;

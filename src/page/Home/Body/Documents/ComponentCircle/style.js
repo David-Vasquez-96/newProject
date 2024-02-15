@@ -50,7 +50,7 @@ export const useStyles = props => makeStyles(theme=>({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: '15px',
-        border: '5px solid'+props.label?.borderColor,
+        border: '5px solid'+props.borderColor || props.label?.borderColor,
         ['@media (max-width: 1920px)']:{ //desktop
             width: '150px',
             height: '150px',
@@ -119,7 +119,7 @@ export const useStyles = props => makeStyles(theme=>({
         }, 
     },     
     cardTitle: {
-        color: props.label?.titleColor,
+        color: props.label?.titleColor || '#034DA1',
         fontWeight: 'bold',
         ['@media (max-width: 1920px)']:{ //desktop
             fontSize: '1.5rem',

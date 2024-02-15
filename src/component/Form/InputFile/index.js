@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import {useStyles} from './styles';
@@ -6,6 +6,8 @@ import Card64Image from '../../card64Image';
 import Card64Pdf from '../../cardBase64Pdf';
 export default function FormControlFile(props) {
     const classes = useStyles();
+    const [self, setSelf] = useState(props.this);
+
     return (
         <Fragment>
             {props?.showInputFile && (
@@ -19,7 +21,10 @@ export default function FormControlFile(props) {
                                 className={props.fileWidth ? classes.designButtonFileWidth : classes.designButtonFile}
                                 type={props.elementType}
                                 accept={props.accept}
-                                onChange={props.handleChangeFile}
+                                // onChange={props.handleChangeFile}
+                                onChange={(event) => {
+                                    props.handleChangeFile(event, self);
+                                  }}                                      
                             />
                              {(props.isError) ? <FormHelperText className={classes.errorMessagesFile} id="component-error-text">{props.errorMessages}</FormHelperText> : null }
                         </Grid>

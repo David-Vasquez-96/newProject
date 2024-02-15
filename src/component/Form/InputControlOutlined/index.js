@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { InputAdornment, InputLabel, OutlinedInput } from "@material-ui/core/";
-import { Mail } from "@material-ui/icons";
-
 import { useStyles } from "./style";
 
 export default function FormControlInputOutlined(props) {
@@ -30,14 +28,7 @@ export default function FormControlInputOutlined(props) {
                 // onChange={props.handleChange}
                 onChange={(event) => {
                     props.handleChange(event, self);
-                }}                      
-                // onChange={(event, newValue) => {
-                //     if (newValue) {
-                //         props.handleChange({ target: { value: newValue?.id, name: props.name, text: newValue?.name } });
-                //     } else {
-                //         props.handleChange({ target: { value: '', name: props.name, text: '' } });
-                //     }
-                // }}                
+                }}                                    
                 onKeyPress={props.keyPress}
                 disabled={props.disabled}
                 placeholder={ props.placeholder || ""}

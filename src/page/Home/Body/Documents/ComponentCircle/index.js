@@ -9,7 +9,13 @@ const ComponentCircle=(props)=> {
     return (
         <div className={classes.listDocumentsSecondary}>                            
             <Card className={classes.cardPrincipal} elevation={14}>
-                <img className={classes.mobileIcon} src={props.label?.icon} />
+                {
+                    (props.image) ? (
+                        <img className={classes.mobileIcon} src={'data:image/png;base64,'+props.image} />
+                    ): (
+                        <img className={classes.mobileIcon} src={props.label?.icon} />
+                    )
+                }
             </Card>
             <div className={classes.containerTitle}>                                
                 <Typography className={classes.cardTitle}>{ props.title || props.label?.title}</Typography>
