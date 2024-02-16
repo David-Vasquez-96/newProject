@@ -50,7 +50,8 @@ export const useStyles = props => makeStyles(theme=>({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: '15px',
-        border: '5px solid'+props.borderColor || props.label?.borderColor,
+        // border: '5px solid'+props.borderColor || props.label?.borderColor,
+        border: '5px solid '+`rgba(${ props?.borderColor?.r }, ${ props?.borderColor?.g }, ${ props?.borderColor?.b }, ${ props?.borderColor?.a })` || props?.label?.borderColor,
         ['@media (max-width: 1920px)']:{ //desktop
             width: '150px',
             height: '150px',

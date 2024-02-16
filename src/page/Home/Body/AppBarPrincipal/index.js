@@ -10,11 +10,14 @@ import { AccountCircle, ArrowBack, AssignmentInd, Menu, Input } from '@material-
 import {useStyles} from './style';
 import { publicMenu } from 'constant/index';
 import MenuDesplegable from './MenuDesplegable'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from 'store/reducers/SecuritySlice';
 
 const AppBarComponent=(props)=> {
     const classes = useStyles(props);
-    var authenticated = props.authenticated;
+    const dispatch = useDispatch();
+    /**** REDUX VARIABLES ****/
+    const authenticated = useSelector(state => state.security.authenticated);    
     let history = useHistory();
 
     //menu desplegable de perfil
@@ -30,8 +33,9 @@ const AppBarComponent=(props)=> {
     const onLogout = () => {
         let userAccount = new UserAccount();
         userAccount.logout();
-        props.LOGOUT();
-        props.SET_MENU(publicMenu);
+        // props.LOGOUT();
+        dispatch(logout())
+        // props.SET_MENU(publicMenu);
         handleCloseMenu()
         history.push("/login", {})
     }

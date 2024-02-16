@@ -11,7 +11,7 @@ const ComponentCircle=(props)=> {
             <Card className={classes.cardPrincipal} elevation={14}>
                 {
                     (props.image) ? (
-                        <img className={classes.mobileIcon} src={'data:image/png;base64,'+props.image} />
+                        <img className={classes.mobileIcon} src={ props.image || 'data:image/png;base64,'} />
                     ): (
                         <img className={classes.mobileIcon} src={props.label?.icon} />
                     )

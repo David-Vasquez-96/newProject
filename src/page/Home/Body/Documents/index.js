@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
 import {useStyles} from './style';
 import ComponentCircle from './ComponentCircle'
+import { useSelector } from 'react-redux';
 
 const PageDocuments=(props)=> {
     const classes = useStyles(props);
-    const [listDocuments] = useState([
-        {order: 1, borderColor: '#F3650E', icon: 'assets/PerfilUsuario.png', title: 'Instructivos', titleColor: '#034DA1'},
-        {order: 1, borderColor: '#36B66F', icon: 'assets/PerfilUsuario.png', title: 'Políticas', titleColor: '#034DA1'},
-        {order: 1, borderColor: '#FDBD00', icon: 'assets/PerfilUsuario.png', title: 'Procedimientos', titleColor: '#034DA1'},
-        {order: 1, borderColor: '#0080CB', icon: 'assets/PerfilUsuario.png', title: 'Manuales', titleColor: '#034DA1'},
-        {order: 1, borderColor: '#921F8F', icon: 'assets/PerfilUsuario.png', title: 'Matrices', titleColor: '#034DA1'},
-        {order: 1, borderColor: '#EE4B9A', icon: 'assets/PerfilUsuario.png', title: 'Planes', titleColor: '#034DA1'},
-        {order: 1, borderColor: '#921F8F', icon: 'assets/PerfilUsuario.png', title: 'Documentos Especiales', titleColor: '#034DA1'},
-        {order: 1, borderColor: '#F3650E', icon: 'assets/PerfilUsuario.png', title: 'Formatos', titleColor: '#034DA1'},
-        {order: 1, borderColor: '#36B66F', icon: 'assets/PerfilUsuario.png', title: 'Comunicados', titleColor: '#034DA1'},
-        {order: 1, borderColor: '#FDBD00', icon: 'assets/PerfilUsuario.png', title: 'Auditoría', titleColor: '#034DA1'},
-    ]);
+    const listDocuments = useSelector(state => state.categoria.categoryList);
 
     return (
         <div className={classes.DocumentsPrincipal}>

@@ -28,6 +28,7 @@ import FormControlShowPDF from './PDFControl';
 import MaxHeightTextarea from './customTextArea';
 import FormControlSelectAutoCompleteCheckbox from './AutoCompleteCheckBox';
 import ListControl from './ListItem'
+import SketchPickerColorControl from './SketchPickerColorControl/SketchPicker'
 
 // import FormControlFile from './InputFile';
 import { useStyles } from "./style";
@@ -380,11 +381,15 @@ export default function Table(props) {
             setElements({ ...elements });
             return;
         }
-
         const fileInBase64 = await convertBase64(currentFile);
         elements[nameTarget].value = functions.splitBase64(fileInBase64);
-
+        
+        elements[nameTarget].base64Complete = fileInBase64;
+        if (elements[nameTarget].handler !== undefined) {
+          elements[nameTarget].handler(elements[nameTarget]);
+        }
         setElements({ ...elements });
+        setApiErrors([]);
     }
 }
     /** FUNCTION TO VALIDATE FILE TYPE
@@ -885,6 +890,31 @@ export default function Table(props) {
                 elements[key].handler !== undefined ? elements[key].handler : null
               }              
             ></FormControlInputOutlined>
+          );        
+        case "SketchPickerColor":
+          return (
+            <SketchPickerColorControl
+              key={key}
+              label={elements[key].label}
+              type={elements[key].type}
+              isError={isError}
+              maxLength={elements[key].maxLengthTwo}
+              name={elements[key].idelement}
+              value={elements[key].value}
+              handleChange={handleChange}
+              getData={elements[key].getData}
+              errorMessages={messageError}
+              keyPress={elements[key].keyPress}
+              disabled={elements[key].disabled}
+              margin={elements[key].margin}
+              icon={elements[key].icon}
+              minWidth={elements[key].minWidth}
+              style={elements[key].style}
+              placeholder={elements[key].placeholder}
+              onChange={
+                elements[key].handler !== undefined ? elements[key].handler : null
+              }              
+            ></SketchPickerColorControl>
           );        
       case "inputCustom":
         return (

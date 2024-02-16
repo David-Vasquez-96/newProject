@@ -28,7 +28,7 @@ export default function FormControlInputOutlined(props) {
                 // onChange={props.handleChange}
                 onChange={(event) => {
                     props.handleChange(event, self);
-                }}                                    
+                }}
                 onKeyPress={props.keyPress}
                 disabled={props.disabled}
                 placeholder={ props.placeholder || ""}

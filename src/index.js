@@ -6,12 +6,15 @@ import "typeface-roboto";
 
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { createStore } from 'redux';
-import allReducers from './store/reducers';
-import { Provider } from 'react-redux';
+// import { createStore } from 'redux';
+// import allReducers from './store/reducers';
 
-let store = createStore(allReducers,
-    window._REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+/**** REDUX ****/
+import { Provider } from 'react-redux';
+import store from './store/index';
+
+// let store = createStore(allReducers,
+    // window._REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 //store.subscribe(()=> console.log(store.getState()) );
 

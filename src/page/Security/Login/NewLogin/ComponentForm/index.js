@@ -11,9 +11,13 @@ import UserAccount from './UserAccount';
 import {connect } from "react-redux";
 import mapStateToProps from './mapStateToProps';
 import mapDispatchToProps from './mapDispatchToProps';
+/**** REDUX ****/
+import { setCurrentUser, setMenu } from 'store/reducers/SecuritySlice';
+import { useDispatch } from 'react-redux';
 
 const ComponentForm = (props) => {
     let history = useHistory();
+    const dispatch = useDispatch();
     const classes = useStyles();
     const [loadingMessage, setLoadingMessage] = useState({loading:false, title:''});
     const [userAccount,] = useState(new UserAccount());
@@ -51,8 +55,10 @@ const ComponentForm = (props) => {
     }
 
     const loginSuccess=async ()=>{
-        props.SET_MENU(userAccount.getMenu());
-        props.SET_CURRENT_USER(userAccount.getCurrentUser());
+        dispatch(setMenu(userAccount.getMenu()));
+        dispatch(setCurrentUser(userAccount.getCurrentUser()));
+        // props.SET_MENU(userAccount.getMenu());
+        // props.SET_CURRENT_USER(userAccount.getCurrentUser());
         history.push("/",{});
     }
     
