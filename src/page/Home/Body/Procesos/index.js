@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const PageProcess=(props)=> {
     const classes = useStyles(props);
-    const processList = useSelector( state => state.categoria.processList);
+    const processList = useSelector( state => state.proceso.processList);
 
     return (
         <div className={classes.ProcesosPrincipal}>
@@ -16,7 +16,7 @@ const PageProcess=(props)=> {
                     processList.map((label, index) =>(
                         <ComponentCard 
                             backgroundColor={label?.backgroundColor}
-                            icon={label?.icon}
+                            image={label?.image}
                             title={label?.title}
                         />
                     ))

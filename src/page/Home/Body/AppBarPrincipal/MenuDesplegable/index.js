@@ -18,8 +18,8 @@ export default function SwipeableTemporaryDrawer(props) {
     const classes = useStyles();
     const [menuList] = useState([
         {title: 'Categorias', icon: <Description />, to: '/categorias'},
+        {title: 'Procesos', icon: <Description />, to: '/procesos'},
         {title: 'Usuarios', icon: <People />, to: '/'},
-        {title: 'Documentos', icon: <Description />, to: '/'},
     ])
     const list = () => (
         <div

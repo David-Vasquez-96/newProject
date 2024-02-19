@@ -18,6 +18,8 @@ import MensajeConfirmacionCambioContraseña from '../../page/UserProfile/Mensaje
 import ObtenerCodigoCambiarContraseña from '../../page/UserProfile/ObtenerCodigo'
 // NUEVOS COMPONENTES
 import ComponenteCategorias from 'page/Modules/Categorias'
+import ComponenteProcesos from 'page/Modules/Procesos';
+
 // publico
 import ObtenerCorreoUsuario from 'page/Security/Login/CambiarContraseña/ObtenerCorreo'
 import ObtenerCodigoExterno from 'page/Security/Login/CambiarContraseña/ObtenerCodigo'
@@ -36,6 +38,9 @@ const Template = (props) => {
                 <Switch>
                     <Route path="/login" render={(props) => <ComponentNewLogin />}></Route>
                     <Route exact path="/" render={(props) => <Home authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
+                    <Route exact path="/categorias" render={(props) => <ComponenteCategorias authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
+                    <Route exact path="/procesos" render={(props) => <ComponenteProcesos authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
+
                     <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={props.currentUser} component={Profile}></PrivateRoute>
                     <PrivateRoute exact path="/cambiarContraseña" authenticated={authenticated} currentUser={props.currentUser} component={CambiarContrseña}></PrivateRoute>
                     <PrivateRoute exact path="/changedPassword" authenticated={authenticated} currentUser={props.currentUser} component={CambiarContrseñaSinCode}></PrivateRoute>
@@ -46,7 +51,6 @@ const Template = (props) => {
                     <Route exact path="/cambiarContraseña/obtenerCodigoExterno" render={(props) => <ObtenerCodigoExterno />}></Route>
                     <Route exact path="/cambiarContraseña/nuevaContraseña" render={(props) => <CambiarContraseñaExterno />}></Route>
                     <Route exact path="/cambiarContraseña/contraseñaActualizada" render={(props) => <MensajeConfirmacionCambioContraseñaExterno />}></Route>
-                    <Route exact path="/categorias" render={(props) => <ComponenteCategorias authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
 
                     <PrivateRoute path="/PerfilDelUsuario" authenticated={authenticated} currentUser={props.currentUser} component={PerfilDelUsuario}></PrivateRoute>
                 </Switch>

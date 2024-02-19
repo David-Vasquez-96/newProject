@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import categoriaSlide from './reducers/categoriaSlide'
 import menuSlice from './reducers/menuSlice'
 import securitySlice from './reducers/SecuritySlice'
+import categoriaSlide from './reducers/categoriaSlide'
+import procesosSlice from './reducers/ProcesosSlice'
 
 export default configureStore ({
     reducer: {
-        categoria: categoriaSlide,
         menu: menuSlice,
-        security: securitySlice
+        security: securitySlice,
+        categoria: categoriaSlide,
+        proceso: procesosSlice,
     }
 })
