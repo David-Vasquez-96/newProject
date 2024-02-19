@@ -39,7 +39,6 @@ const clearElementValues = (elementsName, setElements) => {
   Object.keys(newElements).map((key) => {
     let element = newElements[key];
     if (element.elementType === "date") {
-      // console.log("element:", element);
       const newDate = new Date();
       element.value = newDate;
       element.defaultValue = newDate;
@@ -125,7 +124,6 @@ const clearElementValue = (elementsName, elementName, setElements) => {
   let newElements = Object.assign({}, elementsName);
   let element = newElements[elementName];
   if (element.elementType === "date") {
-    // console.log("element:", element);
     const newDate = new Date();
     element.value = newDate;
     element.defaultValue = newDate;
@@ -187,10 +185,8 @@ const checkLongerThanSixMonthsFromNow = (fechaInicio) => {
     monthDifference > 6 ||
     (monthDifference == 6 && startDateDay <= endDateDay)
   ) {
-    // console.log("Última actualización fue hace 6 meses o más.");
     return true;
   } else {
-    // console.log("Última actualización fue hace menos de 6 meses.");
     return false;
   }
 };
@@ -315,20 +311,15 @@ const dateFormatGeneral = (date, dataToReturn = "") => {
 // Aplicamos la diferencia en horario
 
 const aplicarDiferenciaHoraria = function (hora, diferenciaEnHoras) {
-  // console.log("hora: ", hora);
   let primerSplit = hora.split(":");
-  // console.log("primerSplit:", primerSplit);
   let horaEnNumeros = Number(primerSplit[0]);
-  // console.log("horaEnNumeros:", horaEnNumeros);
   let nuevaHoraEnNumeros = horaEnNumeros + Number(diferenciaEnHoras);
-  // console.log("nuevaHoraEnNumeros:", nuevaHoraEnNumeros);
   let nuevaHoraEnString = nuevaHoraEnNumeros.toString();
   if (nuevaHoraEnNumeros < 10) {
     nuevaHoraEnString = "0" + nuevaHoraEnString;
   }
   nuevaHoraEnString =
     nuevaHoraEnString + ":" + primerSplit[1] + ":" + primerSplit[2];
-  // console.log("nuevaHoraEnString:", nuevaHoraEnString);
   return nuevaHoraEnString;
 };
 

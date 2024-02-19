@@ -91,7 +91,6 @@ function FormularioCambiarContraseña(props) {
     });
 
     useEffect(() => {
-        // console.log('useEffect: ', props.mensajeCodigo)
         if("Solicitud de cambio de clave activa, revise su correo electrónico" === props.mensajeCodigo)
             showMessagePersonalizedPosition('warning', '¡Advertencia!', props.mensajeCodigo, 'center')
         else if("Código Enviado Correctamente" === props.mensajeCodigo)

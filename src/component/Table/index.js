@@ -37,26 +37,6 @@ function Table(props) {
         tableData.setHeader(header);
         tableData.setService(service);        
         var prueba = await tableData.getPromiseResponse()
-        if(
-            currentUser?.email === 'achiroy@tse.org.gt' || currentUser?.email === 'jabiche@tse.org.gt'||
-            currentUser?.email === 'ctorres@tse.org.gt' || currentUser?.email === 'mjmerida@tse.org.gt' ||
-            currentUser?.email === 'sfajardo@tse.org.gt' || currentUser?.email === 'empadronamiento@tse.org.gt'                
-        ){
-            // dispatch(allActions.rangoNoBoletas({boletasFaltantes: 15}))
-            dispatch(allActions.rangoNoBoletas(prueba.dataAdicional))
-        }
-        if(props.idSolicitudGeneradoNacional){
-            props.obtenerDatosDeLaTabla(prueba.data)
-        }else if(props.obtenerDatos){
-            props.obtenerPaginacionTabla(prueba)
-        }
-                
-        if(props.obtenerPaginacionTabla)
-            props.obtenerPaginacionTabla(prueba)
-
-        if(props.FuncionObtenerDatosGeneralesDeLaTabla )
-            props.FuncionObtenerDatosGeneralesDeLaTabla(prueba)
-            
         return prueba
     }
 

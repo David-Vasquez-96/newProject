@@ -1,15 +1,21 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export  const useStyles = makeStyles(theme => ({
+export  const useStyles = props => makeStyles(theme => ({
     rootFile: {
-        width: '25%',
+        width: (props.fileWidth) ? '25%' : null,
+        // width: '25%',
         minWidth: 300,
         marginTop:'1%',
-        paddingRight: theme.spacing(2),
         marginBottom: 20,
-        '@media (max-width: 768px)': {
-            width: '100%'
-        }
+        marginLeft: '10px',
+        marginRight: '10px',
+        border: '1px solid #d4d8c1',
+        borderRadius: '5px',
+        padding: '10px',
+        // paddingRight: theme.spacing(2),
+        // '@media (max-width: 768px)': {
+        //     width: '100%'
+        // }
     },
     rootFileWithWidth: {
         minWidth: 300,
@@ -26,8 +32,8 @@ export  const useStyles = makeStyles(theme => ({
 		},
     },
     containerInput : {
-        paddingRight: theme.spacing(2),
-        width: '85%',
+        // paddingRight: theme.spacing(2),
+        // width: '85%',
         '@media (max-width:768px)':{ //ipad
             width: '100%',
 		},
@@ -84,9 +90,9 @@ export  const useStyles = makeStyles(theme => ({
     errorMessagesFile: {
         marginTop: 10,
         color: '#ff1744',
-        fontSize: 16,
+        fontSize: '0.75rem',
         '@media (max-width:768px)':{ //ipad
-            fontSize: "15px",
+            fontSize: "0.75rem",
 		},
     }
 }));

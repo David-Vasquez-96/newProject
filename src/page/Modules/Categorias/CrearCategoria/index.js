@@ -4,25 +4,27 @@ import {useStyles} from './style';
 import DialogoPersonalizado from 'component/DialogoPersonalizado';
 import ComponentCircle from 'page/Home/Body/Documents/ComponentCircle'
 import Form from 'component/Form/FormTwoColumns';
+import { Button, Divider } from '@material-ui/core';
+import Alert from 'react-s-alert';
+// REDUX **************************
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { saveDataNewCategory } from 'store/reducers/categoriaSlide';
-import { Button } from '@material-ui/core';
+import { saveDataNewCategory, listCategory } from 'store/reducers/categoriaSlide';
 
 let data = {}
-// let listCategory = []
+
 const ComponenteCategorias=(props)=> {   
     const classes = useStyles();
+    const initialColor ={r: '0', g: '0', b: '0',a: '1',};
+    const newArray = []
     const dispatch = useDispatch();
     const newCategory = useSelector(state => state.categoria.newCategory);
-    const listCategory = useSelector(state => state.categoria.categoryList)
-    console.log('guardando nueva categoria 1111: ', newCategory)
+    const categoryList = JSON.parse(JSON.stringify(useSelector( state => state.categoria.categoryList))); 
     data = newCategory;
     let description = [
         {name: "- Antes de continuar, revise que la información que ingresó esté correcta.",},
         {name: "- Datos requeridos (*)."}
     ];    
-    // const [data, setData] = useState({title: 'Título', borderColor: '#FDBD00', image: 'assets/PerfilUsuario.png', });
     const Updatedata = (e) =>{
         if(e.target?.name === 'title')
             dispatch(saveDataNewCategory({title: e.target?.value}));
@@ -34,30 +36,51 @@ const ComponenteCategorias=(props)=> {
     }    
     const [elements,setElements] = useState({
         title: {
-                idelement: "title",  value: "",    label: "Ingrese título de la categoría *",   pattern:"^([a-zA-Z_][a-zA-Z_ Ññ]*[a-zA-Z_Ññ]){1,20}$",  
-                validators: ['required'], errorMessages:['Dato requerido'],  isError:false, elementType:'inputOutlined', icon: <Person/>, 
-                style: classes.formControlLogin, handler: Updatedata,
-            },
-            borderColor: {
-                idelement: "borderColor",  value: newCategory.borderColor,    label: "Ingrese color de borde *",   pattern:"",  
-                validators: ['required'], errorMessages:['Dato requerido'],  isError:false, elementType:'SketchPickerColor', icon: <Person/>, 
-                style: classes.formControlLogin, disabled: true, getData: getColor,
-            },
-            image:{
-                idelement: "image", value: '', label: "Adjunte image *", base64Complete: '',
-                validators: {required: true,  size: "2 MB",}, errorMessages: 'Por favor debe adjuntar lo solicitado', isError:false, elementType:'file',
-                disabled:false, name:"image", fileWidth: false, src: '', multiple: false, accept:".png, .jpg, .jpeg", handler: Updatedata,
-            },                        
+            idelement: "title",  value: newCategory?.title || "",    label: "Ingrese título de la categoría *",   pattern:"^([a-zA-Z_][a-zA-Z_ Ññ]*[a-zA-Z_Ññ]){1,20}$",  
+            validators: ['required'], errorMessages:['Dato requerido'],  isError:false, elementType:'inputOutlined', icon: <Person/>, 
+            style: classes.formControlLogin, handler: Updatedata,
+        },
+        borderColor: {
+            idelement: "borderColor",  value: newCategory?.borderColor || initialColor,    label: "Seleccione color de borde *",   pattern:"",  
+            validators: ['required'], errorMessages:['Dato requerido'],  isError:false, elementType:'SketchPickerColor', icon: <Person/>, 
+            style: classes.selectColor, disabled: true, getData: getColor,
+        },
+        image:{
+            idelement: "image", value: newCategory?.icon, label: "Adjunte image *", base64Complete: '',
+            validators: {required: true,  size: "2 MB",}, errorMessages: 'Por favor debe adjuntar lo solicitado', isError:false, elementType:'file',
+            disabled:false, name:"image", fileWidth: false, src: '', multiple: false, accept:".png, .jpg, .jpeg, .svg", handler: Updatedata,
+        },                        
     });
 
     const FuncionCrearCategoria = (e) => {
-        console.log('guardando nueva categoria: 1 ', listCategory)
-        console.log('guardando nueva categoria: 2 ', data)
-        console.log('guardando nueva categoria: 2 ', newCategory)
+        dispatch(listCategory([]))
+        newArray.push(data)
+        const concatArray = categoryList.concat(newArray)
+        dispatch(listCategory(concatArray))
+        props.closeModal()
+        Alert.success('Categoría '+data?.title+" creado correctamente.")
+    }
+    const FuncionEditarCategoria = () =>{
+        dispatch(listCategory([]))
+        // encontramos el indice del objeto con nombre
+        let getCategoryId = categoryList.findIndex(obj => obj.title === props?.data?.title);
+        if(getCategoryId !== -1){
+            // si se encuentra el objeto buscado se procede a actualizar el objeto
+            categoryList[getCategoryId].title = data?.title;
+            categoryList[getCategoryId].borderColor = data?.borderColor;
+            categoryList[getCategoryId].icon = data?.icon;
+        }
+        dispatch(listCategory(categoryList))
+        Alert.success('Categoría '+data?.title+" actualizado correctamente.")
+        props.closeModal()
+    }
+    const FuncionCategoria = () =>{
+        if(props.id === 1) FuncionCrearCategoria();
+        else if (props.id === 2) FuncionEditarCategoria();
     }
     const [buttonList,setButtonList]= useState({
-        "login":{"label":"Crear","icon": <Cancel />,"callback":FuncionCrearCategoria, color: "primary", },
-        "cancel":{"label":"Cancelar","icon": <Cancel />,"callback":()=>{}, isCancel: true, variant: "outlined", color: "secondary"},
+        "login":{"label": props.titleToolbar,"icon": props.iconToolbar,"callback":FuncionCategoria, variant: 'outlined', color: "primary", },
+        "cancel":{"label":"Cancelar","icon": <Cancel />,"callback":props.closeModal, isCancel: true, variant: "outlined", color: "secondary"},
     });
 
     return (
@@ -71,16 +94,17 @@ const ComponenteCategorias=(props)=> {
         >
             <div className={classes.containerPrincipalCategoria}>
                 <div className={classes.containerForm}>
-                    <div className={classes.titleCategory}>Complete el formulario para Crear Categoría</div>
+                    <div className={classes.titleCategory}>Complete el formulario para {props.titleToolbar}</div>
                     <Form   elements= {elements}  buttonList={buttonList} description={description} />
-                    <Button onClick={FuncionCrearCategoria}>Botton nuevo</Button>
                 </div>
+                <Divider orientation="vertical" flexItem />
+                <Divider className={classes.divider}/>
                 <div className={classes.containerVisualize}>
                     <div className={classes.titleCategory}>Visualizador</div>
                     <ComponentCircle 
-                        title={newCategory.title} 
+                        title={newCategory.title || 'Título'} 
                         // label={data}
-                        borderColor={newCategory.borderColor}
+                        borderColor={newCategory.borderColor || initialColor}
                         image = {newCategory.icon}
                     />
                 </div>

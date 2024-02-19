@@ -14,7 +14,11 @@ const PageProcess=(props)=> {
             <div className={classes.listaDeProcesosPrincipal}>
                 {
                     processList.map((label, index) =>(
-                        <ComponentCard label={label}/>
+                        <ComponentCard 
+                            backgroundColor={label?.backgroundColor}
+                            icon={label?.icon}
+                            title={label?.title}
+                        />
                     ))
                 }
             </div>

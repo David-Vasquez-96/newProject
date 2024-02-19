@@ -8,5 +8,9 @@ export const useStyles = makeStyles(theme=>({
 	title: {
 		marginLeft: theme.spacing(2),
 		flex: 1,
-	},	
+	},
+	dialogContent: {
+		backgroundColor: '#D4D8E1', 
+		padding: '0px'
+	}
 }));

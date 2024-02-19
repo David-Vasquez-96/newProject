@@ -14,7 +14,11 @@ const PageDocuments=(props)=> {
             <div className={classes.listDocumentsPrincipal}>
                 {
                     listDocuments.map((label, index) =>(
-                        <ComponentCircle label={label}/>
+                        <ComponentCircle 
+                            title={label.title || 'Título'} 
+                            borderColor={label.borderColor}
+                            image = {label.icon}
+                        />                        
                     ))
                 }
             </div>

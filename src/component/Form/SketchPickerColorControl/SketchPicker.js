@@ -31,7 +31,7 @@ render() {
 	const styles = reactCSS({
 		'default': {
 			color: {
-				width: '36px',
+				width: '100%',
 				height: '14px',
 				borderRadius: '2px',
 				// background: this.state.color,
@@ -40,10 +40,11 @@ render() {
 			swatch: {
 				padding: '5px',
 				background: '#fff',
-				borderRadius: '1px',
-				boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
+				// borderRadius: '1px',
+				// boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
 				display: 'inline-block',
 				cursor: 'pointer',
+				width: '100%',
 			},
 			popover: {
 				position: 'absolute',
@@ -56,10 +57,16 @@ render() {
 				bottom: '0px',
 				left: '0px',
 			},
+			label: {
+				width: '100%',
+				color: 'D4D8C1',
+				paddingLeft: '5px',
+			}
 		},
 	});
 return (
-	<div>
+	<div className={(this.props.style) ? this.props.style : ''}>
+		<div style={ styles.label }>{this.props.label}</div>
 		<div style={ styles.swatch } onClick={ this.handleClick }>
 			<div style={ styles.color } />
 		</div>

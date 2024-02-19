@@ -97,7 +97,6 @@ function Searcher({searchForAction, searchList, cleanSearchFilter}) {
         if(value && typeof value == 'object') {
             const optionDate = {year: 'numeric', month: 'long', day: '2-digit'};
             // return
-            // console.log( value.toLocaleDateString('es-ES', optionDate))
             return value.toLocaleDateString('es-ES', optionDate);
             // const start = new Date(value.toDateString());
             // return `${searchCriteria == 'MayorIgual' ? start.getDate()+ 1 : start.getDate()} ${start.getMonth() + 1}, ${start.getUTCFullYear()}`;

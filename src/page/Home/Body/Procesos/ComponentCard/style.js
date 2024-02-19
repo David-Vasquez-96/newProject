@@ -45,10 +45,8 @@ export const useStyles = props => makeStyles(theme=>({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        border: '1px solid '+props.label?.backgroundColor,
+        border: '1px solid '+`rgba(${ props?.backgroundColor?.r }, ${ props?.backgroundColor?.g }, ${ props?.backgroundColor?.b }, ${ props?.backgroundColor?.a })`,
         boxShadow: '0px 0px 15px black',
-        // boxShadow: '0px 0px 15px '+ props.label?.backgroundColor,
-        // marginBottom: '15px',
         borderRadius: '25px',
         ['@media (max-width: 1920px)']:{ //desktop
             width: '200px',
@@ -89,7 +87,8 @@ export const useStyles = props => makeStyles(theme=>({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: props.label?.backgroundColor
+        backgroundColor: `rgba(${ props?.backgroundColor?.r }, ${ props?.backgroundColor?.g }, ${ props?.backgroundColor?.b }, ${ props?.backgroundColor?.a })`,
+        // backgroundColor: props.label?.backgroundColor
     },
     mobileIcon:{
         // border: '3px solid white',

@@ -47,7 +47,6 @@ export default class TableData {
                 self.service.searchCriteria.add(item.id, item.option, item.value);
             });
         }
-        // console.log("search criteria ", this.service.searchCriteria.get());
     }
 
     setOrderCriteria() {
@@ -74,7 +73,6 @@ export default class TableData {
                 }
             });
         } catch (error) {
-            // console.log("TableData",error);
             this.promise = new Promise((resolve, reject) => {
                 resolve({ data: [], page: 0, totalCount: 0 });
             });

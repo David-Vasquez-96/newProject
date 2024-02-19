@@ -4,7 +4,6 @@ let Timer =(function(){
     let seconds=0;
     let counter=()=>{
         seconds++;
-        //console.log("seconds",seconds);
         if (callback!==undefined && callback!==null) callback(seconds);
     }
     let setCallback=(_callback)=>{callback=_callback }

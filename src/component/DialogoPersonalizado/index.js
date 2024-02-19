@@ -26,14 +26,18 @@ function FullScreenDialog({iconType, open, closeModal, titleButton, titleButtonC
 		disableBackdropClick={disableBackdropClick}
 		disableEscapeKeyDown={disableEscapeKeyDown}
 	>
-		<AppBar className={classes.appBar}>
-			<Toolbar variant='dense'>
-				{iconToolbar}
-				<div className={classes.title}>{titleToolbar}</div>
-				<Button autoFocus color="inherit" onClick={closeModal}> Cerrar </Button>
-			</Toolbar>
-		</AppBar>
-		<DialogContent dividers={scroll === 'paper'} style={{backgroundColor: '#D4D8E1', padding:0}}>
+		{
+			showToolbar ? (
+				<AppBar className={classes.appBar}>
+					<Toolbar variant='dense'>
+						{iconToolbar}
+						<div className={classes.title}>{titleToolbar}</div>
+						<Button autoFocus color="inherit" onClick={closeModal}> Cerrar </Button>
+					</Toolbar>
+				</AppBar>
+			):''
+		}
+		<DialogContent dividers={scroll === 'paper'} className={classes.dialogContent} style={{padding:0}}>
 			{children}
 		</DialogContent>
 	</Dialog>

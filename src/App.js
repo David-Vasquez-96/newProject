@@ -13,64 +13,63 @@ import { useDispatch } from 'react-redux';
 import { setMenu, setCurrentUser } from 'store/reducers/SecuritySlice';
 
 export default function App(props) {
-  /**** VARIABLES ****/
-  const [loading, setLoading] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false),
-    dispatch = useDispatch();
-  
-  /**** FUNCTIONS ****/
-    useEffect(() => {
-      checkAutorization();    
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  
-    const checkAutorization  = async () => {    
-      let userAccount = new UserAccount();
-      setLoading(true);
-      try {
-        await userAccount.setCurrentUser();
-        await userAccount.setMenu();
-        if(userAccount.getIsError()){
-          Alert.error(userAccount.getErrorMessage());
-          setLoading(false);
-        }else{
-          dispatch(setMenu(userAccount.getMenu()));
-          dispatch(setCurrentUser(userAccount.getCurrentUser()));    
-          setAuthenticated(userAccount.getIsAuthenticated())
-          setLoading(false);
-        }
-      } catch (error) {
-        dispatch(setMenu([]));
-        setLoading(false);
-      }
-    }
-  
-  /**** RENDER ****/
-  if (loading)
-    return <LoadingSpinner open={loading}></LoadingSpinner>;
+	/**** VARIABLES ****/
+	const [loading, setLoading] = useState(false);
+	const [authenticated, setAuthenticated] = useState(false),
+	dispatch = useDispatch();
 
-if (authenticated)
-  return (
-    <Redirect
-      to={{
-        pathname: "/",
-        state: {
-          from: props.location,
-          authenticated: authenticated,
-        },
-      }}
-    />
-  );
+	/**** FUNCTIONS ****/
+	const checkAutorization  = async () => {    
+		let userAccount = new UserAccount();
+		setLoading(true);
+		try {
+		await userAccount.setCurrentUser();
+		await userAccount.setMenu();
+		if(userAccount.getIsError()){
+			Alert.error(userAccount.getErrorMessage());
+			setLoading(false);
+		}else{
+			dispatch(setMenu(userAccount.getMenu()));
+			dispatch(setCurrentUser(userAccount.getCurrentUser()));    
+			setAuthenticated(userAccount.getIsAuthenticated())
+			setLoading(false);
+		}
+		} catch (error) {
+		dispatch(setMenu([]));
+		setLoading(false);
+		}
+	}
 
-return (
-  <>
-    <Template></Template>
-    <Alert
-      stack={{ limit: 1 }}
-      timeout={3000}
-      position="top-right"
-      effect="slide"
-      offset={65}
-    />
-  </>
-);
-  }
+	useEffect(() => {
+		checkAutorization();    
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+	/**** RENDER ****/
+	if (loading) return <LoadingSpinner open={loading}></LoadingSpinner>;
+
+	if (authenticated)
+		return (
+			<Redirect
+				to={{
+				pathname: "/",
+				state: {
+					from: props.location,
+					authenticated: authenticated,
+				},
+				}}
+			/>
+		);
+
+	return (
+		<>
+			<Template></Template>
+			<Alert
+				stack={{ limit: 1 }}
+				timeout={3000}
+				position="top-right"
+				effect="slide"
+				offset={65}
+			/>
+		</>
+	);
+}

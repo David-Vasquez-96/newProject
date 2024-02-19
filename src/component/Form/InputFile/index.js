@@ -5,7 +5,7 @@ import {useStyles} from './styles';
 import Card64Image from '../../card64Image';
 import Card64Pdf from '../../cardBase64Pdf';
 export default function FormControlFile(props) {
-    const classes = useStyles();
+    const classes = useStyles(props)();
     const [self, setSelf] = useState(props.this);
 
     return (

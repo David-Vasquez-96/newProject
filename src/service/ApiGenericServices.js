@@ -31,8 +31,6 @@ export default class ApiGenericServices {
     }
 
     listRegisterCriteria() {
-        // console.log("localStorage.getItem(ACCESS_TOKEN):", localStorage.getItem(ACCESS_TOKEN));
-        // console.log("this.isPublic:", this.isPublic);
         if (!localStorage.getItem(ACCESS_TOKEN) && !this.isPublic) {
             return Promise.reject("Acceso denegado");
         }

@@ -48,7 +48,6 @@ export default function ComboBoxAutoComplete(props) {
                         }}
                         getOptionSelected={() => true}
                         // onInputChange={(event, newInputValue) => {
-                        // 	console.log("onInputChange2", `**${newInputValue}**`);
                         // 	return newInputValue ? newInputValue : ''
                         // }}
                         renderInput={(params) =>

@@ -10,20 +10,26 @@ export const useStyles =  makeStyles(theme=>({
         justifyContent: 'center',
         margin: '25px',
         borderTop: '15px solid #80c3ff',
-        borderRadius: '10px',        
-        background: 'white',        
+        borderRadius: '10px',
+        background: 'white',
+        padding: '10px 0px',
         '@media (max-width:768px)':{ //ipad
             margin: '25px'
         },
-        ['@media (max-width: 460px)']:{ //mobile 
+        ['@media (max-width: 600px)']:{ //mobile 
             flexDirection: 'column',
-            margin: '0px 10px'
+            margin: '0px 10px',
+            padding: '0px'
         },
         ['@media (max-width: 430px)']:{ //mobile Iphone 14 pro max
-            margin: '0px 10px'
+            borderTop: '0px',
+            borderRadius: '0px',
+            margin: '0px'
         },
         ['@media (max-width: 390px)']:{ //mobile Iphone 14 normal
-            margin: '0px 5px'
+            borderTop: '0px',
+            borderRadius: '0px',
+            margin: '0px'
         },
     },
     containerForm: {
@@ -43,9 +49,12 @@ export const useStyles =  makeStyles(theme=>({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: 'center',
     },
     titleCategory: {
         color: 'black',
+        margin: '10px 0px',
+        fontWeight: 'bold',
     },
     formControlLogin: {
         width: '-webkit-fill-available',
@@ -56,4 +65,20 @@ export const useStyles =  makeStyles(theme=>({
         //     margin: '5px 10px',
         // },
     },
+    selectColor: {
+        width: '-webkit-fill-available',
+        textAlign: 'left',
+        border: '1px solid #d4d8c1',
+        borderRadius: '5px',
+        ['@media (max-width: 1920px)']:{ //desktop
+            margin: '10px',
+        },
+    },
+    divider: {
+        display: 'none',
+        ['@media (max-width: 600px)']:{ //mobile 
+            display: 'block',
+            margin: '15px 0px',
+        },        
+    }
 }));
