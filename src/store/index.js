@@ -3,6 +3,7 @@ import menuSlice from './reducers/menuSlice'
 import securitySlice from './reducers/SecuritySlice'
 import categoriaSlide from './reducers/categoriaSlide'
 import procesosSlice from './reducers/ProcesosSlice'
+import usuariosSlice from './reducers/usuarioSlice'
 
 export default configureStore ({
     reducer: {
@@ -10,5 +11,6 @@ export default configureStore ({
         security: securitySlice,
         categoria: categoriaSlide,
         proceso: procesosSlice,
+        usuario: usuariosSlice,
     }
 })

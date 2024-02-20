@@ -55,11 +55,8 @@ const ComponenteCrearEditarProceso=(props)=> {
     const FuncionCrearProceso = (e) => {
         dispatch(updateProcessList([]))
         newArray.push(data)
-        console.log('newArray: ', newArray)
-        console.log('processDataList: ', processDataList)
         const concatArray = processDataList.concat(newArray)
         dispatch(updateProcessList(concatArray))
-        console.log('processDataList: ', concatArray)
         props.closeModal()
         Alert.success('Proceso / '+data?.title+" / creado correctamente.")
     }

@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import {SwipeableDrawer, Divider, List, ListItem, ListItemIcon, ListItemText, ListSubheader} from '@material-ui/core';
 import { Description, People } from '@material-ui/icons';
 import {Link } from 'react-router-dom';
+// REDUX **************************
+import { useSelector, useDispatch} from 'react-redux';
+import { setMenu } from 'store/reducers/SecuritySlice';
 
 const useStyles = makeStyles({
     list: {
@@ -16,11 +19,19 @@ const useStyles = makeStyles({
 
 export default function SwipeableTemporaryDrawer(props) {
     const classes = useStyles();
-    const [menuList] = useState([
-        {title: 'Categorias', icon: <Description />, to: '/categorias'},
-        {title: 'Procesos', icon: <Description />, to: '/procesos'},
-        {title: 'Usuarios', icon: <People />, to: '/'},
-    ])
+    const dispatch = useDispatch();
+    const menuList = useSelector( state => state.security.menu); 
+
+    const FuncionGuardarMenu = () => {
+        dispatch(setMenu([]))
+        const menu = [
+            {title: 'Categorias', icon: <Description />, to: '/categorias'},
+            {title: 'Procesos', icon: <Description />, to: '/procesos'},
+            {title: 'Usuarios', icon: <People />, to: '/usuarios'},
+        ]
+        dispatch(setMenu(menu))
+    }
+
     const list = () => (
         <div
             className={clsx(classes.list)}
@@ -36,9 +47,9 @@ export default function SwipeableTemporaryDrawer(props) {
                 <Divider />
                 {
                     menuList.map((label, index)=>(                        
-                        <ListItem button to={label.to} component={Link}>
-                            <ListItemIcon>{label.icon} </ListItemIcon>
-                            <ListItemText primary={label.title} />
+                        <ListItem button to={label?.to} component={Link} key={index}>
+                            <ListItemIcon>{label?.icon} </ListItemIcon>
+                            <ListItemText primary={label?.title} />
                         </ListItem>
                     ))
                 }
@@ -51,6 +62,9 @@ export default function SwipeableTemporaryDrawer(props) {
         </div>
     );
 
+    useEffect(()=>{
+        FuncionGuardarMenu()
+    },[])
 return (
     <div>
         <React.Fragment key={'left'}>

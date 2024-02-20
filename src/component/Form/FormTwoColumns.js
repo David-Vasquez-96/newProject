@@ -29,6 +29,7 @@ import MaxHeightTextarea from './customTextArea';
 import FormControlSelectAutoCompleteCheckbox from './AutoCompleteCheckBox';
 import ListControl from './ListItem'
 import SketchPickerColorControl from './SketchPickerColorControl/SketchPicker'
+import FormControlSelectAutoCompleteV3 from 'component/Form/autoCompleteEstable'
 
 // import FormControlFile from './InputFile';
 import { useStyles } from "./style";
@@ -74,7 +75,39 @@ export default function Table(props) {
     elements[event.target.name].value = event.target.value;
     props.validateChangeInputRadio(elements[event.target.name]);
   };
+  const handleChangeAutocompleteV3 = (event) => {
+    const nameTarget = event.target.name;
+    const valueTarget = event.target.value;
+    const textTarget = event.target.text;
 
+    isErrorInElementWithPattern(nameTarget, { id: valueTarget });
+
+    if (
+      elements[nameTarget].showSelectAutoComplete ||
+      elements[nameTarget].showSelectAutoComplete !== "undefined"
+    ) {
+      elements[nameTarget].isError =
+        valueTarget === null
+          ? ""
+          : valueTarget?.toString().match(elements[nameTarget].pattern) === null
+          ? true
+          : false;
+      elements[nameTarget].value = {
+        id: valueTarget != undefined ? Number(valueTarget) : null,
+        name: textTarget,
+      };
+    }
+
+    if (elements[nameTarget].handler !== undefined) {
+      elements[nameTarget].handler(event);
+    }
+    if(elements[nameTarget].value?.name === '' && elements[nameTarget].value?.id === 0){
+      elements[nameTarget].value = null
+      // elements[nameTarget].list = null
+    }
+    setElements({ ...elements });
+    setApiErrors([]);
+  }; 
   const isValidForm = function () {
     var isValid = true;
     Object.keys(elements).forEach(function (key) {
@@ -555,6 +588,16 @@ export default function Table(props) {
         isError = false;
         elements[key].value = value;
         break;
+      case "autocompleteV3":
+        isError = !elements[key].pattern
+          ? false
+          : value != null || value != undefined
+          ? value?.id?.toString().match(elements[key].pattern) === null
+            ? true
+            : false
+          : true;
+        elements[key].value = value;
+        break;          
       case "radio":
         isError = !value ? true : false;
         elements[key].value = value;
@@ -865,6 +908,7 @@ export default function Table(props) {
             minWidth={elements[key].minWidth}
             placeholder={elements[key].placeholder}
             style={elements[key].style}
+            showComponent={elements[key].showComponent}
           ></FormControlPassword>
         );
         case "inputOutlined":
@@ -956,6 +1000,31 @@ export default function Table(props) {
             ></FormControlSelect>
           </Grid>
         );
+    case "autocompleteV3":
+      return (
+        <FormControlSelectAutoCompleteV3
+          key={elements[key].idelement}
+          className={classes.select}
+          label={elements[key].label}
+          isError={isError}
+          name={elements[key].idelement}
+          value={elements[key].value}
+          handleChange={handleChangeAutocompleteV3}
+          focus={elements[key].focus}
+          errorMessages={messageError}
+          list={elements[key].list}
+          onChange={
+            elements[key].handler !== undefined ? elements[key].handler : null
+          }
+          disabled={elements[key].disabled}
+          modified={elements[key].modified}
+          position={elements[key].position}
+          showSelectAutoComplete={elements[key].showSelectAutoComplete}
+          variant={elements[key].variant}
+          style={elements[key].style}
+          icon={elements[key].icon}
+        ></FormControlSelectAutoCompleteV3>
+      );          
       case "customDropdown":
         return (
           <CustomFormControlSelect
