@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import {useStyles} from './style';
 import AppBar from 'page/Home/Body/AppBarPrincipal'
 import Title from 'component/TitleWithIcon';
-import { DeleteForever, Description, Edit, FiberManualRecord, NoteAdd, People, Person, PersonAdd, RestorePage, Visibility } from '@material-ui/icons';
+import { DeleteForever, Edit, NoteAdd, People, Person, PersonAdd, RestorePage, Visibility, VpnKey } from '@material-ui/icons';
 import Table from 'component/Table';
 import BotonElement from 'component/BotonTable'; 
 import { ButtonGroup } from '@material-ui/core';
 import ComponenteCrearEditarUsuario from './CrearEditarUsuario'
 import ComponenteVisualizarUsuario from './VisualizarUsuario'
-// import ComponenteEliminarProceso from './EliminarProceso'
+import ComponenteEliminarUsuario from './EliminarUsuario'
+import ComponenteCambiarContraseña from './CambiarContraseña'
 // REDUX **************************
 import { useSelector, useDispatch} from 'react-redux';
-import { saveNewProcessData } from 'store/reducers/ProcesosSlice';
 
 const ComponenteUsuarios=(props)=> {
     const classes = useStyles(props);
@@ -23,6 +23,7 @@ const ComponenteUsuarios=(props)=> {
         { title: 'Nombre completo', field: 'nombreCompleto', cellStyle: { width: '200px'}},
         { title: 'Usuario', field: 'usuario', cellStyle: { width: '200px'}},
         { title: 'Correo Electrónico', field: 'email', cellStyle: { width: '200px'}},
+        { title: 'Contraseña', field: 'contraseña', cellStyle: { width: '200px'}},
         { title: 'Rol de usuario', field: 'rolUsuario.name', cellStyle: { width: '200px'}},
         { title: 'Empresa', field: 'empresa.name', cellStyle: { width: '200px'}},
         { title: 'Acciones', field: '', filtering: false,
@@ -30,8 +31,9 @@ const ComponenteUsuarios=(props)=> {
                 <div>
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
                         <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" function={()=>FuctionOpenUserViewer(rowData)}/>
+                        <BotonElement icon={<VpnKey style={{color: '#066bbd'}}/>} title="Cambiar contraseña" function={()=>FunctionOpenChangePassword(rowData)}/>
                         <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" function={() => FuncionOpenModalEditUser(rowData)}/>
-                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" function={() => FunctionOpenProcessModalToDelete(rowData)}/>
+                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" function={() => FunctionOpenUserModalToDelete(rowData)}/>
                     </ButtonGroup>
                 </div>
         },         
@@ -42,18 +44,15 @@ const ComponenteUsuarios=(props)=> {
         setModalCreateUser({open: true, title: 'Crear Usuario', id: 1})
     }
     const FuncionCloseModal = () =>{
-        dispatch(saveNewProcessData({backgroundColor: '', image: '', title: ''}));
         setModalCreateUser({open: false, title: ''})
     }
     // funciones para editar un usuario ***********************************************************
-    const [editUser, setEditUser] = useState({open: false, title: '', getProcess: {}})
+    const [editUser, setEditUser] = useState({open: false, title: '', getUser: {}})
     const FuncionOpenModalEditUser = (data) =>{
-        dispatch(saveNewProcessData({title: data?.title, backgroundColor: data?.backgroundColor, image: data?.image}))
-        setEditUser({open: true, title: 'Editar Proceso', id: 2, getProcess: data})
+        setEditUser({open: true, title: 'Editar Usuario', id: 2, getUser: data})
     }
     const FuncionCloseModalEditUser = () =>{
-        dispatch(saveNewProcessData({backgroundColor: '', image: '', title: ''}));
-        setEditUser({open: false, title: '', id: 0, getProcess: {}})
+        setEditUser({open: false, title: '', id: 0, getUser: {}})
     }
 
     const buttonList = [
@@ -76,19 +75,24 @@ const ComponenteUsuarios=(props)=> {
     const FuctionCloseUserViewer = () =>{
         setOpenUserViewer({open: false, data: {}})
     }
-    
-    // funciones para eliminar un proceso
-    const [dataProcessModalToDelete, setdataProcessModalToDelete] = useState({open: false, data: {}});
-    const FunctionOpenProcessModalToDelete = (data) =>{
-        setdataProcessModalToDelete({open: true, data: data})
+    // funciones para cambiar contraseña de un usuario *******************************************************
+    const [dataUserChangePassword, setDataUserChangePassword] = useState({open: false, data: {}});
+    const FunctionOpenChangePassword = (data) =>{
+        setDataUserChangePassword({open: true, data: data})
     }
-    const FunctionCloseProcessModalToDelete = () =>{
-        setdataProcessModalToDelete({open: false, data: {}})
+    const FunctionCloseChangePassword = () =>{
+        setDataUserChangePassword({open: false, data: {}})
     }
     
-    // useEffect(()=>{
-    //     dispatch(saveNewProcessData({backgroundColor: '', image: '', title: ''}));
-    // }, [])
+    // funciones para eliminar un usuario
+    const [dataUserModalToDelete, setdataUserModalToDelete] = useState({open: false, data: {}});
+    const FunctionOpenUserModalToDelete = (data) =>{
+        setdataUserModalToDelete({open: true, data: data})
+    }
+    const FunctionCloseUserModalToDelete = () =>{
+        setdataUserModalToDelete({open: false, data: {}})
+    }
+    
     return (
         <div className={classes.containerPrincipal}>
             <AppBar />
@@ -131,6 +135,19 @@ const ComponenteUsuarios=(props)=> {
                     />
                 ):''
             }
+            {/* componente para cambiar contraseña de un usuario ******************************************* */}
+            {
+                (dataUserChangePassword.open) ? (
+                    <ComponenteCambiarContraseña
+                        open = {dataUserChangePassword.open}
+                        closeModal = {FunctionCloseChangePassword}
+                        iconToolbar = {<VpnKey/>}
+                        titleToolbar = {'Cambiar contraseña'}
+                        data={dataUserChangePassword.data}
+                        userList={userList}
+                    />
+                ):''
+            }
             {/* componente para editar un usuario ************************************************** */}
             {
                 (editUser.open) ? (
@@ -140,23 +157,23 @@ const ComponenteUsuarios=(props)=> {
                         iconToolbar = {<Edit/>}
                         titleToolbar = {editUser.title}
                         id = {editUser.id}
-                        data = {editUser.getProcess}
+                        data = {editUser.getUser}
                     />
                 ):''
             }
-            {/* componente para eliminar un proceso ******************************************* */}
-            {/* {
-                (dataProcessModalToDelete.open) ? (
-                    <ComponenteEliminarProceso 
-                        open = {dataProcessModalToDelete.open}
-                        closeModal = {FunctionCloseProcessModalToDelete}
+            {/* componente para eliminar un usuario ******************************************* */}
+            {
+                (dataUserModalToDelete.open) ? (
+                    <ComponenteEliminarUsuario
+                        open = {dataUserModalToDelete.open}
+                        closeModal = {FunctionCloseUserModalToDelete}
                         iconToolbar = {<NoteAdd/>}
                         titleToolbar = {'Eliminar'}
-                        data={dataProcessModalToDelete.data}
+                        data={dataUserModalToDelete.data}
                         userList={userList}
                     />
                 ):''
-            }  */}
+            } 
         </div> 
     )
 }

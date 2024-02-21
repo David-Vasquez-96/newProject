@@ -18,6 +18,7 @@ const PageProcess=(props)=> {
                             backgroundColor={label?.backgroundColor}
                             image={label?.image}
                             title={label?.title}
+                            key={index}
                         />
                     ))
                 }

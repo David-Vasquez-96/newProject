@@ -35,8 +35,8 @@ export default function App(props) {
 			setLoading(false);
 		}
 		} catch (error) {
-		dispatch(setMenu([]));
-		setLoading(false);
+			dispatch(setMenu([]));
+			setLoading(false);
 		}
 	}
 

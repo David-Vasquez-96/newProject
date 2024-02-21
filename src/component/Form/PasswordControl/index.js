@@ -34,7 +34,7 @@ export default function FormControlPassword(props) {
                             key={props.name}
                             id="outlined-adornment-password"
                             name={props.name}
-                            value={values.value}
+                            value={props.value}
                             onChange={props.handleChange}
                             keyPress={props.keyPress}
                             placeholder={ props.placeholder || ""}

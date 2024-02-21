@@ -18,6 +18,7 @@ const PageDocuments=(props)=> {
                             title={label.title || 'Título'} 
                             borderColor={label.borderColor}
                             image = {label.icon}
+                            key={index}
                         />                        
                     ))
                 }

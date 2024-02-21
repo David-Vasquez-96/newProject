@@ -26,7 +26,7 @@ const ComponeneteFooter=(props)=> {
             <div className={classes.containerFirstSection}>
                 {
                     items.map((label, index)=>(
-                        <Typography variant="h6" className={classes.titleContent} >
+                        <Typography variant="h6" className={classes.titleContent} key={index}>
                             <Link className={classes.link} to={label.to} >{label.title}</Link>
                         </Typography>
                     ))
@@ -37,7 +37,7 @@ const ComponeneteFooter=(props)=> {
             <div className={classes.containerSecondSection}>
                 {
                     datosEmpresa.map((label, index)=>(
-                        <Typography variant="h6" className={classes.titleContent} >{label.data}</Typography>
+                        <Typography variant="h6" className={classes.titleContent} key={index}>{label.data}</Typography>
                     ))
                 }                    
             </div>

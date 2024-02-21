@@ -72,7 +72,7 @@ return (
                 anchor={props.menuDirection}
                 open={props.openMenu}
                 onClose={props.FuncionCerrarOpenMenu}
-                // onOpen={props.toggleDrawer(props.menuDirection, true)}
+                onOpen={(props.menuDirection, true)}
             >        
                 {list(props.menuDirection)}
             </SwipeableDrawer>

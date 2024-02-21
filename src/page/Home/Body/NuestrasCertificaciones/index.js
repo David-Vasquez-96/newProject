@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useStyles} from './style';
 
-const ComponeneteCertificaciones=(props)=> {
+const ComponenteCertificaciones=(props)=> {
     const classes = useStyles(props);
     const [listaCertificaciones] = useState([
         {icon: 'assets/certificaciones/ISO90001.png',},
@@ -17,7 +17,7 @@ const ComponeneteCertificaciones=(props)=> {
             <div className={classes.listaDeCertificacionesPrincipal}>
                 {
                     listaCertificaciones.map((label, index) =>(
-                        <div className={classes.containerImage}>                    
+                        <div className={classes.containerImage} key={index}>                    
                             <img className={classes.mobileIcon} src={label.icon} />
                         </div>            
                     ))
@@ -27,4 +27,4 @@ const ComponeneteCertificaciones=(props)=> {
         </div> 
     )
 }
-export default (ComponeneteCertificaciones);
+export default (ComponenteCertificaciones);

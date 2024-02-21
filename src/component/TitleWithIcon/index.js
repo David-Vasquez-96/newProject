@@ -8,7 +8,7 @@ export default function Title(props) {
         <div className={classes.root}>
             <AppBar position="static" elevation={0}>
                 <Toolbar variant="dense" className={classes.AppBar}>
-                <Grid container direction="row" justify="center" alignItems="center">
+                <Grid container direction="row" justifyContent="center" alignItems="center">
                     {
                         props.icon ? (
                             <Grid item xs={12} > { props.icon }</Grid>                            

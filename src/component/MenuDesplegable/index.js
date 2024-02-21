@@ -31,10 +31,10 @@ export default function SimpleMenu(props) {
 				onClose={handleClose}
 			>
 				{
-					props.arrayMenuDesplegable.map((button) => {
+					props.arrayMenuDesplegable.map((button, index) => {
 						return(
 							// <MenuItem onClick={button.customFunctionTable}>{button.customTitleButtonTable}</MenuItem>
-							<MenuItem onClick={button.customFunctionTable}>
+							<MenuItem onClick={button.customFunctionTable} key={index}>
 							    <ListItemIcon className={classes.iconColor}>
             						{button.customIconButtonTable}
 								</ListItemIcon>

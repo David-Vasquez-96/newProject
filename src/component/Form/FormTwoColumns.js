@@ -909,6 +909,9 @@ export default function Table(props) {
             placeholder={elements[key].placeholder}
             style={elements[key].style}
             showComponent={elements[key].showComponent}
+            onChange={
+              elements[key].handler !== undefined ? elements[key].handler : null
+            }             
           ></FormControlPassword>
         );
         case "inputOutlined":
@@ -1394,7 +1397,7 @@ export default function Table(props) {
                   {
                       props.description.map((text, index) => {
                           return (
-                              <ListItem style={{padding: '0px'}}>
+                              <ListItem style={{padding: '0px'}} key={index}>
                                   <ListItemIcon>
                                       <Send color="primary"/>
                                   </ListItemIcon>

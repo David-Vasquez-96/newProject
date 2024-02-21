@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { AssignmentInd, Cancel, CreditCard, Email, LocationCity, Person, VpnKey} from '@material-ui/icons';
 import {useStyles} from './style';
 import DialogoPersonalizado from 'component/DialogoPersonalizado';
-import ComponentCard from 'page/Home/Body/Procesos/ComponentCard'
 import Form from 'component/Form/FormTwoColumns';
 import Alert from 'react-s-alert';
 // REDUX **************************
@@ -10,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setUserList } from 'store/reducers/usuarioSlice';
 
-const ComponenteCrearEditarProceso=(props)=> {   
+const ComponenteCrearEditarUsuario=(props)=> {   
     const classes = useStyles();
     const dispatch = useDispatch();
     const userList = JSON.parse(JSON.stringify(useSelector( state => state.usuario.userList))); 
@@ -91,7 +90,20 @@ const ComponenteCrearEditarProceso=(props)=> {
     }
 
     const FuncionEditarUsuario = () =>{
-        console.log('editar usuario: ')
+        dispatch(setUserList([]))
+        let getUserId = userList.findIndex(obj => obj.codigo === props?.data?.codigo);
+        if(getUserId !== -1){
+            // si se encuentra el objeto buscado se procede a actualizar el objeto
+            userList[getUserId].codigo = elements.codigo.value;
+            userList[getUserId].nombreCompleto = elements.nombreCompleto.value;
+            userList[getUserId].usuario = elements.usuario.value;
+            userList[getUserId].email = elements.email.value;
+            userList[getUserId].rolUsuario = {id: elements.rolUsuario.value?.id, name: elements.rolUsuario.value?.name};
+            userList[getUserId].empresa = {id: elements.empresa.value?.id, name: elements.empresa.value?.name};
+        }
+        dispatch(setUserList(userList))
+        Alert.success('Usuario actualizado correctamente.')
+        props.closeModal()
     }
 
     const FuncionUsuario = () =>{
@@ -103,20 +115,24 @@ const ComponenteCrearEditarProceso=(props)=> {
         "cancel":{"label":"Cancelar","icon": <Cancel />,"callback":props.closeModal, isCancel: true, variant: "outlined", color: "secondary"},
     });
 
+    const anchoDePantalla = window.innerWidth;
+
     return (
         <DialogoPersonalizado 
             open={props.open}
-            fullScreen={true}
+            fullScreen={(anchoDePantalla <= 460) ? true : false}
             closeModal={props.closeModal}
             // actualizarTabla={props.actualizarTabla}
             iconToolbar={props.iconToolbar}
             titleToolbar={props.titleToolbar}
+            fullWidth={true}
+            maxWidth={'md'}            
         >
             <div className={classes.containerPrincipal}>
-                <div className={classes.titleProceso}>Complete el formulario para {props.titleToolbar}</div>
+                <div className={classes.title}>Complete el formulario para {props.titleToolbar}</div>
                 <Form   elements= {elements}  buttonList={buttonList} description={description} />
             </div>
         </DialogoPersonalizado>
     )
 }
-export default (ComponenteCrearEditarProceso);
+export default (ComponenteCrearEditarUsuario);

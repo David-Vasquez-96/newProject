@@ -17,39 +17,5 @@ export const useStyles = makeStyles(theme=>({
     },
     containerTable: {
         margin: '20px 0px',
-    },
-    mobileIcon:{
-        ['@media (max-width: 1920px)']:{ //desktop
-            width: '50px',
-            height: '50px',
-        },
-        ['@media (max-width:1366px)']:{ //ipad
-            width: '50px',
-            height: '50px',
-        },
-        ['@media (max-width:1024px)']:{ //ipad
-            width: '50px',
-            height: '50px',
-        },
-       '@media (max-width:768px)':{ //ipad
-            width: '50px',
-            height: '50px',
-        },
-        ['@media (max-width: 460px)']:{ //mobile 
-            width: '50px',
-            height: '50px',
-        },
-        ['@media (max-width: 430px)']:{ //mobile Iphone 14 pro max
-            width: '50px',
-            height: '50px',
-        },
-        ['@media (max-width: 390px)']:{ //mobile Iphone 14 normal
-            width: '40px',
-            height: '40px',
-        },
-        ['@media (max-width: 320px)']:{ //mobile Iphone 14 normal
-            width: '40px',
-            height: '40px',
-        }, 
-    },     
+    }, 
 }));
