@@ -8,4 +8,13 @@ export const useStyles = makeStyles(theme=>({
         // backgroundColor: '#F2F6FA',
         // backgroundColor: '#dbedff',
     },
+    list: {
+        width: 250,
+    },
+    fullList: {
+        width: 'auto',
+    },
+    nested: {
+        paddingLeft: theme.spacing(4),
+    },        
 }));

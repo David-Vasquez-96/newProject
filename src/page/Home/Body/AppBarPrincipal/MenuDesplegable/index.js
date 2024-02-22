@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import {SwipeableDrawer, Divider, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Collapse} from '@material-ui/core';
-import { Description, ExpandLess, ExpandMore, People } from '@material-ui/icons';
+import { Description, Dns, ExpandLess, ExpandMore, FormatListNumbered, ListAlt, People } from '@material-ui/icons';
 import {Link } from 'react-router-dom';
+import {useStyles} from './style';
+
 // REDUX **************************
 import { useSelector, useDispatch} from 'react-redux';
 import { setMenu } from 'store/reducers/SecuritySlice';
-
-const useStyles = makeStyles({
-    list: {
-        width: 250,
-    },
-    fullList: {
-        width: 'auto',
-    },
-});
 
 export default function SwipeableTemporaryDrawer(props) {
     const classes = useStyles();
@@ -30,10 +22,19 @@ export default function SwipeableTemporaryDrawer(props) {
     const FuncionGuardarMenu = () => {
         dispatch(setMenu([]))
         const menu = [
-            {title: 'Módulo de Categorias', icon: <Description />, to: '/categorias'},
-            {title: 'Módulo de Procesos', icon: <Description />, to: '/procesos'},
-            {title: 'Módulo de Usuarios', icon: <People />, to: '/usuarios'},
-            {title: 'Módulo de Menús', icon: <People />, to: '/usuarios'},
+            {title: 'Módulo de Categorias', icon: <Description />, to: '/categorias', type: 2, forms:[
+                {title: 'Categorias', icon: <Description />, to: '/categorias', type: 2, forms:[]},
+            ]},
+            {title: 'Módulo de Procesos', icon: <Description />, to: '/procesos', type: 1, forms:[
+                {title: 'Procesos', icon: <Description />, to: '/procesos', type: 2, },
+            ]},
+            {title: 'Módulo de Usuarios', icon: <People />, to: '/usuarios', type: 1, forms:[
+                {title: 'Usuarios', icon: <People />, to: '/usuarios', type: 2},
+            ]},
+            {title: 'Módulo de Menús', icon: <ListAlt />, to: '/usuarios', type: 1, forms: [
+                {title: 'Grupo de formularios', icon: <Dns />, to: '/usuarios', type: 2},
+                {title: 'Formularios', icon: <FormatListNumbered />, to: '/usuarios', type: 2},
+            ]},
         ]
         dispatch(setMenu(menu))
     }
@@ -42,40 +43,46 @@ export default function SwipeableTemporaryDrawer(props) {
         <div
             className={clsx(classes.list)}
             role="presentation"
-            onClick={props.FuncionCerrarOpenMenu}
+            // onClick={props.FuncionCerrarOpenMenu}
             onKeyDown={props.FuncionCerrarOpenMenu}
         >
             <List
                 subheader={
-                    <ListSubheader component="div" id="nested-list-subheader">Menú</ListSubheader>
+                    <ListSubheader component="div" id="nested-list-subheader">Menú Principal</ListSubheader>
                 }            
             >
                 <Divider />
-                {/* {
-                    menuList.map((label, index)=>(                        
-                        <ListItem button to={label?.to} component={Link} key={index}>
-                            <ListItemIcon>{label?.icon} </ListItemIcon>
-                            <ListItemText primary={label?.title} />
-                        </ListItem>
-                    ))
-                } */}
                 {
-                    [0, 1, 2].map((index) => (
+                    menuList.map((label, index) => (
                         <React.Fragment key={index}>
-                            <ListItem button onClick={() => handleClick(index)}>
-                                <ListItemText primary={`Nested List Group ${index + 1}`} />
-                                {open[index] ? <ExpandLess /> : <ExpandMore />}
-                            </ListItem>
-                            <Collapse in={open[index]} timeout="auto" unmountOnExit>
-                                <List component="div" disablePadding>
-                                    <ListItem button className={classes.nested}>
-                                        <ListItemText primary="Item 1" />
+                            {
+                                (label?.type === 1) ? (                                    
+                                <>
+                                    <ListItem button onClick={() => handleClick(index)}>
+                                        <ListItemIcon>{label?.icon} </ListItemIcon>
+                                        <ListItemText primary={label?.title} />
+                                        {open[index] ? <ExpandLess /> : <ExpandMore />}
                                     </ListItem>
-                                    <ListItem button className={classes.nested}>
-                                        <ListItemText primary="Item 2" />
-                                    </ListItem>
-                                </List>
-                            </Collapse>
+                                    <Collapse in={open[index]} timeout="auto" unmountOnExit>
+                                        <List component="div" disablePadding>
+                                            {
+                                                label.forms.map((forms, index) => (
+                                                    <ListItem button to={forms?.to} component={Link} key={index} className={classes.nested}>
+                                                        <ListItemIcon>{forms?.icon} </ListItemIcon>
+                                                        <ListItemText primary={forms?.title} />
+                                                    </ListItem>
+                                                ))
+                                            }
+                                        </List>
+                                    </Collapse>
+                                    </>
+                                ) : (
+                                    <ListItem button to={label?.to} component={Link} key={index}>
+                                        <ListItemIcon>{label?.icon} </ListItemIcon>
+                                        <ListItemText primary={label?.title} />
+                                    </ListItem>                                    
+                                )
+                            }
                         </React.Fragment>
                     ))
                 }
@@ -92,8 +99,8 @@ return (
             <SwipeableDrawer
                 anchor={props.menuDirection}
                 open={props.openMenu}
-                // onClose={props.FuncionCerrarOpenMenu}
-                // onOpen={(props.menuDirection, true)}
+                onClose={props.FuncionCerrarOpenMenu}
+                onOpen={(props.menuDirection, true)}
             >        
                 {list(props.menuDirection)}
             </SwipeableDrawer>

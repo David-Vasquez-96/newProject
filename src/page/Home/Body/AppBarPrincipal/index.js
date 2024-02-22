@@ -20,6 +20,25 @@ const AppBarComponent=(props)=> {
     const authenticated = useSelector(state => state.security.authenticated);    
     let history = useHistory();
 
+    //menu desplegable principal
+    const [isOpen, setIsOpen] = useState(false);
+    const [nestedOpen, setNestedOpen] = useState({});
+
+    const toggleDrawer = (open) => (event) => {
+        if (
+            event &&
+            event.type === 'keydown' &&
+            (event.key === 'Tab' || event.key === 'Shift')
+        ) {
+            return;
+        }
+
+        setIsOpen(open);
+    };
+    const handleNestedClick = (group) => {
+        setNestedOpen({ ...nestedOpen, [group]: !nestedOpen[group] });
+    };
+
     //menu desplegable de perfil
     const [anchorEl, setAnchorEl] = useState(null);
     const handleClickMenu = (event) => {
@@ -106,7 +125,16 @@ const AppBarComponent=(props)=> {
                   </AppBar>
                 ):''
             }
-            <MenuDesplegable menuDirection={menuDirection} openMenu={abrirMenuPrincipal} FuncionCerrarOpenMenu={FuncionCerrarOpenMenu} onLogout={onLogout}/>
+            <MenuDesplegable 
+                menuDirection={menuDirection} 
+                openMenu={abrirMenuPrincipal} 
+                FuncionCerrarOpenMenu={FuncionCerrarOpenMenu} 
+                onLogout={onLogout}
+                isOpen={isOpen}
+                nestedOpen={nestedOpen}
+                toggleDrawer={toggleDrawer}
+                handleNestedClick={handleNestedClick}
+            />
         </div>
     )
 }
