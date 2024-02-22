@@ -19,7 +19,8 @@ import ObtenerCodigoCambiarContraseña from '../../page/UserProfile/ObtenerCodig
 // NUEVOS COMPONENTES
 import ComponenteCategorias from 'page/Modules/Categorias'
 import ComponenteProcesos from 'page/Modules/Procesos';
-import ComponenteUsuario from 'page/Modules/Usuarios';
+import ComponenteUsuario from 'page/SingleSignOn/Usuarios';
+import ComponenteDeRoles from 'page/SingleSignOn/Roles';
 
 // publico
 import ObtenerCorreoUsuario from 'page/Security/Login/CambiarContraseña/ObtenerCorreo'
@@ -42,6 +43,7 @@ const Template = (props) => {
                     <Route exact path="/categorias" render={(props) => <ComponenteCategorias authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
                     <Route exact path="/procesos" render={(props) => <ComponenteProcesos authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
                     <Route exact path="/usuarios" render={(props) => <ComponenteUsuario authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
+                    <Route exact path="/roles" render={(props) => <ComponenteDeRoles authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
 
                     <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={props.currentUser} component={Profile}></PrivateRoute>
                     <PrivateRoute exact path="/cambiarContraseña" authenticated={authenticated} currentUser={props.currentUser} component={CambiarContrseña}></PrivateRoute>

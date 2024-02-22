@@ -27,6 +27,7 @@ export const useStyles =  makeStyles(theme=>({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
+        padding: '20px 0px',
     },
     errorMessageContainerSecondary: {
         backgroundColor: '#FDECEA',
@@ -41,11 +42,14 @@ export const useStyles =  makeStyles(theme=>({
     errorMessageButtons:{
         '& > *': {
             margin: theme.spacing(2),
+            ['@media (max-width: 320px)']:{ //mobile Iphone 14 normal
+                margin: theme.spacing(1),
+            },            
         },
 
     },
     formControlInput: {
-        width: '45%',
+        width: '300px',
         margin: '1%',
         ['@media (max-width: 768px)']:{ //mobile Iphone 14 normal
             width: '-webkit-fill-available',
