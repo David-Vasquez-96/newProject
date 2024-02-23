@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {useStyles} from './style';
 import AppBar from 'page/Home/Body/AppBarPrincipal'
 import Title from 'component/TitleWithIcon';
-import { DeleteForever, Edit, LockOpen, NoteAdd, People, Person, PersonAdd, RestorePage, VerifiedUser, Visibility, VpnKey } from '@material-ui/icons';
+import { DeleteForever, Edit, LockOpen, RestorePage, VerifiedUser } from '@material-ui/icons';
 import Table from 'component/Table';
 import BotonElement from 'component/BotonTable'; 
 import { ButtonGroup, Icon } from '@material-ui/core';
 import ComponenteCrearEditarRol from './CrearEditarRol'
-// import ComponenteVisualizarUsuario from './VisualizarUsuario'
 import ComponenteEliminarRol from './EliminarRol'
-// import ComponenteCambiarContraseña from './CambiarContraseña'
+import ComponenteAgregarPermisosRol from './PermisosDeRol'
+
 // REDUX **************************
-import { useSelector, useDispatch} from 'react-redux';
+import { useSelector} from 'react-redux';
 
 const ComponenteDeRoles=(props)=> {
     const classes = useStyles(props);
-    const dispatch = useDispatch();
     const rolesList = JSON.parse(JSON.stringify(useSelector( state => state.roles.rolesList))); 
 
     const [header] = useState([
@@ -25,7 +24,7 @@ const ComponenteDeRoles=(props)=> {
             render: rowData=>
                 <div>
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
-                        <BotonElement icon={<LockOpen style={{color: '#066bbd'}}/>} title="Permisos" function={()=>{}}/>
+                        <BotonElement icon={<LockOpen style={{color: '#066bbd'}}/>} title="Permisos" function={()=>FunctionOpenPermissionsRolModalToDelete(rowData)}/>
                         <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" function={() => FuncionOpenModalEditRol(rowData)}/>
                         <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" function={() => FunctionOpenRolModalToDelete(rowData)}/>
                     </ButtonGroup>
@@ -69,6 +68,15 @@ const ComponenteDeRoles=(props)=> {
     }
     const FunctionCloseRolModalToDelete = () =>{
         setdataRolModalToDelete({open: false, data: {}})
+    }
+
+    // funciones para asignar permisos a rol
+    const [dataPermissionsRolModalToDelete, setdataPermissionsRolModalToDelete] = useState({open: false, data: {}});
+    const FunctionOpenPermissionsRolModalToDelete = (data) =>{
+        setdataPermissionsRolModalToDelete({open: true, data: data})
+    }
+    const FunctionClosePermissionsRolModalToDelete = () =>{
+        setdataPermissionsRolModalToDelete({open: false, data: {}})
     }
     
     return (
@@ -127,6 +135,19 @@ const ComponenteDeRoles=(props)=> {
                     />
                 ):''
             } 
+            {/* componente para asignar permisos a rol ******************************************* */}
+            {
+                (dataPermissionsRolModalToDelete.open) ? (
+                    <ComponenteAgregarPermisosRol
+                        open = {dataPermissionsRolModalToDelete.open}
+                        closeModal = {FunctionClosePermissionsRolModalToDelete}
+                        iconToolbar = {<VerifiedUser/>}
+                        titleToolbar = {'Asignar Permisos a rol'}
+                        data={dataPermissionsRolModalToDelete.data}
+                        // rolesList={rolesList}
+                    />
+                ):''
+            }             
         </div> 
     )
 }

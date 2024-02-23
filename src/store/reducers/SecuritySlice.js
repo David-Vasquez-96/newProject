@@ -1,6 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { authenticated: false, currentUser: null, menu: [] };
+const initialState = { 
+    authenticated: false, 
+    currentUser: null, 
+    menu: [], 
+    formGroup: [
+        {idGrupo: 1, grupoFormulario: 'Módulo de Categorias', iconoGrupo: 'description', form:[], type: 1},
+        {idGrupo: 2, grupoFormulario: 'Módulo de Procesos', iconoGrupo: 'description', form:[], type: 1},
+        {idGrupo: 3, grupoFormulario: 'Módulo de Seguridad', iconoGrupo: 'security', form:[], type: 1,},        
+    ], 
+    forms: [
+        {
+            idGrupo: 1, grupoFormulario: 'Módulo de Categorias', idForm: 1, nombreFormulario: 'Categorias', iconoFormulario: 'description', 
+            ruta: '/categorias', type: 2, create: false, read: false, update: false, delete: false,
+        },
+        {
+            idGrupo: 2, grupoFormulario: 'Módulo de Procesos', idForm: 1, nombreFormulario: 'Procesos', iconoFormulario: 'description', 
+            ruta: '/procesos', type: 2, create: false, read: false, update: false, delete: false,
+        },
+        {
+            idGrupo: 3, grupoFormulario: 'Módulo de Seguridad', idForm: 1, nombreFormulario: 'Roles', iconoFormulario: 'desktop_windows', 
+            ruta: '/roles', type: 2, create: false, read: true, update: false, delete: false,
+        },
+        {
+            idGrupo: 3, grupoFormulario: 'Módulo de Seguridad', idForm: 2,nombreFormulario: 'Usuarios', iconoFormulario: 'people', 
+            ruta: '/usuarios', type: 2, create: false, read: false, update: false, delete: false,
+        },
+    ] 
+};
 
 export const securitySlice = createSlice({
     name: 'security',
@@ -13,11 +40,17 @@ export const securitySlice = createSlice({
         setMenu: (state, action) => {
             state.menu = action.payload;
         },
+        setForms: (state, action) => {
+            state.forms = action.payload;
+        },
+        setFormGroup: (state, action) => {
+            state.formGroup = action.payload;
+        },
         logout: (state, action) => {
            return initialState;
         }
     }
 });
 
-export const { setCurrentUser, setMenu, logout } = securitySlice.actions;
+export const { setCurrentUser, setMenu, setFormGroup, setForms, logout } = securitySlice.actions;
 export default securitySlice.reducer;
