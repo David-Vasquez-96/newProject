@@ -88,12 +88,13 @@ const ComponentForm = (props) => {
 
     return (
         <div className={classes.contenedorPrincipalLogin}>
+            {/* <img className={classes.waveImage} alt="complex" src={"/assets/waveLogin.svg"} /> */}
             <div className={classes.contenedorSecundarioLogin}>
                 {/* <DialogLoadingMessage open={loadingMessage.loading} title={loadingMessage.title}/> */}
                 <LoadingDialog open={loadingMessage.loading} text={loadingMessage.title}/>
                 {/* <div className={classes.title}>Bienvenido al Portal Web TSE {screenWidth} x {screenHeight}</div> */}
                 <AccountCircle className={classes.loginIcon} style={{ fontSize: 100 }}/>
-                <div className={classes.title}>Iniciar sesiónn {anchoDePantalla}</div>
+                <div className={classes.title}>Iniciar sesión {anchoDePantalla}</div>
                 <Form elements= {elements}  buttonList={buttonList} stylesFormControl={classes.formControlLogin}/>
                 <Button onClick={recuperarContraseña} className={classes.passwordButton}>¿Has olvidado tu contraseña?</Button>
             </div>

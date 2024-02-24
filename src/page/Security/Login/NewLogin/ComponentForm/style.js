@@ -9,14 +9,16 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         backgroundColor: '#EDEDED',
         flexDirection: 'column',
+        backgroundImage: `url(/assets/waveLogin.svg)`,
+        backgroundRepeat: "no-repeat",
         ['@media (max-width: 1920px)']:{ //desktop
-            padding: '0px 700px'
+            // padding: '0px 700px'
         },
         ['@media (max-width:1366px)']:{ //ipad
-            padding: '0px 350px'
+            // padding: '0px 350px'
         },
         ['@media (max-width:1024px)']:{ //ipad
-            padding: '0px 50px'
+            // padding: '0px 50px'
         },
         ['@media (max-width:768px)']:{ //ipad
             padding: '0px 50px'
@@ -31,29 +33,38 @@ export const useStyles = makeStyles((theme) => ({
             padding: '0px 10px'
         },
     },
+    waveImage: {
+        width: '100%',
+    },
     contenedorSecundarioLogin: {
         textAlign: 'center',
         backgroundColor: 'white',
         borderRadius: '20px',
+        // backgroundImage: `url(/assets/waveLogin.svg)`,
+        backgroundImage: `url(/assets/waveContainerLogin.svg)`,
+        backgroundRepeat: "no-repeat",
+        padding: '15px 0px',
+        boxShadow: '2px 2px 25px #1d5079',
+        border: '1px solid #1d5079',
         ['@media (max-width: 1920px)']:{ //desktop
-            padding: '0px 50px',
+            padding: '15px 0px',
             width: '460px',
         },
         ['@media (max-width: 768px)']:{ //mobile 
-            padding: '0px 50px',
+            padding: '15px 0px',
         },        
         ['@media (max-width: 500px)']:{ //mobile 
-            padding: '0px',
+            padding: '15px 0px',
             width: '100%',
         },        
         ['@media (max-width: 430px)']:{ //mobile Iphone 14 pro max
-            padding: '0px'
+            padding: '15px 0px'
         },        
         ['@media (max-width: 390px)']:{ //mobile Iphone 14 normal
-            padding: '0px'
+            padding: '15px 0px'
         },
         ['@media (max-width: 320px)']:{ //desktop
-            padding: '0px'
+            padding: '10px 0px'
         },
     },
     formControlLogin: {
