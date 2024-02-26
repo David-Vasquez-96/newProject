@@ -5,6 +5,7 @@ import categoriaSlide from './reducers/categoriaSlide'
 import procesosSlice from './reducers/ProcesosSlice'
 import usuariosSlice from './reducers/usuarioSlice'
 import rolesSlice from './reducers/rolesSlice'
+import documentosSlice from './reducers/documentosSlice'
 
 export default configureStore ({
     reducer: {
@@ -14,5 +15,6 @@ export default configureStore ({
         proceso: procesosSlice,
         usuario: usuariosSlice,
         roles: rolesSlice,
+        documentos: documentosSlice,
     }
 })

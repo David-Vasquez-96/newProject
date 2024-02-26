@@ -77,11 +77,11 @@ export default function SwipeableTemporaryDrawer(props) {
                                     </Collapse>
                                     </>
                                 ) : (
-                                    <ListItem className={classes.listItemTitle} button to={label?.to} component={Link} key={index}>
+                                    <ListItem className={classes.listItemTitle} button to={label?.ruta} component={Link} key={index}>
                                         <ListItemIcon className={classes.ListItemIconTitle}><Icon>{label?.iconoGrupo}</Icon></ListItemIcon>
                                         {/* <ListItemIcon className={classes.ListItemIconTitle}>{label?.iconoGrupo} </ListItemIcon> */}
                                         {/* <img className={classes.mobileIcon} src={ label?.imageGrupo} /> */}
-                                        <ListItemText className={classes.listItemTextTitle} primary={label?.nombreGrupo} />
+                                        <ListItemText className={classes.listItemTextTitle} primary={label?.grupoFormulario} />
                                     </ListItem>                                    
                                 )
                             }

@@ -34,9 +34,9 @@ const ComponenteCrearCategorias=(props)=> {
             render: rowData=>
                 <div>
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
-                        <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" function={()=>FuctionOpenCategoryViewer(rowData)}/>
-                        <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" function={() => FuncionOpenModalEditCategory(rowData)}/>
-                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" function={() => FunctionOpenCategoryModalToDelete(rowData)}/>
+                        <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" handleFunction={()=>FuctionOpenCategoryViewer(rowData)}/>
+                        <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" handleFunction={() => FuncionOpenModalEditCategory(rowData)}/>
+                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" handleFunction={() => FunctionOpenCategoryModalToDelete(rowData)}/>
                     </ButtonGroup>
                 </div>
         },         

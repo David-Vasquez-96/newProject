@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { cloneDeep } from 'lodash';
 
 const initialState = { 
     authenticated: false, 
     currentUser: null, 
     menu: [], 
     formGroup: [
+        // {idGrupo: 0, grupoFormulario: 'Módulo de Administrador', iconoGrupo: 'security', form:[], type: 1},
         {idGrupo: 1, grupoFormulario: 'Módulo de Categorias', iconoGrupo: 'description', form:[], type: 1},
         {idGrupo: 2, grupoFormulario: 'Módulo de Procesos', iconoGrupo: 'description', form:[], type: 1},
         {idGrupo: 3, grupoFormulario: 'Módulo de Seguridad', iconoGrupo: 'security', form:[], type: 1,},        
+        {idGrupo: 4, grupoFormulario: 'Módulo de Documentos', iconoGrupo: 'description', form:[], type: 2, ruta: '/moduloDocumentos'},        
     ], 
     forms: [
         {

@@ -33,9 +33,9 @@ const ComponenteProcesos=(props)=> {
             render: rowData=>
                 <div>
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
-                        <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" function={()=>FuctionOpenProcessViewer(rowData)}/>
-                        <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" function={() => FuncionOpenModalEditProcess(rowData)}/>
-                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" function={() => FunctionOpenProcessModalToDelete(rowData)}/>
+                        <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" handleFunction={()=>FuctionOpenProcessViewer(rowData)}/>
+                        <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" handleFunction={() => FuncionOpenModalEditProcess(rowData)}/>
+                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" handleFunction={() => FunctionOpenProcessModalToDelete(rowData)}/>
                     </ButtonGroup>
                 </div>
         },         

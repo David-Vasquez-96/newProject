@@ -30,10 +30,10 @@ const ComponenteUsuarios=(props)=> {
             render: rowData=>
                 <div>
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
-                        <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" function={()=>FuctionOpenUserViewer(rowData)}/>
-                        <BotonElement icon={<VpnKey style={{color: '#066bbd'}}/>} title="Cambiar contraseña" function={()=>FunctionOpenChangePassword(rowData)}/>
-                        <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" function={() => FuncionOpenModalEditUser(rowData)}/>
-                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" function={() => FunctionOpenUserModalToDelete(rowData)}/>
+                        <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" handleFunction={()=>FuctionOpenUserViewer(rowData)}/>
+                        <BotonElement icon={<VpnKey style={{color: '#066bbd'}}/>} title="Cambiar contraseña" handleFunction={()=>FunctionOpenChangePassword(rowData)}/>
+                        <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" handleFunction={() => FuncionOpenModalEditUser(rowData)}/>
+                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" handleFunction={() => FunctionOpenUserModalToDelete(rowData)}/>
                     </ButtonGroup>
                 </div>
         },         

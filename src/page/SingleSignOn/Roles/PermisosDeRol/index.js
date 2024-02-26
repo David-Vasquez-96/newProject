@@ -7,6 +7,7 @@ import Table from 'component/Table';
 import BotonElement from 'component/BotonTable'; 
 import { ButtonGroup, FormControlLabel, Switch} from '@material-ui/core';
 import Alert from 'react-s-alert';
+import { cloneDeep } from 'lodash';
 
 // REDUX **************************
 import { useSelector, useDispatch} from 'react-redux';
@@ -15,22 +16,28 @@ import { setForms } from 'store/reducers/SecuritySlice';
 const ComponentePermisosRoles=(props)=> {
     const classes = useStyles(props);
     const dispatch = useDispatch();
-    const formsPrincipal = JSON.parse(JSON.stringify(useSelector( state => state.security.forms))); 
+    // const formsPrincipal = JSON.parse(JSON.stringify(useSelector( state => state.security.forms))); 
     const forms = JSON.parse(JSON.stringify(useSelector( state => state.security.forms))); 
+    // const forms = cloneDeep(useSelector(state => state.security.forms));
+    // const forms = useSelector(state => state.security.forms);
 
     const handleChange = (event) => {
-        dispatch(setForms([]))
-        console.log('current forms 1: ', forms)
-        let getFormId = forms.findIndex(obj => obj.idGrupo === event?.target?.data?.idGrupo && obj.idForm === event?.target?.data?.idForm);
-        if(getFormId !== -1){
-            // si se encuentra el objeto buscado se procede a actualizar el objeto
-            console.log('current getFormId 1: ', getFormId)
-            console.log('current event.target.checked 1: ', event?.target?.checked)
-            forms[getFormId].read = event?.target?.checked;
-            console.log('current event.target.checked 2: ', event?.target?.checked)
-            console.log('current forms 2: ', forms)
-        }
-        dispatch(setForms(forms))
+        const object = {
+            checked: event?.target?.checked,
+            data: event?.target?.data,
+            forms: forms
+        };
+        // dispatch(setForms([]))
+        // const clonedForms = cloneDeep(forms); // Crear una copia profunda del objeto forms
+        // console.log('forms validation: ', event?.target?.data?.idGrupo+' - '+event?.target?.data?.idForm)
+        // let getFormId = clonedForms.findIndex(obj => obj.idGrupo === event?.target?.data?.idGrupo && obj.idForm === event?.target?.data?.idForm);
+        // if (getFormId !== -1) {
+        //     console.log('forms validation getFormId: ', getFormId)
+        //     // Si se encuentra el objeto buscado, proceder a actualizar el objeto
+        //     clonedForms[getFormId].read = event?.target?.checked;
+        // }
+        console.log('forms validation forms 0: ', object.forms)
+        dispatch(setForms(object))
         Alert.success('Permisos actualizados correctamente.')
     };
 
@@ -62,7 +69,9 @@ const ComponentePermisosRoles=(props)=> {
     }
     
     const [header] = useState([
+        { title: 'Id Grupo', field: 'idGrupo', cellStyle: { width: '200px'}},
         { title: 'Grupo de Formulario', field: 'grupoFormulario', cellStyle: { width: '200px'}},
+        { title: 'Id Form', field: 'idForm', cellStyle: { width: '200px'}},
         { title: 'Formulario', field: 'nombreFormulario', cellStyle: { width: '200px'}},
         { title: 'Listar y Visualizar', field: 'read', cellStyle: { width: '200px'},
             render: rowData => ComponentSwitch(rowData)
@@ -102,7 +111,7 @@ const ComponentePermisosRoles=(props)=> {
                         header = {header}
                         // service={ApiServices[this.state.controller]}
                         // refreshList={this.showList}
-                        data={formsPrincipal} 
+                        data={forms} 
                         // showSearcher={true}
                         // isMenuDesplegable={true}
                         // arrayMenuDesplegable={buttonList}

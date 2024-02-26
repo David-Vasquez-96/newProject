@@ -24,9 +24,9 @@ const ComponenteDeRoles=(props)=> {
             render: rowData=>
                 <div>
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
-                        <BotonElement icon={<LockOpen style={{color: '#066bbd'}}/>} title="Permisos" function={()=>FunctionOpenPermissionsRolModalToDelete(rowData)}/>
-                        <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" function={() => FuncionOpenModalEditRol(rowData)}/>
-                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" function={() => FunctionOpenRolModalToDelete(rowData)}/>
+                        <BotonElement icon={<LockOpen style={{color: '#066bbd'}}/>} title="Permisos" handleFunction={()=>FunctionOpenPermissionsRolModalToDelete(rowData)}/>
+                        <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" handleFunction={() => FuncionOpenModalEditRol(rowData)}/>
+                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" handleFunction={() => FunctionOpenRolModalToDelete(rowData)}/>
                     </ButtonGroup>
                 </div>
         },         
