@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { 
+    // carpetas
     documentsList: [
-        {backgroundColor: {r:'238', g:'75', b:'154', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Auditoría Interna', total: 109},
-        {backgroundColor: {r:'146', g:'31', b:'143', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Capital Humano', total: 98},
-        {backgroundColor: {r:'243', g:'101', b:'14', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Desarrollo', total: 86},
-        {backgroundColor: {r:'54', g:'182', b:'111', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Desarrollo Social', total: 77},
-        {backgroundColor: {r:'253', g:'189', b:'0', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Innovación y Analítica', total: 101},     
+        {idCarpeta: 1, backgroundColor: {r:'238', g:'75', b:'154', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Auditoría Interna', total: 109},
+        {idCarpeta: 2, backgroundColor: {r:'146', g:'31', b:'143', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Capital Humano', total: 98},
+        {idCarpeta: 3, backgroundColor: {r:'243', g:'101', b:'14', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Desarrollo', total: 86},
+        {idCarpeta: 4, backgroundColor: {r:'54', g:'182', b:'111', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Desarrollo Social', total: 77},
+        {idCarpeta: 5, backgroundColor: {r:'253', g:'189', b:'0', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Innovación y Analítica', total: 101},     
     ],
     tiposDeUSuario: [
         {backgroundColor: {r:'238', g:'75', b:'154', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Operador', total: '3,299'},
@@ -16,6 +17,15 @@ const initialState = {
         {backgroundColor: {r:'253', g:'189', b:'0', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Total', total: '3,347'},
     ],
     newDocument: {backgroundColor: '', image: '', title: '', total: 0},
+    // subcarpetas
+    subDocumentsList: [
+        {idCarpeta: 1, idSubCarpeta: 1, backgroundColor: {r:'238', g:'75', b:'154', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Analítica', total: 42},
+        {idCarpeta: 1, idSubCarpeta: 2, backgroundColor: {r:'146', g:'31', b:'143', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Calidad y Mejora Continua', total: 39},
+        {idCarpeta: 2, idSubCarpeta: 1, backgroundColor: {r:'243', g:'101', b:'14', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Innovación', total: 28},
+        {idCarpeta: 3, idSubCarpeta: 1, backgroundColor: {r:'54', g:'182', b:'111', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Proyectos', total: 5},
+        {idCarpeta: 3, idSubCarpeta: 2, backgroundColor: {r:'253', g:'189', b:'0', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Operaciones', total: 10},     
+    ],    
+    folderData: {},
 };
 
 export const documentosSlide = createSlice({
@@ -31,8 +41,13 @@ export const documentosSlide = createSlice({
             if (action?.payload?.image || action?.payload?.image==='') state.newDocument.image = action?.payload?.image;
             if (action?.payload?.total || action?.payload?.total==='' || action?.payload?.total=== 0) state.newDocument.total = action?.payload?.total;
         },
+        saveFolderData: (state, action) => {
+            var newState = Object.assign({}, state);
+            newState.folderData = action.payload
+            return newState;
+        },        
     }
 });
 
-export const { listDocuments, saveDataNewDocument } = documentosSlide.actions;
+export const { listDocuments, saveDataNewDocument, saveFolderData } = documentosSlide.actions;
 export default documentosSlide.reducer;

@@ -9,19 +9,22 @@ import ComponentCardTwo from './ComponentCardTwo'
 import BotonElement from 'component/BotonTable'
 import ComponenteCrearEditarCarpetas from './CrearEditarCarpetas'
 import ComponenteEliminarCarpeta from './EliminarCarpeta'
+import { useHistory } from "react-router-dom";
 // REDUX ****************************************************
 import { useSelector, useDispatch } from 'react-redux';
 import {AppBar, Toolbar, Typography } from '@material-ui/core';
-import { saveDataNewDocument } from 'store/reducers/documentosSlice';
+import { saveDataNewDocument, saveFolderData } from 'store/reducers/documentosSlice';
 
 const ComponenteDeDocumentos=(props)=> {
     const classes = useStyles(props);
+    const history = useHistory();
     const dispatch = useDispatch();
     const documentsList = JSON.parse(JSON.stringify(useSelector( state => state.documentos.documentsList))); 
     const tiposDeUSuario = useSelector( state => state.documentos.tiposDeUSuario);
 
-    const FuncionIRComponenteDeSubCarpetas = () =>{
-        console.log('listo!!!')
+    const FuncionIRComponenteDeSubCarpetas = (data) =>{
+        dispatch(saveFolderData(data))
+        history.push("/moduloSubCarpeta", {})
     }
     // funciones para crear carpetas ***************************************************************
     const [openModalDocument, setOpenModalDocument] = useState({open: false, title: '', id: 0})
@@ -92,7 +95,7 @@ const ComponenteDeDocumentos=(props)=> {
                                 title={label?.title}
                                 total={label?.total}
                                 key={index}
-                                handleClickGoToSubDocument={FuncionIRComponenteDeSubCarpetas}
+                                handleClickGoToSubDocument={()=>FuncionIRComponenteDeSubCarpetas(label)}
                                 handleClickEdit={()=>FuncionOpenModalEditDocument(label)}
                                 handleClickDelete={()=>FunctionOpenDocumentModalToDelete(label)}
                             />
