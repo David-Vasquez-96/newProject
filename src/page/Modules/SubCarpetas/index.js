@@ -6,14 +6,14 @@ import { useHistory } from "react-router-dom";
 import AppBarComponent from 'page/Home/Body/AppBarPrincipal'
 import {useStyles} from './style';
 import Title from 'component/TitleWithIcon';
-import ComponentCard from '../Documentos/ComponentCard'
+import ComponentCard from './ComponentCard'
 import BotonElement from 'component/BotonTable'
-import ComponenteCrearEditarCarpetas from './CrearEditarSubCarpetas'
-// import ComponenteEliminarCarpeta from './EliminarCarpeta'
+import ComponenteCrearEditarSubCarpetas from './CrearEditarSubCarpetas'
+import ComponenteEliminarSubCarpeta from './EliminarSubCarpeta'
 // REDUX ****************************************************
 import { useSelector, useDispatch } from 'react-redux';
 import {AppBar, Toolbar, Typography } from '@material-ui/core';
-import { saveDataNewDocument } from 'store/reducers/documentosSlice';
+import { saveDataNewSubDocument } from 'store/reducers/documentosSlice';
 
 const ComponenteDeSubCarpetas=(props)=> {
     const classes = useStyles(props);
@@ -36,40 +36,40 @@ const ComponenteDeSubCarpetas=(props)=> {
         if(current?.length > 0) return setData(current);
         else return setData([]);
     }
-    // funciones para crear carpetas ***************************************************************
+    // funciones para crear sub carpetas ***************************************************************
     const [openModalSubDocument, setOpenModalSubDocument] = useState({open: false, title: '', id: 0})
     const FuncionOpenModalCreateSubDocument = () =>{
-        dispatch(saveDataNewDocument({backgroundColor: '', image: '', title: '', total: 0}));
+        dispatch(saveDataNewSubDocument({idCarpeta: 0, idSubCarpeta:0, backgroundColor: '', image: '', title: '', total: 0}));
         setOpenModalSubDocument({open: true, title: 'Crear Sub-Carpeta', id: 1})
     }
     const FuncionCloseModalCreateSubDocument = () =>{
-        dispatch(saveDataNewDocument({backgroundColor: '', image: '', title: '', total: 0}));
+        dispatch(saveDataNewSubDocument({idCarpeta: 0, idSubCarpeta:0, backgroundColor: '', image: '', title: '', total: 0}));
         setOpenModalSubDocument({open: false, title: ''})
     }    
-    // funciones para editar una carpeta ***********************************************************
-    // const [editDocument, setEditDocument] = useState({open: false, title: '', getDocument: {}})
-    // const FuncionOpenModalEditDocument = (data) =>{
-    //     dispatch(saveDataNewDocument({title: data?.title, backgroundColor: data?.backgroundColor, image: data?.image, total: data?.total}))
-    //     setEditDocument({open: true, title: 'Editar Documento', id: 2, getDocument: data})
-    // }
-    // const FuncionCloseModalEditDocument = () =>{
-    //     dispatch(saveDataNewDocument({backgroundColor: '', image: '', title: '', total: 0}));
-    //     setEditDocument({open: false, title: '', id: 0, getDocument: {}})
-    // }
-    // funciones para eliminar una carpeta
-    // const [dataDocumentModalToDelete, setdataDocumentModalToDelete] = useState({open: false, data: {}});
-    // const FunctionOpenDocumentModalToDelete = (data) =>{
-    //     setdataDocumentModalToDelete({open: true, data: data})
-    // }
-    // const FunctionCloseDocumenModalToDelete = () =>{
-    //     setdataDocumentModalToDelete({open: false, data: {}})
-    // }    
+    // funciones para editar una sub carpeta ***********************************************************
+    const [editSubDocument, setEditSubDocument] = useState({open: false, title: '', getSubDocument: {}})
+    const FuncionOpenModalEditSubDocument = (data) =>{
+        dispatch(saveDataNewSubDocument({title: data?.title, backgroundColor: data?.backgroundColor, image: data?.image, total: data?.total}))
+        setEditSubDocument({open: true, title: 'Editar Sub-Carpeta', id: 2, getSubDocument: data})
+    }
+    const FuncionCloseModalEditSubDocument = () =>{
+        dispatch(saveDataNewSubDocument({idCarpeta: 0, idSubCarpeta:0, backgroundColor: '', image: '', title: '', total: 0}));
+        setEditSubDocument({open: false, title: '', id: 0, getSubDocument: {}})
+    }
+    // funciones para eliminar una sub carpeta
+    const [dataSubDocumentModalToDelete, setdataSubDocumentModalToDelete] = useState({open: false, data: {}});
+    const FunctionOpenSubDocumentModalToDelete = (data) =>{
+        setdataSubDocumentModalToDelete({open: true, data: data})
+    }
+    const FunctionCloseSubDocumenModalToDelete = () =>{
+        setdataSubDocumentModalToDelete({open: false, data: {}})
+    }    
     useEffect(()=>{
         objetoEstaVacio();
     }, [])
     useEffect(()=>{
         FilterData();
-    }, [openModalSubDocument.open])
+    }, [openModalSubDocument.open, editSubDocument.open, dataSubDocumentModalToDelete.open])
 
     return (
         <div className={classes.contenedorPrincipal}>
@@ -98,8 +98,8 @@ const ComponenteDeSubCarpetas=(props)=> {
                                     total={label?.total}
                                     key={index}
                                     // handleClickGoToSubDocument={FuncionIRComponenteDeSubCarpetas}
-                                    // handleClickEdit={()=>FuncionOpenModalEditDocument(label)}
-                                    // handleClickDelete={()=>FunctionOpenDocumentModalToDelete(label)}
+                                    handleClickEdit={()=>FuncionOpenModalEditSubDocument(label)}
+                                    handleClickDelete={()=>FunctionOpenSubDocumentModalToDelete(label)}
                                 />
                             ))
                         : (
@@ -111,7 +111,7 @@ const ComponenteDeSubCarpetas=(props)=> {
             {/* componente para crear una sub carpeta ******************************************* */}
             {
                 (openModalSubDocument.open) ? (
-                    <ComponenteCrearEditarCarpetas
+                    <ComponenteCrearEditarSubCarpetas
                         open = {openModalSubDocument.open}
                         closeModal = {FuncionCloseModalCreateSubDocument}
                         iconToolbar = {<NoteAdd/>}
@@ -122,32 +122,32 @@ const ComponenteDeSubCarpetas=(props)=> {
                     />
                 ):''
             }
-            {/* componente para editar una carpeta ******************************************* */}
-            {/* {
-                (editDocument.open) ? (
-                    <ComponenteCrearEditarCarpetas
-                        open = {editDocument.open}
-                        closeModal = {FuncionCloseModalEditDocument}
+            {/* componente para editar una sub carpeta ******************************************* */}
+            {
+                (editSubDocument.open) ? (
+                    <ComponenteCrearEditarSubCarpetas
+                        open = {editSubDocument.open}
+                        closeModal = {FuncionCloseModalEditSubDocument}
                         iconToolbar = {<Edit/>}
-                        titleToolbar = {editDocument.title}
-                        id = {editDocument.id}
-                        data = {editDocument.getDocument}
+                        titleToolbar = {editSubDocument.title}
+                        id = {editSubDocument.id}
+                        data = {editSubDocument.getSubDocument}
                     />
                 ):''
-            } */}
+            }
             {/* componente para eliminar una carpeta ******************************************* */}
-            {/* {
-                (dataDocumentModalToDelete.open) ? (
-                    <ComponenteEliminarCarpeta
-                        open = {dataDocumentModalToDelete.open}
-                        closeModal = {FunctionCloseDocumenModalToDelete}
+            {
+                (dataSubDocumentModalToDelete.open) ? (
+                    <ComponenteEliminarSubCarpeta
+                        open = {dataSubDocumentModalToDelete.open}
+                        closeModal = {FunctionCloseSubDocumenModalToDelete}
                         iconToolbar = {<NoteAdd/>}
                         titleToolbar = {'Eliminar'}
-                        data={dataDocumentModalToDelete.data}
-                        documentsList={documentsList}
+                        data={dataSubDocumentModalToDelete.data}
+                        subDocumentsList={subDocumentsList}
                     />
                 ):''
-            }              */}
+            }
         </div> 
     )
 }

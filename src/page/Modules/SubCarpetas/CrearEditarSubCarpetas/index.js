@@ -65,14 +65,13 @@ const ComponenteCrearEditarSubCarpetas=(props)=> {
     }
     const FuncionEditarSubCarpeta = () =>{
         dispatch(listSubDocuments([]))
-        // encontramos el indice del objeto con nombre
-        
-        let getDocumentId = subDocumentsList.findIndex(obj => obj.title === props?.data?.title);
-        if(getDocumentId !== -1){
+        // encontramos el indice del objeto con nombre        
+        let getSubDocumentId = subDocumentsList.findIndex(obj => obj.idCarpeta === props?.data?.idCarpeta && obj.idSubCarpeta === props?.data?.idSubCarpeta);
+        if(getSubDocumentId !== -1){
             // si se encuentra el objeto buscado se procede a actualizar el objeto
-            subDocumentsList[getDocumentId].title = data?.title;
-            subDocumentsList[getDocumentId].backgroundColor = data?.backgroundColor;
-            subDocumentsList[getDocumentId].image = data?.image;
+            subDocumentsList[getSubDocumentId].title = data?.title;
+            subDocumentsList[getSubDocumentId].backgroundColor = data?.backgroundColor;
+            subDocumentsList[getSubDocumentId].image = data?.image;
         }
         dispatch(listSubDocuments(subDocumentsList))
         Alert.success('Sub-Carpeta '+data?.title+" actualizado correctamente.")

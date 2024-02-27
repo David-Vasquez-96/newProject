@@ -12,6 +12,18 @@ import { Redirect } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setMenu, setCurrentUser } from 'store/reducers/SecuritySlice';
 
+//alert
+// mandatory
+require('react-s-alert/dist/s-alert-default.css');
+// optional - you can choose the effect you want
+require('react-s-alert/dist/s-alert-css-effects/slide.css');
+require('react-s-alert/dist/s-alert-css-effects/scale.css');
+require('react-s-alert/dist/s-alert-css-effects/bouncyflip.css');
+require('react-s-alert/dist/s-alert-css-effects/flip.css');
+require('react-s-alert/dist/s-alert-css-effects/genie.css');
+require('react-s-alert/dist/s-alert-css-effects/jelly.css');
+require('react-s-alert/dist/s-alert-css-effects/stackslide.css');
+
 export default function App(props) {
 	/**** VARIABLES ****/
 	const [loading, setLoading] = useState(false);
@@ -63,13 +75,23 @@ export default function App(props) {
 	return (
 		<>
 			<Template></Template>
-			<Alert
+			<div style={{zIndex: 2000, position: 'fixed'}}>
+				<Alert
+					stack={{limit: 50}} 
+					timeout = {3000}
+					position='top-right' 
+					offset={65} 
+					effect='stackslide' 
+				/>
+			</div>			
+			{/* <Alert
 				stack={{ limit: 1 }}
 				timeout={3000}
 				position="top-right"
 				effect="slide"
 				offset={65}
-			/>
+				style={{'z-index':1200}}
+			/> */}
 		</>
 	);
 }
