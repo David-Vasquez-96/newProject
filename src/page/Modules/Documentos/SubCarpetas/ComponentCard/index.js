@@ -13,7 +13,7 @@ const ComponentCard=(props)=> {
             </div>
             <Typography className={classes.cardTitle}>{props?.title}</Typography>
             <div className={classes.containerButtons}>
-                <BotonElement icon={<NoteAdd />} style={classes.buttonSuccess} title="Agregar Archivos" handleFunction={props?.handleClickGoToSubDocument}/>
+                <BotonElement icon={<NoteAdd />} style={classes.buttonSuccess} title="Agregar Archivos" handleFunction={props?.handleClickGoToArchives}/>
                 <BotonElement icon={<Edit />} style={classes.editButton} title="Editar" handleFunction={props?.handleClickEdit}/>
                 <BotonElement icon={<DeleteForever />} style={classes.deleteButton} title="Eliminar" handleFunction={props?.handleClickDelete}/>
                 <img className={classes.mobileIcon} src={props?.image } />  

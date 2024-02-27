@@ -13,7 +13,7 @@ import ComponenteEliminarSubCarpeta from './EliminarSubCarpeta'
 // REDUX ****************************************************
 import { useSelector, useDispatch } from 'react-redux';
 import {AppBar, Toolbar, Typography } from '@material-ui/core';
-import { saveDataNewSubDocument } from 'store/reducers/documentosSlice';
+import { saveDataNewSubDocument, setFolderInformation } from 'store/reducers/documentosSlice';
 
 const ComponenteDeSubCarpetas=(props)=> {
     const classes = useStyles(props);
@@ -30,12 +30,19 @@ const ComponenteDeSubCarpetas=(props)=> {
         }		 
         return history.push("/moduloDocumentos", {}) //si el objeto esta vacio devolvera un true		
     }
-
     const FilterData = () =>{
         const current = subDocumentsList?.filter( ({idCarpeta}) => Number(idCarpeta) === Number(folderData?.idCarpeta));
         if(current?.length > 0) return setData(current);
         else return setData([]);
     }
+    const FuncionIRComponenteDeArchivos = (data) =>{
+        let newData = {
+            carpeta: folderData,
+            subCarpeta: data
+        }
+        dispatch(setFolderInformation(newData))
+        history.push("/moduloArchivos", {})
+    }    
     // funciones para crear sub carpetas ***************************************************************
     const [openModalSubDocument, setOpenModalSubDocument] = useState({open: false, title: '', id: 0})
     const FuncionOpenModalCreateSubDocument = () =>{
@@ -97,7 +104,7 @@ const ComponenteDeSubCarpetas=(props)=> {
                                     title={label?.title}
                                     total={label?.total}
                                     key={index}
-                                    // handleClickGoToSubDocument={FuncionIRComponenteDeSubCarpetas}
+                                    handleClickGoToArchives={()=>FuncionIRComponenteDeArchivos(label)}
                                     handleClickEdit={()=>FuncionOpenModalEditSubDocument(label)}
                                     handleClickDelete={()=>FunctionOpenSubDocumentModalToDelete(label)}
                                 />

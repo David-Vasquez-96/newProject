@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Cancel, Person} from '@material-ui/icons';
 import {useStyles} from './style';
 import DialogoPersonalizado from 'component/DialogoPersonalizado';
-import ComponentCard from '../../Documentos/ComponentCard'
+import ComponentCard from '../../../Documentos/ComponentCard'
 import Form from 'component/Form/FormTwoColumns';
 import { Button, Divider } from '@material-ui/core';
 import Alert from 'react-s-alert';

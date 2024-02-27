@@ -27,12 +27,23 @@ const initialState = {
     ],
     newSubDocument: {idCarpeta: 0, idSubCarpeta:0, backgroundColor: '', image: '', title: '', total: 0},
     folderData: {},
+    // archivos
+    filesList:[
+        {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '.pdf', type: 1,  nombreArchivo: 'Documentos', version: 'V.5', usuario: 'MDHERRERAV', publicacion: '30/06/2023', },
+        {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '.xlsx', type: 2, nombreArchivo: 'Archivos', version: 'V.10', usuario: 'JRAMIREZ', publicacion: '12/06/2023', },
+        {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '.docx', type: 3, nombreArchivo: 'Tecnicas de estudio', version: 'V.8', usuario: 'PPEREZ', publicacion: '11/06/2023', },
+        {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '.png', type: 4, nombreArchivo: 'Procesos', version: 'V.2', usuario: 'CMVASQUEZ', publicacion: '18/05/2023', },
+        {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '.mp4', type: 5, nombreArchivo: 'Lineamientos', version: 'V.5', usuario: 'JJMORALES', publicacion: '01/05/2023', },
+    ],
+    datosDeDocumento: {},
+    saveNewFile: {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '', type: 0,  nombreArchivo: '', version: '', usuario: '', publicacion: '', },
 };
 
 export const documentosSlide = createSlice({
     name: 'documentos',
     initialState,
     reducers: {
+        //carpetas
         listDocuments: (state, action) => {
             state.documentsList = action.payload;
         },
@@ -47,6 +58,7 @@ export const documentosSlide = createSlice({
             newState.folderData = action.payload
             return newState;
         },
+        //subcarpetas
         listSubDocuments: (state, action) => {
             state.subDocumentsList = action.payload;
         },
@@ -55,9 +67,18 @@ export const documentosSlide = createSlice({
             if (action?.payload?.backgroundColor || action?.payload?.backgroundColor==='') state.newSubDocument.backgroundColor = action?.payload?.backgroundColor;
             if (action?.payload?.image || action?.payload?.image==='') state.newSubDocument.image = action?.payload?.image;
             if (action?.payload?.total || action?.payload?.total==='' || action?.payload?.total=== 0) state.newSubDocument.total = action?.payload?.total;
+        },
+        //archivos
+        setFolderInformation: (state, action) => {
+            var newState = Object.assign({}, state);
+            newState.datosDeDocumento = action.payload
+            return newState;
+        },
+        saveDataNewFile: (state, action) => {
+            if (action?.payload?.title || action?.payload?.title==='') state.saveNewFile.formato = action?.payload?.formato;
         },        
     }
 });
 
-export const { listDocuments, saveDataNewDocument, saveFolderData, listSubDocuments, saveDataNewSubDocument } = documentosSlide.actions;
+export const { listDocuments, saveDataNewDocument, saveFolderData, listSubDocuments, saveDataNewSubDocument, setFolderInformation } = documentosSlide.actions;
 export default documentosSlide.reducer;
