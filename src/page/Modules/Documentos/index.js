@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Description, Edit, NoteAdd, Replay } from '@material-ui/icons';
+import Alert from '@material-ui/lab/Alert';
 // COMPONENTES **********************************************
 import AppBarComponent from 'page/Home/Body/AppBarPrincipal'
 import {useStyles} from './style';
@@ -29,21 +30,21 @@ const ComponenteDeDocumentos=(props)=> {
     // funciones para crear carpetas ***************************************************************
     const [openModalDocument, setOpenModalDocument] = useState({open: false, title: '', id: 0})
     const FuncionOpenModalCreateDocument = () =>{
-        dispatch(saveDataNewDocument({backgroundColor: '', image: '', title: '', total: 0}));
+        dispatch(saveDataNewDocument({idCarpeta: 0, backgroundColor: '', image: '', title: '', total: 0}));
         setOpenModalDocument({open: true, title: 'Crear Carpeta', id: 1})
     }
     const FuncionCloseModalCreateDocument = () =>{
-        dispatch(saveDataNewDocument({backgroundColor: '', image: '', title: '', total: 0}));
+        dispatch(saveDataNewDocument({idCarpeta: 0, backgroundColor: '', image: '', title: '', total: 0}));
         setOpenModalDocument({open: false, title: ''})
     }    
     // funciones para editar una carpeta ***********************************************************
     const [editDocument, setEditDocument] = useState({open: false, title: '', getDocument: {}})
     const FuncionOpenModalEditDocument = (data) =>{
-        dispatch(saveDataNewDocument({title: data?.title, backgroundColor: data?.backgroundColor, image: data?.image, total: data?.total}))
+        dispatch(saveDataNewDocument({idCarpeta: data?.idCarpeta, title: data?.title, backgroundColor: data?.backgroundColor, image: data?.image, total: data?.total}))
         setEditDocument({open: true, title: 'Editar Documento', id: 2, getDocument: data})
     }
     const FuncionCloseModalEditDocument = () =>{
-        dispatch(saveDataNewDocument({backgroundColor: '', image: '', title: '', total: 0}));
+        dispatch(saveDataNewDocument({idCarpeta: 0, backgroundColor: '', image: '', title: '', total: 0}));
         setEditDocument({open: false, title: '', id: 0, getDocument: {}})
     }
     // funciones para eliminar una carpeta
@@ -69,7 +70,6 @@ const ComponenteDeDocumentos=(props)=> {
                                 title={label?.title}
                                 total={label?.total}
                                 key={index}
-                                handleClick={FuncionIRComponenteDeSubCarpetas}
                             />
                         ))
                     }
@@ -86,20 +86,24 @@ const ComponenteDeDocumentos=(props)=> {
                         </div>                        
                     </Toolbar>
                 </AppBar>                
-                <div className={classes.containerCards}>                    
+                <div className={classes.containerCards}>
                     {
-                        documentsList.map((label, index) =>(
-                            <ComponentCard 
-                                backgroundColor={label?.backgroundColor}
-                                image={label?.image}
-                                title={label?.title}
-                                total={label?.total}
-                                key={index}
-                                handleClickGoToSubDocument={()=>FuncionIRComponenteDeSubCarpetas(label)}
-                                handleClickEdit={()=>FuncionOpenModalEditDocument(label)}
-                                handleClickDelete={()=>FunctionOpenDocumentModalToDelete(label)}
-                            />
-                        ))
+                        (documentsList.length > 0) ? 
+                            documentsList.map((label, index) =>(
+                                <ComponentCard 
+                                    backgroundColor={label?.backgroundColor}
+                                    image={label?.image}
+                                    title={label?.title}
+                                    total={label?.total}
+                                    key={index}
+                                    handleClickGoToSubDocument={()=>FuncionIRComponenteDeSubCarpetas(label)}
+                                    handleClickEdit={()=>FuncionOpenModalEditDocument(label)}
+                                    handleClickDelete={()=>FunctionOpenDocumentModalToDelete(label)}
+                                />
+                            ))
+                        : (
+                            <Alert className={classes.alert} severity="warning">Sin registros. Agregue carpetas para visualizar aquí.</Alert>
+                        )
                     }
                 </div>
             </div>

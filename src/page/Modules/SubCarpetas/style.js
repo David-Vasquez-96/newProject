@@ -156,5 +156,8 @@ export const useStyles = makeStyles(theme=>({
     },
     toolbar: {
         padding: '0px',
-    }
+    },
+    alert: {
+        margin: '30px 0px',
+    },
 }));

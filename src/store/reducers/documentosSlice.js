@@ -16,7 +16,7 @@ const initialState = {
         {backgroundColor: {r:'54', g:'182', b:'111', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Creación de usuarios', total: '5'},
         {backgroundColor: {r:'253', g:'189', b:'0', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Total', total: '3,347'},
     ],
-    newDocument: {backgroundColor: '', image: '', title: '', total: 0},
+    newDocument: {idCarpeta: 0, backgroundColor: '', image: '', title: '', total: 0},
     // subcarpetas
     subDocumentsList: [
         {idCarpeta: 1, idSubCarpeta: 1, backgroundColor: {r:'238', g:'75', b:'154', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Analítica', total: 42},
@@ -24,7 +24,8 @@ const initialState = {
         {idCarpeta: 2, idSubCarpeta: 1, backgroundColor: {r:'243', g:'101', b:'14', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Innovación', total: 28},
         {idCarpeta: 3, idSubCarpeta: 1, backgroundColor: {r:'54', g:'182', b:'111', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Proyectos', total: 5},
         {idCarpeta: 3, idSubCarpeta: 2, backgroundColor: {r:'253', g:'189', b:'0', a:'100'}, image: 'assets/PerfilUsuario.png', title: 'Operaciones', total: 10},     
-    ],    
+    ],
+    newSubDocument: {idCarpeta: 0, idSubCarpeta:0, backgroundColor: '', image: '', title: '', total: 0},
     folderData: {},
 };
 
@@ -45,9 +46,18 @@ export const documentosSlide = createSlice({
             var newState = Object.assign({}, state);
             newState.folderData = action.payload
             return newState;
+        },
+        listSubDocuments: (state, action) => {
+            state.subDocumentsList = action.payload;
+        },
+        saveDataNewSubDocument: (state, action) => {
+            if (action?.payload?.title || action?.payload?.title==='') state.newSubDocument.title = action?.payload?.title;            
+            if (action?.payload?.backgroundColor || action?.payload?.backgroundColor==='') state.newSubDocument.backgroundColor = action?.payload?.backgroundColor;
+            if (action?.payload?.image || action?.payload?.image==='') state.newSubDocument.image = action?.payload?.image;
+            if (action?.payload?.total || action?.payload?.total==='' || action?.payload?.total=== 0) state.newSubDocument.total = action?.payload?.total;
         },        
     }
 });
 
-export const { listDocuments, saveDataNewDocument, saveFolderData } = documentosSlide.actions;
+export const { listDocuments, saveDataNewDocument, saveFolderData, listSubDocuments, saveDataNewSubDocument } = documentosSlide.actions;
 export default documentosSlide.reducer;
