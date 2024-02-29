@@ -29,14 +29,14 @@ const initialState = {
     folderData: {},
     // archivos
     filesList:[
-        {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '.pdf', type: 1,  nombreArchivo: 'Documentos', version: 'V.5', usuario: 'MDHERRERAV', publicacion: '30/06/2023', },
-        {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '.xlsx', type: 2, nombreArchivo: 'Archivos', version: 'V.10', usuario: 'JRAMIREZ', publicacion: '12/06/2023', },
-        {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '.docx', type: 3, nombreArchivo: 'Tecnicas de estudio', version: 'V.8', usuario: 'PPEREZ', publicacion: '11/06/2023', },
-        {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '.png', type: 4, nombreArchivo: 'Procesos', version: 'V.2', usuario: 'CMVASQUEZ', publicacion: '18/05/2023', },
-        {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '.mp4', type: 5, nombreArchivo: 'Lineamientos', version: 'V.5', usuario: 'JJMORALES', publicacion: '01/05/2023', },
+        {idCarpeta: 1, idSubCarpeta: 1, idCategoria: 1, id:1, formato: '.pdf', type: 1,  name: 'Documentos', version: 'V.5', usuario: 'MDHERRERAV', publicacion: '30/06/2023', base64:''},
+        {idCarpeta: 2, idSubCarpeta: 1, idCategoria: 2, id:2, formato: '.xlsx', type: 2, name: 'Archivos', version: 'V.10', usuario: 'JRAMIREZ', publicacion: '12/06/2023', base64:''},
+        {idCarpeta: 1, idSubCarpeta: 2, idCategoria: 3, id:3, formato: '.docx', type: 3, name: 'Tecnicas de estudio', version: 'V.8', usuario: 'PPEREZ', publicacion: '11/06/2023', base64:''},
+        {idCarpeta: 3, idSubCarpeta: 1, idCategoria: 4, id:4, formato: '.png', type: 4, name: 'Procesos', version: 'V.2', usuario: 'CMVASQUEZ', publicacion: '18/05/2023', base64:''},
+        {idCarpeta: 3, idSubCarpeta: 1, idCategoria: 5, id:5, formato: '.mp4', type: 5, name: 'Lineamientos', version: 'V.5', usuario: 'JJMORALES', publicacion: '01/05/2023', base64:''},
     ],
     datosDeDocumento: {},
-    saveNewFile: {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, idArchivo:0, formato: '', type: 0,  nombreArchivo: '', version: '', usuario: '', publicacion: '', },
+    saveNewFile: {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, id:0, formato: '', type: 0,  name: '', version: '', usuario: '', publicacion: '', base64:''},
 };
 
 export const documentosSlide = createSlice({
@@ -69,6 +69,9 @@ export const documentosSlide = createSlice({
             if (action?.payload?.total || action?.payload?.total==='' || action?.payload?.total=== 0) state.newSubDocument.total = action?.payload?.total;
         },
         //archivos
+        setFilesList: (state, action) => {
+            state.filesList = action?.payload
+        },
         setFolderInformation: (state, action) => {
             var newState = Object.assign({}, state);
             newState.datosDeDocumento = action.payload
@@ -80,5 +83,9 @@ export const documentosSlide = createSlice({
     }
 });
 
-export const { listDocuments, saveDataNewDocument, saveFolderData, listSubDocuments, saveDataNewSubDocument, setFolderInformation } = documentosSlide.actions;
+export const { 
+    listDocuments, saveDataNewDocument, saveFolderData, 
+    listSubDocuments, saveDataNewSubDocument, 
+    setFilesList, setFolderInformation, saveDataNewFile
+} = documentosSlide.actions;
 export default documentosSlide.reducer;

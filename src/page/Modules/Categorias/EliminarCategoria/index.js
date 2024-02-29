@@ -14,13 +14,13 @@ const ComponenteEliminarCategoria=(props)=> {
     const dispatch = useDispatch();
 
     const FunctionDeleteCategory = () =>{
-        let getCategoryId = props.categoryList.findIndex(obj => obj.title === props?.data?.title)
+        let getCategoryId = props.categoryList.findIndex(obj => obj.name === props?.data?.name)
         if(getCategoryId !== -1){
             dispatch(listCategory([]))
             // si se encuentra el objeto buscado se procede a eliminar el objeto
             props.categoryList.splice(getCategoryId, 1)
             dispatch(listCategory(props.categoryList))
-            Alert.success('Categoría '+props?.data?.title+" eliminado correctamente.")
+            Alert.success('Categoría '+props?.data?.name+" eliminado correctamente.")
         }
         props.closeModal()
     }
@@ -40,7 +40,7 @@ const ComponenteEliminarCategoria=(props)=> {
                 </div>
                 <div className={classes.componente}>
                     <ComponentCircle 
-                        title={props?.data?.title} 
+                        title={props?.data?.name} 
                         borderColor={props?.data?.borderColor}
                         image = {props?.data?.icon}
                     />

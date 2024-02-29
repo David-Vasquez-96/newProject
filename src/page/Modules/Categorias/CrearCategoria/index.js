@@ -18,7 +18,7 @@ const ComponenteCategorias=(props)=> {
     const initialColor ={r: '0', g: '0', b: '0',a: '1',};
     const newArray = []
     const dispatch = useDispatch();
-    const newCategory = useSelector(state => state.categoria.newCategory);
+    const newCategory = JSON.parse(JSON.stringify(useSelector(state => state.categoria.newCategory)));
     const categoryList = JSON.parse(JSON.stringify(useSelector( state => state.categoria.categoryList))); 
     data = newCategory;
     let description = [
@@ -27,7 +27,7 @@ const ComponenteCategorias=(props)=> {
     ];    
     const Updatedata = (e) =>{
         if(e.target?.name === 'title')
-            dispatch(saveDataNewCategory({title: e.target?.value}));
+            dispatch(saveDataNewCategory({name: e.target?.value}));
         if(e.name === 'image')
             dispatch(saveDataNewCategory({icon: e?.base64Complete}));
     }
@@ -36,7 +36,7 @@ const ComponenteCategorias=(props)=> {
     }    
     const [elements,setElements] = useState({
         title: {
-            idelement: "title",  value: newCategory?.title || "",    label: "Ingrese título de la categoría *",   pattern:"^([a-zA-Z_][a-zA-Z_ Ññ]*[a-zA-Z_Ññ]){1,20}$",  
+            idelement: "title",  value: newCategory?.name || "",    label: "Ingrese título de la categoría *",   pattern:"^([a-zA-Z_][a-zA-Z_ Ññ]*[a-zA-Z_Ññ]){1,20}$",  
             validators: ['required'], errorMessages:['Dato requerido'],  isError:false, elementType:'inputOutlined', icon: <Person/>, 
             style: classes.formControlLogin, handler: Updatedata,
         },
@@ -54,24 +54,27 @@ const ComponenteCategorias=(props)=> {
 
     const FuncionCrearCategoria = (e) => {
         dispatch(listCategory([]))
+        if(data?.borderColor === '') data.borderColor = initialColor;
+        const newTotalList = categoryList.length + 1;
+        data.id = newTotalList;
         newArray.push(data)
         const concatArray = categoryList.concat(newArray)
         dispatch(listCategory(concatArray))
         props.closeModal()
-        Alert.success('Categoría '+data?.title+" creado correctamente.")
+        Alert.success('Categoría '+data?.name+" creado correctamente.")
     }
     const FuncionEditarCategoria = () =>{
         dispatch(listCategory([]))
         // encontramos el indice del objeto con nombre
-        let getCategoryId = categoryList.findIndex(obj => obj.title === props?.data?.title);
+        let getCategoryId = categoryList.findIndex(obj => obj.name === props?.data?.name);
         if(getCategoryId !== -1){
             // si se encuentra el objeto buscado se procede a actualizar el objeto
-            categoryList[getCategoryId].title = data?.title;
+            categoryList[getCategoryId].name = data?.name;
             categoryList[getCategoryId].borderColor = data?.borderColor;
             categoryList[getCategoryId].icon = data?.icon;
         }
         dispatch(listCategory(categoryList))
-        Alert.success('Categoría '+data?.title+" actualizado correctamente.")
+        Alert.success('Categoría '+data?.name+" actualizado correctamente.")
         props.closeModal()
     }
     const FuncionCategoria = () =>{
@@ -102,7 +105,7 @@ const ComponenteCategorias=(props)=> {
                 <div className={classes.containerVisualize}>
                     <div className={classes.titleCategory}>Visualizador</div>
                     <ComponentCircle 
-                        title={newCategory.title || 'Título'} 
+                        title={newCategory.name || 'Título'} 
                         // label={data}
                         borderColor={newCategory.borderColor || initialColor}
                         image = {newCategory.icon}

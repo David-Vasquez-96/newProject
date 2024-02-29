@@ -19,7 +19,8 @@ const ComponenteCrearCategorias=(props)=> {
     const categoryList = JSON.parse(JSON.stringify(useSelector( state => state.categoria.categoryList))); 
 
     const [header] = useState([
-        { title: 'Título de Categoría', field: 'title', cellStyle: { width: '200px'}},
+        { title: 'ID Categoría', field: 'id', cellStyle: { width: '200px'}},
+        { title: 'Título de Categoría', field: 'name', cellStyle: { width: '200px'}},
         { title: 'Icono', field: 'icon', filtering: false,
             render: rowData=>
                 <img className={classes.mobileIcon} src={ rowData.icon} />
@@ -47,17 +48,17 @@ const ComponenteCrearCategorias=(props)=> {
         setOpenModal({open: true, title: title, id: 1})
     }
     const FuncionCloseModal = () =>{
-        dispatch(saveDataNewCategory({borderColor: '', icon: '', title: ''}));
+        dispatch(saveDataNewCategory({borderColor: '', icon: '', name: ''}));
         setOpenModal({open: false, title: ''})
     }
     // funciones para editar una categoria ***********************************************************
     const [editCategory, setEditCategory] = useState({open: false, title: '', getCategory: {}})
     const FuncionOpenModalEditCategory = (data) =>{
-        dispatch(saveDataNewCategory({title: data?.title, borderColor: data?.borderColor, icon: data?.icon}))
+        dispatch(saveDataNewCategory({name: data?.name, borderColor: data?.borderColor, icon: data?.icon}))
         setEditCategory({open: true, title: 'Editar Categoría', id: 2, getCategory: data})
     }
     const FuncionCloseModalEditCategory = () =>{
-        dispatch(saveDataNewCategory({borderColor: '', icon: '', title: ''}));
+        dispatch(saveDataNewCategory({borderColor: '', icon: '', name: ''}));
         setEditCategory({open: false, title: '', id: 0, getCategory: {}})
     }
 
@@ -92,7 +93,7 @@ const ComponenteCrearCategorias=(props)=> {
     }
     
     useEffect(()=>{
-        dispatch(saveDataNewCategory({borderColor: '', icon: '', title: ''}));
+        dispatch(saveDataNewCategory({borderColor: '', icon: '', name: ''}));
     }, [])
     return (
         <div className={classes.containerPrincipal}>

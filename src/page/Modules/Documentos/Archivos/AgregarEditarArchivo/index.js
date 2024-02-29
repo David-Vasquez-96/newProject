@@ -7,12 +7,12 @@ import Alert from 'react-s-alert';
 // REDUX **************************
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setUserList } from 'store/reducers/usuarioSlice';
+import { setFilesList } from 'store/reducers/documentosSlice'
 
 const ComponenteAgregarEditarArchivos=(props)=> {   
     const classes = useStyles();
     const dispatch = useDispatch();
-    const userList = JSON.parse(JSON.stringify(useSelector( state => state.usuario.userList))); 
+    const categoryList = JSON.parse(JSON.stringify(useSelector( state => state.categoria.categoryList))); 
     const newArray = []
     const formatos = [
         {id: 1, name: '1. PDF', type: '.pdf'},
@@ -25,11 +25,14 @@ const ComponenteAgregarEditarArchivos=(props)=> {
         {name: "- Antes de continuar, revise que la información que ingresó esté correcta.",},
         {name: "- Datos requeridos (*)."}
     ];     
+    const FuncionAgregarExtension = (e) =>{
+        elements.file.accept = e?.target?.data?.type
+    }
     const [elements,setElements] = useState({
         type: {
             idelement: "type", value: props.data?.empresa || null , label: "Seleccione formato del documento *", pattern:"^[1-9][0-9]*$", validators: ['required'], 
             errorMessages:['Seleccione formato del documento'], isError:false, elementType:'autocompleteV3', variant: "outlined",  icon: <AttachFile/>,
-            list: formatos, style: classes.formControlInput, disabled: false
+            list: formatos, style: classes.formControlInput, disabled: false, data: '', handler: FuncionAgregarExtension
         },
         file:{
             idelement: "file", value: null, label: "Adjunte archivo *", base64Complete: '',
@@ -46,41 +49,52 @@ const ComponenteAgregarEditarArchivos=(props)=> {
             validators: ['required'], errorMessages:['Dato requerido'],  isError:false, elementType:'inputOutlined', icon: <FormatListNumbered/>, 
             style: classes.formControlInput, disabled: false
         },
+        typeCategory: {
+            idelement: "typeCategory", value: props.data?.empresa || null , label: "Asignele una categoria *", pattern:"^[1-9][0-9]*$", validators: ['required'], 
+            errorMessages:['Seleccione una categoria'], isError:false, elementType:'autocompleteV3', variant: "outlined",  icon: <AttachFile/>,
+            list: categoryList, style: classes.formControlInput, disabled: false
+        },        
     });
 
     const FuncionAgregarArchivo = (e) => {
-        dispatch(setUserList([]))
+        dispatch(setFilesList([]))
         let saveUser = {
-            codigo: elements.codigo.value, 
-            nombreCompleto: elements.nombreCompleto.value,
-            usuario: elements.usuario.value,
-            email: elements.email.value,
-            contraseña: elements.contraseña.value,
-            rolUsuario: elements.rolUsuario.value,
-            empresa: elements.empresa.value,
+            idCarpeta: props.datosDeDocumento?.carpeta?.idCarpeta,
+            idSubCarpeta: props.datosDeDocumento?.subCarpeta?.idSubCarpeta,
+            // id: elements.codigo.value, 
+            idCategoria: elements.typeCategory.value, 
+            formato: elements.type.data?.type, 
+            type: elements.type.value?.id, 
+            name: elements.nombreArchivo.value, 
+            version: elements.version.value, 
+            usuario: 'MDHERRERAV', 
+            publicacion: new Date(),
+            base64: elements.file.base64Complete
         }
         newArray.push(saveUser)
-        const concatArray = userList.concat(newArray)
-        dispatch(setUserList(concatArray))
+        // console.log('newArray: ', newArray)
+        // 4625-7396 hector,
+        const concatArray = props.filesList.concat(newArray)
+        dispatch(setFilesList(concatArray))
         props.closeModal()
-        Alert.success('Usuario creado correctamente.');
+        Alert.success('Archivo agregado correctamente.');
     }
 
     const FuncionEditarArchivo = () =>{
-        dispatch(setUserList([]))
-        let getUserId = userList.findIndex(obj => obj.codigo === props?.data?.codigo);
-        if(getUserId !== -1){
-            // si se encuentra el objeto buscado se procede a actualizar el objeto
-            userList[getUserId].codigo = elements.codigo.value;
-            userList[getUserId].nombreCompleto = elements.nombreCompleto.value;
-            userList[getUserId].usuario = elements.usuario.value;
-            userList[getUserId].email = elements.email.value;
-            userList[getUserId].rolUsuario = {id: elements.rolUsuario.value?.id, name: elements.rolUsuario.value?.name};
-            userList[getUserId].empresa = {id: elements.empresa.value?.id, name: elements.empresa.value?.name};
-        }
-        dispatch(setUserList(userList))
-        Alert.success('Usuario actualizado correctamente.')
-        props.closeModal()
+        // dispatch(setFilesList([]))
+        // let getUserId = userList.findIndex(obj => obj.codigo === props?.data?.codigo);
+        // if(getUserId !== -1){
+        //     // si se encuentra el objeto buscado se procede a actualizar el objeto
+        //     userList[getUserId].codigo = elements.codigo.value;
+        //     userList[getUserId].nombreCompleto = elements.nombreCompleto.value;
+        //     userList[getUserId].usuario = elements.usuario.value;
+        //     userList[getUserId].email = elements.email.value;
+        //     userList[getUserId].rolUsuario = {id: elements.rolUsuario.value?.id, name: elements.rolUsuario.value?.name};
+        //     userList[getUserId].empresa = {id: elements.empresa.value?.id, name: elements.empresa.value?.name};
+        // }
+        // dispatch(setFilesList(userList))
+        // Alert.success('Usuario actualizado correctamente.')
+        // props.closeModal()
     }
 
     const FuncionArchivos = () =>{

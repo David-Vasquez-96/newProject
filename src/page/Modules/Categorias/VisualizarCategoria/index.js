@@ -15,7 +15,7 @@ const ComponenteVisualizarCategoria=(props)=> {
         >
             <div className={classes.containerPrincipalCategoria}>
                     <ComponentCircle 
-                        title={props?.data?.title} 
+                        title={props?.data?.name} 
                         borderColor={props?.data?.borderColor}
                         image = {props?.data?.icon}
                     />

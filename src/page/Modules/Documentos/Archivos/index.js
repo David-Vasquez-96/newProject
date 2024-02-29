@@ -10,6 +10,7 @@ import Table from 'component/Table';
 // import ComponentCardTwo from './ComponentCardTwo'
 import BotonElement from 'component/BotonTable'
 import ComponenteCrearEditarArchivo from './AgregarEditarArchivo'
+import ComponenteVisualizarArchivo from './VisualizarArchivos'
 // import ComponenteEliminarCarpeta from './EliminarCarpeta'
 import { useHistory } from "react-router-dom";
 // REDUX ****************************************************
@@ -31,6 +32,11 @@ const ComponenteDeArchivos=(props)=> {
         }		 
         // return history.push("/moduloDocumentos", {}) //si el objeto esta vacio devolvera un true		
     }    
+    // const FilterData = () =>{
+    //     const current = subDocumentsList?.filter( ({idCarpeta}) => Number(idCarpeta) === Number(folderData?.idCarpeta));
+    //     if(current?.length > 0) return setData(current);
+    //     else return setData([]);
+    // }    
     const formato = {
         1: 'PDF',
         2: 'EXCEL',
@@ -39,6 +45,7 @@ const ComponenteDeArchivos=(props)=> {
         5: 'VIDEO',
     }
     const [header] = useState([
+        { title: 'ID del Archivo', field: 'id', cellStyle: { width: '200px'}},
         { title: 'Formato', field: 'type', filtering: true, 
             lookup: formato,
             render: rowData=>
@@ -54,7 +61,7 @@ const ComponenteDeArchivos=(props)=> {
                     <img className={classes.mobileIcon} src={'assets/video.png'} />
                 : null
         },
-        { title: 'Nombre del Documento', field: 'nombreArchivo', cellStyle: { width: '200px'}},
+        { title: 'Nombre del Documento', field: 'name', cellStyle: { width: '200px'}},
         { title: 'Versión', field: 'version', cellStyle: { width: '200px'}},
         { title: 'Añadido por', field: 'usuario', cellStyle: { width: '200px'}},
         { title: 'Fecha de Publicación', field: 'publicacion', cellStyle: { width: '200px'}},
@@ -62,7 +69,7 @@ const ComponenteDeArchivos=(props)=> {
             render: rowData=>
                 <div>
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
-                        <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" handleFunction={()=>{}}/>
+                        <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" handleFunction={()=>FuctionOpenFileViewer(rowData)}/>
                         <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" handleFunction={() => {}}/>
                         <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" handleFunction={() => {}}/>
                     </ButtonGroup>
@@ -98,6 +105,14 @@ const ComponenteDeArchivos=(props)=> {
     // const FunctionCloseDocumenModalToDelete = () =>{
     //     setdataDocumentModalToDelete({open: false, data: {}})
     // }    
+    // funciones para visualizar un archivo *******************************************************
+    const [openFileViewer, setOpenFileViewer] = useState({open: false, data: {}});
+    const FuctionOpenFileViewer = (data) =>{
+        setOpenFileViewer({open: true, data: data})
+    }
+    const FuctionCloseFileViewer = () =>{
+        setOpenFileViewer({open: false, data: {}})
+    }    
     const buttonList = [
         {
             customTitleButtonTable:"Agregar Archivo",
@@ -112,7 +127,10 @@ const ComponenteDeArchivos=(props)=> {
     ]
     useEffect(()=>{
         objetoEstaVacio();
-    }, [])    
+    }, [])
+    // useEffect(()=>{
+    //     FilterData();
+    // }, [openModalFile.open])    
     return (
         <div className={classes.contenedorPrincipal}>
             <AppBarComponent />
@@ -140,9 +158,23 @@ const ComponenteDeArchivos=(props)=> {
                         iconToolbar = {<NoteAdd/>}
                         titleToolbar = {openModalFile.title}
                         id = {openModalFile.id}
+                        datosDeDocumento={datosDeDocumento}
+                        filesList={filesList}
                     />
                 ):''
             }
+            {/* componente para visualizar un archivo ******************************************* */}
+            {
+                (openFileViewer.open) ? (
+                    <ComponenteVisualizarArchivo 
+                        open = {openFileViewer.open}
+                        closeModal = {FuctionCloseFileViewer}
+                        iconToolbar = {<NoteAdd/>}
+                        titleToolbar = {'Visualizador'}
+                        data={openFileViewer.data}
+                    />
+                ):''
+            }            
             {/* componente para editar una carpeta ******************************************* */}
             {/* {
                 (editDocument.open) ? (

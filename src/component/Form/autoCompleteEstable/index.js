@@ -18,9 +18,9 @@ export default function ComboBoxAutoComplete(props) {
                 name={props.name}
                 onChange={(event, newValue) => {
                     if(newValue) {
-                        props.handleChange({ target: {value: newValue?.id, name: props.name, text: newValue?.name} });
+                        props.handleChange({ target: {value: newValue?.id, name: props.name, text: newValue?.name, data: newValue} });
                     } else {
-                        props.handleChange({target: {value:'', name: props.name, text:''}});
+                        props.handleChange({target: {value:'', name: props.name, text:'', data: ''}});
                     }
                 }}
                 disabled={props.disabled}

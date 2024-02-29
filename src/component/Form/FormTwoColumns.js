@@ -105,6 +105,7 @@ export default function Table(props) {
       elements[nameTarget].value = null
       // elements[nameTarget].list = null
     }
+    elements[nameTarget].data = event.target.data
     setElements({ ...elements });
     setApiErrors([]);
   }; 
@@ -1026,6 +1027,7 @@ export default function Table(props) {
           variant={elements[key].variant}
           style={elements[key].style}
           icon={elements[key].icon}
+          data={elements[key].data}
         ></FormControlSelectAutoCompleteV3>
       );          
       case "customDropdown":

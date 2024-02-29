@@ -15,7 +15,7 @@ const PageDocuments=(props)=> {
                 {
                     listDocuments.map((label, index) =>(
                         <ComponentCircle 
-                            title={label.title || 'Título'} 
+                            title={label.name || 'Título'} 
                             borderColor={label.borderColor}
                             image = {label.icon}
                             key={index}
