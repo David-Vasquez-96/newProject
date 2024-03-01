@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { AssignmentInd, AttachFile, Cancel, CreditCard, Description, Email, FormatListNumbered, LocationCity, Person, VpnKey} from '@material-ui/icons';
+import { AssignmentInd, AttachFile, Cancel, CreditCard, Description, Email, FormatListNumbered, LocationCity, NoteAdd, Person, VpnKey} from '@material-ui/icons';
 import {useStyles} from './style';
 import DialogoPersonalizado from 'component/DialogoPersonalizado';
 import Form from 'component/Form/FormTwoColumns';
 import Alert from 'react-s-alert';
+import ComponenteVisualizarArchivo from '../VisualizarArchivos'
 // REDUX **************************
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -27,44 +28,46 @@ const ComponenteAgregarEditarArchivos=(props)=> {
     ];     
     const FuncionAgregarExtension = (e) =>{
         elements.file.accept = e?.target?.data?.type
+        elements.file.value = null
+        elements.file.base64Complete = null
     }
     const [elements,setElements] = useState({
         type: {
-            idelement: "type", value: props.data?.empresa || null , label: "Seleccione formato del documento *", pattern:"^[1-9][0-9]*$", validators: ['required'], 
-            errorMessages:['Seleccione formato del documento'], isError:false, elementType:'autocompleteV3', variant: "outlined",  icon: <AttachFile/>,
-            list: formatos, style: classes.formControlInput, disabled: false, data: '', handler: FuncionAgregarExtension
+            idelement: "type", value: props.data?.type || null , label: "Seleccione formato del archivo *", pattern:"^[1-9][0-9]*$", validators: ['required'], 
+            errorMessages:['Seleccione formato del archivo'], isError:false, elementType:'autocompleteV3', variant: "outlined",  icon: <AttachFile/>,
+            list: formatos, style: classes.formControlInput, disabled: false, data: props.data?.type, handler: FuncionAgregarExtension
         },
         file:{
-            idelement: "file", value: null, label: "Adjunte archivo *", base64Complete: '',
+            idelement: "file", value: props.data?.base64 || null, label: "Adjunte archivo *", base64Complete: props.data?.base64 || null,
             validators: {required: true,  size: "2 MB",}, errorMessages: 'Por favor debe adjuntar lo solicitado', isError:false, elementType:'file',
             disabled:false, name:"file", fileWidth: false, src: '', multiple: false, accept:".png, .jpg, .jpeg, .svg",
         },         
         nombreArchivo: {
-            idelement: "nombreArchivo",  value: props.data?.nombreCompleto || "",    label: "Ingrese nombre del documento *",   pattern:"^([a-zA-Z_ÑñáéíóúÁÉÍÓÚ][a-zA-Z_ ÑñáéíóúÁÉÍÓÚ]*[a-zA-Z_ÑñáéíóúÁÉÍÓÚ])$", initialRequiredLength: 1, finalRequiredLength: 100,  
+            idelement: "nombreArchivo",  value: props.data?.name || "",    label: "Ingrese nombre del archivo *",   pattern:"^([a-zA-Z_ÑñáéíóúÁÉÍÓÚ][a-zA-Z_ ÑñáéíóúÁÉÍÓÚ]*[a-zA-Z_ÑñáéíóúÁÉÍÓÚ])$", initialRequiredLength: 1, finalRequiredLength: 100,  
             validators: ['required'], errorMessages:['Dato requerido'],  isError:false, elementType:'inputOutlined', icon: <Description/>, 
             style: classes.formControlInput, disabled: false
         },
         version: {
-            idelement: "version",  value: props.data?.usuario || "",    label: "Ingrese versión *",   pattern:"^([a-zA-Z_0-9][a-zA-Z_ Ññ0-9]*[a-zA-Z_Ññ0-9])$", initialRequiredLength: 1, finalRequiredLength: 30, 
+            idelement: "version",  value: props.data?.version || "",    label: "Ingrese versión *",   pattern:"^([a-zA-Z_0-9][a-zA-Z_ Ññ0-9]*[a-zA-Z_Ññ0-9])$", initialRequiredLength: 1, finalRequiredLength: 30, 
             validators: ['required'], errorMessages:['Dato requerido'],  isError:false, elementType:'inputOutlined', icon: <FormatListNumbered/>, 
             style: classes.formControlInput, disabled: false
         },
         typeCategory: {
-            idelement: "typeCategory", value: props.data?.empresa || null , label: "Asignele una categoria *", pattern:"^[1-9][0-9]*$", validators: ['required'], 
+            idelement: "typeCategory", value: props.data?.idCategoria || null , label: "Asignele una categoria *", pattern:"^[1-9][0-9]*$", validators: ['required'], 
             errorMessages:['Seleccione una categoria'], isError:false, elementType:'autocompleteV3', variant: "outlined",  icon: <AttachFile/>,
             list: categoryList, style: classes.formControlInput, disabled: false
         },        
     });
 
     const FuncionAgregarArchivo = (e) => {
-        dispatch(setFilesList([]))
+        dispatch(setFilesList([]))        
         let saveUser = {
             idCarpeta: props.datosDeDocumento?.carpeta?.idCarpeta,
             idSubCarpeta: props.datosDeDocumento?.subCarpeta?.idSubCarpeta,
-            // id: elements.codigo.value, 
+            id: props.filesList.length+1, 
             idCategoria: elements.typeCategory.value, 
             formato: elements.type.data?.type, 
-            type: elements.type.value?.id, 
+            type: elements.type.data, 
             name: elements.nombreArchivo.value, 
             version: elements.version.value, 
             usuario: 'MDHERRERAV', 
@@ -72,58 +75,82 @@ const ComponenteAgregarEditarArchivos=(props)=> {
             base64: elements.file.base64Complete
         }
         newArray.push(saveUser)
-        // console.log('newArray: ', newArray)
-        // 4625-7396 hector,
         const concatArray = props.filesList.concat(newArray)
         dispatch(setFilesList(concatArray))
         props.closeModal()
-        Alert.success('Archivo agregado correctamente.');
+        Alert.success('Archivo '+saveUser?.name+' agregado correctamente.');
     }
 
     const FuncionEditarArchivo = () =>{
-        // dispatch(setFilesList([]))
-        // let getUserId = userList.findIndex(obj => obj.codigo === props?.data?.codigo);
-        // if(getUserId !== -1){
-        //     // si se encuentra el objeto buscado se procede a actualizar el objeto
-        //     userList[getUserId].codigo = elements.codigo.value;
-        //     userList[getUserId].nombreCompleto = elements.nombreCompleto.value;
-        //     userList[getUserId].usuario = elements.usuario.value;
-        //     userList[getUserId].email = elements.email.value;
-        //     userList[getUserId].rolUsuario = {id: elements.rolUsuario.value?.id, name: elements.rolUsuario.value?.name};
-        //     userList[getUserId].empresa = {id: elements.empresa.value?.id, name: elements.empresa.value?.name};
-        // }
-        // dispatch(setFilesList(userList))
-        // Alert.success('Usuario actualizado correctamente.')
-        // props.closeModal()
+        dispatch(setFilesList([]))
+        let getFileId = props.filesList.findIndex(obj => obj.name === props?.data?.name)
+        if(getFileId !== -1){
+            // si se encuentra el objeto buscado se procede a actualizar el objeto
+            props.filesList[getFileId].idCategoria = elements.typeCategory.value;
+            props.filesList[getFileId].formato = elements.type.data?.type;
+            props.filesList[getFileId].type = elements.type.data;
+            props.filesList[getFileId].name = elements.nombreArchivo.value;
+            props.filesList[getFileId].version = elements.version.value;
+            // props.filesList[getFileId].publicacion = new Date();
+            props.filesList[getFileId].base64 = elements.file.base64Complete;
+        }
+        dispatch(setFilesList(props.filesList))
+        Alert.success('Archivo / '+ elements.nombreArchivo.value+' / actualizado correctamente.')
+        props.closeModal()
     }
 
     const FuncionArchivos = () =>{
         if(props.id === 1) FuncionAgregarArchivo();
         else if (props.id === 2) FuncionEditarArchivo();        
     }
+    // funciones para visualizar un archivo *******************************************************
+    const [openFileViewer, setOpenFileViewer] = useState({open: false, data: {}});
+    const FuctionOpenFileViewer = (data) =>{
+        if(props.id === 1) setOpenFileViewer({open: true, data: {base64: elements.file.base64Complete, formato: elements.type.data?.type}});
+        else if (props.id === 2) setOpenFileViewer({open: true, data: {base64: elements.file.base64Complete, formato: elements.type.data?.type}});                
+        
+    }
+    const FuctionCloseFileViewer = () =>{
+        setOpenFileViewer({open: false, data: {}})
+    }       
     const [buttonList,setButtonList]= useState({
-        "login":{"label": props.titleToolbar,"icon": props.iconToolbar,"callback":FuncionArchivos, variant: 'outlined', color: "primary", },
+        "procesar":{"label": props.titleToolbar,"icon": props.iconToolbar,"callback":FuncionArchivos, variant: 'outlined', color: "primary", },
+        "verArchivo":{"label":"Ver archivo","icon": <Description />,"callback":FuctionOpenFileViewer, isCancel: true, variant: "outlined", color: "primary"},
         "cancel":{"label":"Cancelar","icon": <Cancel />,"callback":props.closeModal, isCancel: true, variant: "outlined", color: "secondary"},
     });
 
     const anchoDePantalla = window.innerWidth;
 
     return (
-        <DialogoPersonalizado 
-            open={props.open}
-            fullScreen={(anchoDePantalla <= 460) ? true : false}
-            closeModal={props.closeModal}
-            // actualizarTabla={props.actualizarTabla}
-            iconToolbar={props.iconToolbar}
-            titleToolbar={props.titleToolbar}
-            fullWidth={true}
-            maxWidth={'md'}            
-        >
-            <div className={classes.containerPrincipal}>
-                <div className={classes.title}>Complete el formulario para {props.titleToolbar}</div>
-                <Form   elements= {elements}  buttonList={buttonList} description={description} />
-            </div>
-        </DialogoPersonalizado>
+        <>
+            <DialogoPersonalizado 
+                open={props.open}
+                fullScreen={(anchoDePantalla <= 460) ? true : false}
+                closeModal={props.closeModal}
+                // actualizarTabla={props.actualizarTabla}
+                iconToolbar={props.iconToolbar}
+                titleToolbar={props.titleToolbar}
+                fullWidth={true}
+                maxWidth={'md'}            
+            >
+                <div className={classes.containerPrincipal}>
+                    <div className={classes.title}>Complete el formulario para {props.titleToolbar}</div>
+                    <Form   elements= {elements}  buttonList={buttonList} description={description} />
+                </div>
+            </DialogoPersonalizado>
+            {/* componente para visualizar un archivo ******************************************* */}
+            {
+                (openFileViewer.open) ? (
+                    <ComponenteVisualizarArchivo 
+                        open = {openFileViewer.open}
+                        closeModal = {FuctionCloseFileViewer}
+                        iconToolbar = {<NoteAdd/>}
+                        titleToolbar = {'Visualizador'}
+                        data={openFileViewer.data}
+                    />
+                ):''
+            }                
+        </>
     )
 }
 export default (ComponenteAgregarEditarArchivos);

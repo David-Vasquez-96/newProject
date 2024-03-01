@@ -29,14 +29,11 @@ const ComponentePermisosRoles=(props)=> {
         };
         // dispatch(setForms([]))
         // const clonedForms = cloneDeep(forms); // Crear una copia profunda del objeto forms
-        // console.log('forms validation: ', event?.target?.data?.idGrupo+' - '+event?.target?.data?.idForm)
         // let getFormId = clonedForms.findIndex(obj => obj.idGrupo === event?.target?.data?.idGrupo && obj.idForm === event?.target?.data?.idForm);
         // if (getFormId !== -1) {
-        //     console.log('forms validation getFormId: ', getFormId)
         //     // Si se encuentra el objeto buscado, proceder a actualizar el objeto
         //     clonedForms[getFormId].read = event?.target?.checked;
         // }
-        console.log('forms validation forms 0: ', object.forms)
         dispatch(setForms(object))
         Alert.success('Permisos actualizados correctamente.')
     };

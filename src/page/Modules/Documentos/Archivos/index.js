@@ -22,20 +22,21 @@ const ComponenteDeArchivos=(props)=> {
     const history = useHistory();
     const dispatch = useDispatch();
     const filesList = JSON.parse(JSON.stringify(useSelector( state => state.documentos.filesList))); 
-    const datosDeDocumento = useSelector( state => state.documentos.datosDeDocumento);
+    const datosDeDocumento = JSON.parse(JSON.stringify(useSelector( state => state.documentos.datosDeDocumento)));
+    const [data, setData] = useState([])
     const objetoEstaVacio = () => {
         for (let key in datosDeDocumento) {
             if (datosDeDocumento.hasOwnProperty(key)) {                
                 return false; //si tiene un objeto devolvera un false
             }
         }		 
-        // return history.push("/moduloDocumentos", {}) //si el objeto esta vacio devolvera un true		
+        return history.push("/moduloDocumentos", {}) //si el objeto esta vacio devolvera un true		
     }    
-    // const FilterData = () =>{
-    //     const current = subDocumentsList?.filter( ({idCarpeta}) => Number(idCarpeta) === Number(folderData?.idCarpeta));
-    //     if(current?.length > 0) return setData(current);
-    //     else return setData([]);
-    // }    
+    const FilterData = () =>{
+        const current = filesList?.filter(obj => obj.idCarpeta === datosDeDocumento?.carpeta?.idCarpeta && obj.idSubCarpeta === datosDeDocumento?.subCarpeta?.idSubCarpeta);
+        if(current?.length > 0) return setData(current);
+        else return setData([]);
+    }    
     const formato = {
         1: 'PDF',
         2: 'EXCEL',
@@ -45,7 +46,7 @@ const ComponenteDeArchivos=(props)=> {
     }
     const [header] = useState([
         { title: 'ID del Archivo', field: 'id', cellStyle: { width: '200px'}},
-        { title: 'Formato', field: 'type', filtering: true, 
+        { title: 'Formato', field: 'formato', filtering: true, 
             lookup: formato,
             render: rowData=>
                 (rowData?.formato === '.pdf') ?
@@ -68,8 +69,12 @@ const ComponenteDeArchivos=(props)=> {
             render: rowData=>
                 <div>
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
-                        <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" handleFunction={()=>FuctionOpenFileViewer(rowData)}/>
-                        <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" handleFunction={() => {}}/>
+                        {
+                            (rowData?.formato === '.xlsx' || rowData?.formato === '.docx') ? null
+                            : 
+                            <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" handleFunction={()=>FuctionOpenFileViewer(rowData)}/>
+                        }
+                        <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" handleFunction={() => FuncionOpenModalEditArchive(rowData)}/>
                         <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" handleFunction={() => FunctionOpenArchiveModalToDelete(rowData)}/>
                     </ButtonGroup>
                 </div>
@@ -87,15 +92,15 @@ const ComponenteDeArchivos=(props)=> {
         setOpenModalFile({open: false, title: ''})
     }    
     // funciones para editar una carpeta ***********************************************************
-    // const [editDocument, setEditDocument] = useState({open: false, title: '', getDocument: {}})
-    // const FuncionOpenModalEditDocument = (data) =>{
-    //     dispatch(saveDataNewDocument({idCarpeta: data?.idCarpeta, title: data?.title, backgroundColor: data?.backgroundColor, image: data?.image, total: data?.total}))
-    //     setEditDocument({open: true, title: 'Editar Documento', id: 2, getDocument: data})
-    // }
-    // const FuncionCloseModalEditDocument = () =>{
-    //     dispatch(saveDataNewDocument({idCarpeta: 0, backgroundColor: '', image: '', title: '', total: 0}));
-    //     setEditDocument({open: false, title: '', id: 0, getDocument: {}})
-    // }
+    const [editArchive, setEditArchive] = useState({open: false, title: '', getArchive: {}})
+    const FuncionOpenModalEditArchive = (data) =>{
+        dispatch(saveDataNewDocument({idCarpeta: data?.idCarpeta, title: data?.title, backgroundColor: data?.backgroundColor, image: data?.image, total: data?.total}))
+        setEditArchive({open: true, title: 'Editar Archivo', id: 2, getArchive: data})
+    }
+    const FuncionCloseModalEditArchive = () =>{
+        dispatch(saveDataNewDocument({idCarpeta: 0, backgroundColor: '', image: '', title: '', total: 0}));
+        setEditArchive({open: false, title: '', id: 0, getArchive: {}})
+    }
     // funciones para eliminar una carpeta
     const [dataArchiveModalToDelete, setdataArchiveModalToDelete] = useState({open: false, data: {}});
     const FunctionOpenArchiveModalToDelete = (data) =>{
@@ -127,26 +132,29 @@ const ComponenteDeArchivos=(props)=> {
     useEffect(()=>{
         objetoEstaVacio();
     }, [])
-    // useEffect(()=>{
-    //     FilterData();
-    // }, [openModalFile.open])    
+    useEffect(()=>{
+        FilterData();
+    }, [openModalFile.open, editArchive.open, dataArchiveModalToDelete.open])    
     return (
         <div className={classes.contenedorPrincipal}>
             <AppBarComponent />
             <Title title={'Documentos por Gerencia > Gerencia de '+ datosDeDocumento?.carpeta?.title+' > '+ datosDeDocumento?.subCarpeta?.title} icon={<Description />} />
             <div className={classes.containerTable}>
-                <Table 
-                    title={"Listado"}
-                    header = {header}
-                    // service={ApiServices[this.state.controller]}
-                    // refreshList={this.showList}
-                    data={filesList} 
-                    // showSearcher={true}
-                    isMenuDesplegable={true}
-                    arrayMenuDesplegable={buttonList}
-                    refreshList={()=>{}}
-                    showFilterGeneral={false}
-                />
+                {
+                    <Table 
+                        title={"Listado"}
+                        header = {header}
+                        // service={ApiServices[this.state.controller]}
+                        // refreshList={this.showList}
+                        // data={filesList} 
+                        data={JSON.parse(JSON.stringify(data))} 
+                        // showSearcher={true}
+                        isMenuDesplegable={true}
+                        arrayMenuDesplegable={buttonList}
+                        refreshList={()=>{}}
+                        showFilterGeneral={false}
+                    />
+                }
             </div>            
             {/* componente para agregar un archivo ******************************************* */}
             {
@@ -174,20 +182,21 @@ const ComponenteDeArchivos=(props)=> {
                     />
                 ):''
             }            
-            {/* componente para editar una carpeta ******************************************* */}
-            {/* {
-                (editDocument.open) ? (
+            {/* componente para editar un archivo ******************************************* */}
+            {
+                (editArchive.open) ? (
                     <ComponenteCrearEditarArchivo
-                        open = {editDocument.open}
-                        closeModal = {FuncionCloseModalEditDocument}
+                        open = {editArchive.open}
+                        closeModal = {FuncionCloseModalEditArchive}
                         iconToolbar = {<Edit/>}
-                        titleToolbar = {editDocument.title}
-                        id = {editDocument.id}
-                        data = {editDocument.getDocument}
+                        titleToolbar = {editArchive.title}
+                        id = {editArchive.id}
+                        data = {editArchive.getArchive}
+                        filesList={filesList}
                     />
                 ):''
-            } */}
-            {/* componente para eliminar una carpeta ******************************************* */}
+            }
+            {/* componente para eliminar un archivo ******************************************* */}
             {
                 (dataArchiveModalToDelete.open) ? (
                     <ComponenteEliminarArchivo

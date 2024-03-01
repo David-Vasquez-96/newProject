@@ -6,7 +6,6 @@ import FileViewer from 'react-file-viewer';
 
 const ComponenteVisualizarArchivo=(props)=> {   
     const classes = useStyles();
-    console.log('visualizar archivo: ', props.data)
     return (
         <DialogoPersonalizado 
             open={props.open}
