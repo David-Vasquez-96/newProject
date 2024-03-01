@@ -6,11 +6,10 @@ import AppBarComponent from 'page/Home/Body/AppBarPrincipal'
 import {useStyles} from './style';
 import Title from 'component/TitleWithIcon';
 import Table from 'component/Table';
-// import ComponentCard from './ComponentCard'
-// import ComponentCardTwo from './ComponentCardTwo'
 import BotonElement from 'component/BotonTable'
 import ComponenteCrearEditarArchivo from './AgregarEditarArchivo'
 import ComponenteVisualizarArchivo from './VisualizarArchivos'
+import ComponenteEliminarArchivo from './EliminarArchivo'
 // import ComponenteEliminarCarpeta from './EliminarCarpeta'
 import { useHistory } from "react-router-dom";
 // REDUX ****************************************************
@@ -71,7 +70,7 @@ const ComponenteDeArchivos=(props)=> {
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
                         <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" handleFunction={()=>FuctionOpenFileViewer(rowData)}/>
                         <BotonElement icon={<Edit style={{color: '#F3650E'}}/>} title="Editar" handleFunction={() => {}}/>
-                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" handleFunction={() => {}}/>
+                        <BotonElement icon={<DeleteForever style={{color: 'red'}}/>} title="Eliminar" handleFunction={() => FunctionOpenArchiveModalToDelete(rowData)}/>
                     </ButtonGroup>
                 </div>
         },         
@@ -98,13 +97,13 @@ const ComponenteDeArchivos=(props)=> {
     //     setEditDocument({open: false, title: '', id: 0, getDocument: {}})
     // }
     // funciones para eliminar una carpeta
-    // const [dataDocumentModalToDelete, setdataDocumentModalToDelete] = useState({open: false, data: {}});
-    // const FunctionOpenDocumentModalToDelete = (data) =>{
-    //     setdataDocumentModalToDelete({open: true, data: data})
-    // }
-    // const FunctionCloseDocumenModalToDelete = () =>{
-    //     setdataDocumentModalToDelete({open: false, data: {}})
-    // }    
+    const [dataArchiveModalToDelete, setdataArchiveModalToDelete] = useState({open: false, data: {}});
+    const FunctionOpenArchiveModalToDelete = (data) =>{
+        setdataArchiveModalToDelete({open: true, data: data})
+    }
+    const FunctionCloseArchiveModalToDelete = () =>{
+        setdataArchiveModalToDelete({open: false, data: {}})
+    }    
     // funciones para visualizar un archivo *******************************************************
     const [openFileViewer, setOpenFileViewer] = useState({open: false, data: {}});
     const FuctionOpenFileViewer = (data) =>{
@@ -189,18 +188,18 @@ const ComponenteDeArchivos=(props)=> {
                 ):''
             } */}
             {/* componente para eliminar una carpeta ******************************************* */}
-            {/* {
-                (dataDocumentModalToDelete.open) ? (
-                    <ComponenteEliminarCarpeta
-                        open = {dataDocumentModalToDelete.open}
-                        closeModal = {FunctionCloseDocumenModalToDelete}
+            {
+                (dataArchiveModalToDelete.open) ? (
+                    <ComponenteEliminarArchivo
+                        open = {dataArchiveModalToDelete.open}
+                        closeModal = {FunctionCloseArchiveModalToDelete}
                         iconToolbar = {<NoteAdd/>}
                         titleToolbar = {'Eliminar'}
-                        data={dataDocumentModalToDelete.data}
-                        documentsList={documentsList}
+                        data={dataArchiveModalToDelete.data}
+                        filesList={filesList}
                     />
                 ):''
-            }              */}
+            }
         </div> 
     )
 }
