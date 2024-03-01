@@ -46,7 +46,7 @@ const ComponenteDeArchivos=(props)=> {
     }
     const [header] = useState([
         { title: 'ID del Archivo', field: 'id', cellStyle: { width: '200px'}},
-        { title: 'Formato', field: 'formato', filtering: true, 
+        { title: 'Formato', field: 'type', filtering: true, 
             lookup: formato,
             render: rowData=>
                 (rowData?.formato === '.pdf') ?

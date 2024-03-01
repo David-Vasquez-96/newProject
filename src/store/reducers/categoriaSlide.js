@@ -26,6 +26,7 @@ export const categoriaSlide = createSlice({
             state.categoryList = action.payload;
         },
         saveDataNewCategory: (state, action) => {
+            if (action?.payload?.id || action?.payload?.id==='') state.newCategory.id = action?.payload?.id;
             if (action?.payload?.name || action?.payload?.name==='') state.newCategory.name = action?.payload?.name;
             if (action?.payload?.borderColor || action?.payload?.borderColor==='') state.newCategory.borderColor = action?.payload?.borderColor;
             if (action?.payload?.icon || action?.payload?.icon==='') state.newCategory.icon = action?.payload?.icon;

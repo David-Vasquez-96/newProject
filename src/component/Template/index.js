@@ -24,6 +24,7 @@ import ComponenteDeRoles from 'page/SingleSignOn/Roles';
 import ComponenteDeDocumentos from 'page/Modules/Documentos'
 import ComponenteDeSubCarpetas from 'page/Modules/Documentos/SubCarpetas'
 import ComponenteDeArchivos from 'page/Modules/Documentos/Archivos'
+import ComponenteListadoPorCategoria from 'page/Home/Body/Documents/ListadoPorCategoria'
 // publico
 import ObtenerCorreoUsuario from 'page/Security/Login/CambiarContraseña/ObtenerCorreo'
 import ObtenerCodigoExterno from 'page/Security/Login/CambiarContraseña/ObtenerCodigo'
@@ -49,6 +50,7 @@ const Template = (props) => {
                     <Route exact path="/moduloDocumentos" render={(props) => <ComponenteDeDocumentos authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
                     <Route exact path="/moduloSubCarpeta" render={(props) => <ComponenteDeSubCarpetas authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
                     <Route exact path="/moduloArchivos" render={(props) => <ComponenteDeArchivos authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
+                    <Route exact path="/listadoPorCategorias" render={(props) => <ComponenteListadoPorCategoria authenticated={authenticated} currentUser={props.currentUser} {...props} />}></Route>
 
                     <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={props.currentUser} component={Profile}></PrivateRoute>
                     <PrivateRoute exact path="/cambiarContraseña" authenticated={authenticated} currentUser={props.currentUser} component={CambiarContrseña}></PrivateRoute>
