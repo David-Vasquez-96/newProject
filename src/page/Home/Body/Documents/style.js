@@ -88,4 +88,7 @@ export const useStyles = makeStyles(theme=>({
         padding: '30px 0px',
         textAlign: 'center',
     },
+    alert: {
+        margin: '0px 0px',
+    },    
 }));

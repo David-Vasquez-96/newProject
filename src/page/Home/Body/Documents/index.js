@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {useStyles} from './style';
 import ComponentCircle from './ComponentCircle'
 import { useHistory } from "react-router-dom";
+import Alert from '@material-ui/lab/Alert';
+
 import { useSelector , useDispatch } from 'react-redux';
 import { saveDataNewCategory } from 'store/reducers/categoriaSlide';
 
@@ -21,16 +23,20 @@ const PageDocuments=(props)=> {
             <p className={classes.titleSecondary} variant="h5" color="initial">{'Navega en las siguientes categorías y encuentra fácilmente los documentos que necesites.'}</p>
             <div className={classes.listDocumentsPrincipal} >
                 {
-                    listDocuments.map((label, index) =>(
-                        <div onClick={()=>FuncionMostrarListadoDeCategorias(label)}>                            
-                            <ComponentCircle 
-                                title={label.name || 'Título'} 
-                                borderColor={label.borderColor}
-                                image = {label.icon}
-                                key={index}
-                            />
-                        </div>
-                    ))
+                    (listDocuments.length > 0) ? (                        
+                        listDocuments.map((label, index) =>(
+                            <div onClick={()=>FuncionMostrarListadoDeCategorias(label)}>                            
+                                <ComponentCircle 
+                                    title={label.name || 'Título'} 
+                                    borderColor={label.borderColor}
+                                    image = {label.icon}
+                                    key={index}
+                                />
+                            </div>
+                        ))
+                    ) : (
+                        <Alert className={classes.alert} severity="warning" variant="outlined">Sin registros. Cree categorías para visualizar aquí.</Alert>
+                    )
                 }
             </div>
         </div> 
