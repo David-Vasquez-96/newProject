@@ -13,12 +13,8 @@ const ComponenteCrearEditarUsuario=(props)=> {
     const classes = useStyles();
     const dispatch = useDispatch();
     const userList = JSON.parse(JSON.stringify(useSelector( state => state.usuario.userList))); 
+    const rolesList = JSON.parse(JSON.stringify(useSelector( state => state.roles.rolesList))); 
     const newArray = []
-    const roles = [
-        {id: 1, name: 'ADMINISTRADOR'},
-        {id: 2, name: 'JEFE X'},
-        {id: 3, name: 'COORDINADOR'},
-    ]
     const empresas = [
         {id: 1, name: 'Project X'},
         {id: 2, name: 'TNT X'},
@@ -62,7 +58,7 @@ const ComponenteCrearEditarUsuario=(props)=> {
         rolUsuario: {
             idelement: "rolUsuario", value: props.data?.rolUsuario || null , label: "Seleccione Rol *", pattern:"^[1-9][0-9]*$", validators: ['required'], 
             errorMessages:['Seleccione Rol'], isError:false, elementType:'autocompleteV3', variant: "outlined",  icon: <AssignmentInd/>,
-            list: roles, style: classes.formControlInput, disabled: false
+            list: rolesList, style: classes.formControlInput, disabled: false
         },   
         empresa: {
             idelement: "empresa", value: props.data?.empresa || null , label: "Seleccione Empresa *", pattern:"^[1-9][0-9]*$", validators: ['required'], 

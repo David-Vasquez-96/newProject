@@ -9,7 +9,7 @@ export const useStyles = props => makeStyles(theme=>({
         width: '150px',
         height: '200px',
         ['@media (max-width: 1920px)']:{ //desktop
-            margin: '20px 50px',
+            margin: '20px 100px',
         },
         ['@media (max-width:1745px)']:{ //ipad
             margin: '20px 70px',

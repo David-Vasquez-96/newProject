@@ -3,7 +3,8 @@ import {useStyles} from './style';
 import ComponentCircle from './ComponentCircle'
 import { useHistory } from "react-router-dom";
 import Alert from '@material-ui/lab/Alert';
-
+import "./style.css";
+// REDUX
 import { useSelector , useDispatch } from 'react-redux';
 import { saveDataNewCategory } from 'store/reducers/categoriaSlide';
 
@@ -25,7 +26,7 @@ const PageDocuments=(props)=> {
                 {
                     (listDocuments.length > 0) ? (                        
                         listDocuments.map((label, index) =>(
-                            <div onClick={()=>FuncionMostrarListadoDeCategorias(label)}>                            
+                            <div className="cardDocuments" onClick={()=>FuncionMostrarListadoDeCategorias(label)}>
                                 <ComponentCircle 
                                     title={label.name || 'Título'} 
                                     borderColor={label.borderColor}

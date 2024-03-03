@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { 
     rolesList: [   
-        {id: 1, name: 'ADMINISTRADOR'},
+        // {id: 1, name: 'ADMINISTRADOR'},
     ],
 };
 

@@ -3,11 +3,14 @@ import {useStyles} from './style';
 import ComponentCard from './ComponentCard'
 import Alert from '@material-ui/lab/Alert';
 import { useSelector } from 'react-redux';
+import "./style.css";
 
 const PageProcess=(props)=> {
     const classes = useStyles(props);
     const processList = useSelector( state => state.proceso.processList);
-
+    const FuncionMostrarListadoDeProcesos = (data) =>{
+        // history.push("/listadoPorCategorias", {})
+    }
     return (
         <div className={classes.ProcesosPrincipal}>
             <h1 className={classes.titlePrincipal} variant="h5" color="initial">{'Procesos'}</h1>
@@ -16,12 +19,14 @@ const PageProcess=(props)=> {
                 {
                     (processList.length > 0) ? (
                         processList.map((label, index) =>(
-                            <ComponentCard 
-                                backgroundColor={label?.backgroundColor}
-                                image={label?.image}
-                                title={label?.title}
-                                key={index}
-                            />
+                            <div className="cardProcess" onClick={()=>FuncionMostrarListadoDeProcesos(label)}>
+                                <ComponentCard 
+                                    backgroundColor={label?.backgroundColor}
+                                    image={label?.image}
+                                    title={label?.title}
+                                    key={index}
+                                />
+                            </div>
                         ))
                     ): (
                         <Alert className={classes.alert} severity="warning" variant="outlined">Sin registros. Cree procesos para visualizar aquí.</Alert>

@@ -68,7 +68,8 @@ export const useStyles = makeStyles(theme=>({
     listaDeProcesosPrincipal: {
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
+        // justifyContent: 'space-evenly',
         // justifyContent: 'center',
         padding: '30px 0px',
         textAlign: 'center',
