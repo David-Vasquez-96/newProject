@@ -12,36 +12,6 @@ export const useStyles = props => makeStyles(theme=>({
         width: '300px',
         height: '100%',
         margin: '20px 20px',
-        ['@media (max-width: 1920px)']:{ //desktop
-        },
-        ['@media (max-width:1366px)']:{ //ipad
-            // width: '200px',
-            // height: '100%',
-        },
-        ['@media (max-width:1024px)']:{ //ipad
-            // width: '200px',
-            // height: '100%',
-        },
-       '@media (max-width:768px)':{ //ipad
-            // width: '100%',
-            // height: '100%',
-        },
-        ['@media (max-width: 460px)']:{ //mobile 
-            // width: '100%',
-            // height: '100%',
-        },
-        ['@media (max-width: 430px)']:{ //mobile Iphone 14 pro max
-            // width: '100%',
-            // height: '100%',
-        },
-        ['@media (max-width: 390px)']:{ //mobile Iphone 14 normal
-            // width: '100%',
-            // height: '100%',
-        },
-        ['@media (max-width: 320px)']:{ //mobile Iphone 14 normal
-            // width: '100%',
-            // height: '100%',
-        },         
     },
     containerData: {
         width: '100%',
@@ -122,30 +92,6 @@ export const useStyles = props => makeStyles(theme=>({
         color: 'white',
         fontSize: '4rem',
         marginBottom: '15px',
-        ['@media (max-width: 1920px)']:{ //desktop
-            // fontSize: '1.2rem',
-        },
-        ['@media (max-width:1366px)']:{ //ipad
-            // fontSize: '1.2rem',
-        },
-        ['@media (max-width:1024px)']:{ //ipad
-            // fontSize: '1.2rem',
-        },
-       '@media (max-width:768px)':{ //ipad
-            // fontSize: '1.2rem',
-        },
-        ['@media (max-width: 460px)']:{ //mobile 
-            // fontSize: '1.2rem',
-        },
-        ['@media (max-width: 430px)']:{ //mobile Iphone 14 pro max
-            // fontSize: '1.1rem',
-        },
-        ['@media (max-width: 390px)']:{ //mobile Iphone 14 normal
-            // fontSize: '1rem',
-        },
-        ['@media (max-width: 320px)']:{ //mobile Iphone 14 normal
-            // fontSize: '1rem',
-        },        
     }, 
     cardTitle: {
         fontWeight: 'bold',
