@@ -52,7 +52,7 @@ export const useStyles = makeStyles(theme=>({
     h1:{
         textAlign: 'center',
         color: 'white',
-        textDecoration: 'overline double',
+        // textDecoration: 'overline double',
         margin: 0,
         ['@media (max-width: 1920px)']:{ //desktop
             fontSize: '3.5rem',
@@ -79,4 +79,7 @@ export const useStyles = makeStyles(theme=>({
             fontSize: '2.5rem',
         },
     },
+    containerText: {
+        borderTop: '20px double white',
+    },  
 }));

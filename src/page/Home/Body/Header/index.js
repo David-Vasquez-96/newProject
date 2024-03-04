@@ -7,7 +7,9 @@ const Header=(props)=> {
         <div className={classes.headerPrincipal}>
             <img className={classes.waveImage} alt="complex" src={"/assets/wave.svg"} />
             <img className={classes.img} alt="complex" src={"/assets/userComputer.png"} />
-            <h1 className={classes.h1} variant="h5" color="initial">{'Bienvenidos a Zona de Conocimiento'}</h1>
+            <div className={classes.containerText}>                
+                <h1 className={classes.h1} variant="h5" color="initial">{'Bienvenidos a Zona de Conocimiento'}</h1>
+            </div>
         </div> 
     )
 }
