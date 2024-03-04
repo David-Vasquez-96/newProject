@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {useStyles} from './style';
 import DialogoPersonalizado from 'component/DialogoPersonalizado';
 import Form from 'component/Form/FormTwoColumns';

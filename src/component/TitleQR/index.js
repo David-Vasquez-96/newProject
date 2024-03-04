@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Grid, AppBar, Toolbar, Typography, ButtonBase} from '@material-ui/core'
+import {Grid, AppBar, Toolbar, ButtonBase} from '@material-ui/core'
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles(theme => ({
@@ -53,7 +53,7 @@ export default function Title(props) {
         <div className={classes.root}>
             <AppBar position="static" elevation={0} className={classes.AppBar}>
                 <Toolbar variant="dense" className={classes.AppBar}>
-                <Grid container direction="row" justify="center" alignItems="center" >
+                <Grid container direction="row" justifyContent="center" alignItems="center" >
                     <Grid item xs={12} >
                         <ButtonBase className={classes.image}>
                             <img className={classes.img} alt="complex" src={props.icon} />

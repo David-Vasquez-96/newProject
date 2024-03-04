@@ -1,9 +1,8 @@
 import React from 'react';
-import {Container, Grid, Typography, Button, Icon} from '@material-ui/core/';
+import {Container, Typography, Button} from '@material-ui/core/';
 import { useStyles } from "./style";
 import Title from 'component/TitleWithIcon';
 import { NavigateBefore} from '@material-ui/icons/';
-import BotonElement from 'component/BotonCancelar'; 
 import { useHistory } from "react-router-dom";
 
 export default function MensajeConfirmacionCambioContraseña() {

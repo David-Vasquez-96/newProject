@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import {Container, Grid, Paper, Typography } from '@material-ui/core';
 import {AccountCircle, CreditCard, Email} from '@material-ui/icons';
 import { useStyles } from "./Style";
-import Title from 'component/TitleWithIcon';
 
 export default function UserInformation (props) {
     const classes = useStyles()

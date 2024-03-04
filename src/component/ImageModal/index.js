@@ -1,6 +1,6 @@
 import React from 'react';
 import {useStyles} from './style';
-import {Icon, Button, Slide ,List, Chip} from '@material-ui/core';
+import {Icon, Button, Slide } from '@material-ui/core';
 import {Dialog, DialogActions, DialogContent} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';

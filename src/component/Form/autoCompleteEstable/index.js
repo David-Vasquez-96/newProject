@@ -1,10 +1,9 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {useStyles} from './style';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import { FormControl, Grid, IconButton, InputAdornment, Tooltip } from '@material-ui/core';
-import {Block, Edit} from '@material-ui/icons';
+import { FormControl, InputAdornment } from '@material-ui/core';
 
 export default function ComboBoxAutoComplete(props) {
 	const classes = useStyles();

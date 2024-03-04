@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {useStyles} from './styles';
-import {Button, Dialog, AppBar, Toolbar, IconButton, Typography, Close, DialogContent} from '@material-ui/core';
+import {Button, Dialog, AppBar, Toolbar, DialogContent} from '@material-ui/core';
 import Slide from '@material-ui/core/Slide';
 
 const Transition = React.forwardRef(function Transition(props, ref) {

@@ -8,6 +8,7 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#EDEDED',
+        // background: "linear-gradient(0deg, #1d5079 20%, #205690 62%)",
         flexDirection: 'column',
         backgroundImage: `url(/assets/waveLogin.svg)`,
         backgroundRepeat: "no-repeat",

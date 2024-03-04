@@ -1,14 +1,9 @@
-import React, { Component } from 'react';
-import ApiServices from 'service/ApiServices';
-import LoadingIndicator  from 'common/LoadingIndicator';
-import NotAuthorized from 'common/NotAuthorized';
+import React from 'react';
 import Title from 'component/TitleWithIcon';
-import Alert from 'react-s-alert';
 import {connect } from "react-redux";
 import mapStateToProps from './mapStateToProps';
 import mapDispatchToProps from './mapDispatchToProps';
-import Footer from 'page/Home/Footer2'
-import {Container, Grid, Divider} from '@material-ui/core/';
+import {Container} from '@material-ui/core/';
 
 import UserInformation from './UserInformation'
 import ComponenteCambiarContraseña from './ComponenteCambiarContraseña'
@@ -24,7 +19,6 @@ function UserProfile (props) {
                 <UserInformation DatosUsuario={props.currentUser}/>
                 <ComponenteCambiarContraseña DatosUsuario={props.currentUser}/>
             </Container>
-            <br/><br/><br/><Footer />
         </div>
     )
 }

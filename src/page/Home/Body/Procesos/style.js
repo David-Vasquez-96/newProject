@@ -74,4 +74,14 @@ export const useStyles = makeStyles(theme=>({
         padding: '30px 0px',
         textAlign: 'center',
     },
+    cardProcess: {
+        '&:hover': {
+            transform: 'scale(1.20)',
+            display: 'initial',
+            background: '#F2F6FA',
+            // border: '5px solid #1E5280',
+            borderRadius: '20px',
+            textAlign: 'center',
+        }        
+    }    
 }));

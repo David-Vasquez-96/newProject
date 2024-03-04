@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { AssignmentInd, Cancel, CreditCard, Email, LocationCity, Person, VpnKey} from '@material-ui/icons';
 import {useStyles} from './style';
 import DialogoPersonalizado from 'component/DialogoPersonalizado';

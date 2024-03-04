@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Container, Grid, Button, Divider,} from '@material-ui/core/';
+import React from 'react';
+import {Container, Grid, Button, } from '@material-ui/core/';
 import { useHistory } from "react-router-dom";
 
 function FormularioCambiarContraseña(props) {

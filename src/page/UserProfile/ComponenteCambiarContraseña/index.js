@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FormularioVerificarIdentidad from '../VerificarIdentidad'
 import BotonOlvidarContraseña from '../BotonOlvidarContraseña'
 import { useStyles } from "./style";

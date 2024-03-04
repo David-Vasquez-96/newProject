@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {useStyles} from './style';
 import AppBarComponent from './AppBarPrincipal'
 import Header from './Header/index'

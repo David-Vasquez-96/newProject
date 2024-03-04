@@ -1,5 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
-import { publicMenu } from "constant/index";
+import React, { useEffect, useState } from "react";
 import Alert from "react-s-alert";
 // import LoadingIndicator from "common/LoadingIndicator"; //Ya no estamos usando este spinner.
 import "react-s-alert/dist/s-alert-default.css";
@@ -8,6 +7,7 @@ import Template from "component/Template";
 import UserAccount from "page/Security/Login/FormElements/UserAccount";
 import LoadingSpinner from "component/LoadingSpinner";
 import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 /**** REDUX ****/
 import { useDispatch } from 'react-redux';
 import { setMenu, setCurrentUser } from 'store/reducers/SecuritySlice';
@@ -25,6 +25,7 @@ require('react-s-alert/dist/s-alert-css-effects/jelly.css');
 require('react-s-alert/dist/s-alert-css-effects/stackslide.css');
 
 export default function App(props) {
+    let history = useHistory();
 	/**** VARIABLES ****/
 	const [loading, setLoading] = useState(false);
 	const [authenticated, setAuthenticated] = useState(false),
@@ -71,7 +72,9 @@ export default function App(props) {
 				}}
 			/>
 		);
-
+	if (!authenticated)
+		history.push("/login", {})
+	
 	return (
 		<>
 			<Template></Template>

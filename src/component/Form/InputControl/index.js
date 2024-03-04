@@ -3,7 +3,6 @@ import { Input, InputLabel } from "@material-ui/core/";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { useStyles } from "./style";
-import Grid from "@material-ui/core/Grid";
 
 export default function FormControlInput(props) {
   const classes = useStyles();

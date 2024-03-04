@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {useStyles} from './style';
-import { AssignmentInd, CreditCard, Email, ErrorOutline, LocationCity, Person } from '@material-ui/icons';
+import { ErrorOutline, Person } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
 import DialogoPersonalizado from 'component/DialogoPersonalizado';
 import Form from 'component/Form/FormTwoColumns';

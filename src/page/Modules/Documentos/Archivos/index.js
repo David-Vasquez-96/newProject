@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { DeleteForever, Description, Edit, NoteAdd, Replay, RestorePage, Visibility } from '@material-ui/icons';
-import Alert from '@material-ui/lab/Alert';
+import { DeleteForever, Description, Edit, NoteAdd, RestorePage, Visibility } from '@material-ui/icons';
 // COMPONENTES **********************************************
 import AppBarComponent from 'page/Home/Body/AppBarPrincipal'
 import {useStyles} from './style';
@@ -14,8 +13,8 @@ import ComponenteEliminarArchivo from './EliminarArchivo'
 import { useHistory } from "react-router-dom";
 // REDUX ****************************************************
 import { useSelector, useDispatch } from 'react-redux';
-import {AppBar, ButtonGroup, Toolbar, Typography } from '@material-ui/core';
-import { saveDataNewDocument, saveFolderData } from 'store/reducers/documentosSlice';
+import {ButtonGroup} from '@material-ui/core';
+import { saveDataNewDocument } from 'store/reducers/documentosSlice';
 
 const ComponenteDeArchivos=(props)=> {
     const classes = useStyles(props);

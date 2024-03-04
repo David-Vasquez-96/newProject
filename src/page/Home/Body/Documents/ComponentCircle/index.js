@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {useStyles} from './style';
-import { Description } from '@material-ui/icons';
 import { Card, Typography } from '@material-ui/core';
 
 const ComponentCircle=(props)=> {

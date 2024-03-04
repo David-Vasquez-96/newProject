@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {useStyles} from './style';
 import AppBar from 'page/Home/Body/AppBarPrincipal'
 import Title from 'component/TitleWithIcon';
@@ -11,11 +11,10 @@ import ComponenteVisualizarUsuario from './VisualizarUsuario'
 import ComponenteEliminarUsuario from './EliminarUsuario'
 import ComponenteCambiarContraseña from './CambiarContraseña'
 // REDUX **************************
-import { useSelector, useDispatch} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const ComponenteUsuarios=(props)=> {
     const classes = useStyles(props);
-    const dispatch = useDispatch();
     const userList = JSON.parse(JSON.stringify(useSelector( state => state.usuario.userList))); 
 
     const [header] = useState([

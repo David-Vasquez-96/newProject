@@ -11,14 +11,14 @@ import {styles} from './Style';
 import './styles.css'
 import Searcher from './searcher';
 import MenuDesplegable from 'component/MenuDesplegable'
-import { useSelector, useDispatch } from 'react-redux'
-import allActions from 'store/actions';
+// import { useSelector, useDispatch } from 'react-redux'
+// import allActions from 'store/actions';
 import { AppBar, Button, Typography, Toolbar } from '@material-ui/core';
 import { Autorenew } from '@material-ui/icons';
 
 function Table(props) {
-    const dispatch = useDispatch();
-    const currentUser = useSelector(state => state.security.currentUser)
+    // const dispatch = useDispatch();
+    // const currentUser = useSelector(state => state.security.currentUser)
     const { classes } = props;
     const [modalParams, setModalParams] = React.useState({'open':false,'handler':null,'data':null});
     const tableData =  new TableData();

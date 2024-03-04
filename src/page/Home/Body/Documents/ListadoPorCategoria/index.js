@@ -2,7 +2,7 @@ import React, {  useEffect, useState } from 'react';
 import {useStyles} from './style';
 import AppBar from 'page/Home/Body/AppBarPrincipal'
 import Title from 'component/TitleWithIcon';
-import {Description, FiberManualRecord, NoteAdd, RestorePage, Visibility } from '@material-ui/icons';
+import {Description, NoteAdd, Visibility } from '@material-ui/icons';
 import Table from 'component/Table';
 import BotonElement from 'component/BotonTable'; 
 import { ButtonGroup } from '@material-ui/core';

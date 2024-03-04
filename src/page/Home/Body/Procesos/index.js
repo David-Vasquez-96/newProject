@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {useStyles} from './style';
 import ComponentCard from './ComponentCard'
 import Alert from '@material-ui/lab/Alert';
 import { useSelector } from 'react-redux';
-import "./style.css";
 
 const PageProcess=(props)=> {
     const classes = useStyles(props);
@@ -19,7 +18,7 @@ const PageProcess=(props)=> {
                 {
                     (processList.length > 0) ? (
                         processList.map((label, index) =>(
-                            <div className="cardProcess" onClick={()=>FuncionMostrarListadoDeProcesos(label)}>
+                            <div className={classes.cardProcess} onClick={()=>FuncionMostrarListadoDeProcesos(label)}>
                                 <ComponentCard 
                                     backgroundColor={label?.backgroundColor}
                                     image={label?.image}

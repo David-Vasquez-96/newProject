@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {Button, Card, CardContent, Dialog, Grid, makeStyles, Slide, Typography} from '@material-ui/core/';
+import {Button, Card, CardContent, Dialog, Grid, Slide} from '@material-ui/core/';
 import Icon from '@material-ui/core/Icon';
 import useStyles from './styles';
 

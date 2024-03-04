@@ -90,5 +90,15 @@ export const useStyles = makeStyles(theme=>({
     },
     alert: {
         margin: '0px 0px',
-    },    
+    },
+    cardDocuments: {
+        '&:hover': {
+            transform: 'scale(1.20)',
+            display: 'initial',
+            background: 'white',
+            // border: '5px solid #1E5280',
+            borderRadius: '20px',
+            textAlign: 'center',
+        }        
+    }
 }));

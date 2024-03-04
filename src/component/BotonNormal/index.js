@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {Cancel, CheckCircleOutline, NavigateNext, NavigateBefore, Description, Search} from '@material-ui/icons/';
+import {Cancel, CheckCircleOutline, NavigateNext, NavigateBefore, Description} from '@material-ui/icons/';
 
 const useStyles = makeStyles((theme) => ({
 	root: {

@@ -1,6 +1,5 @@
-import React, { Fragment, useState } from 'react';
+import React, {useState } from 'react';
 import BotonPersonalizado from 'component/BotonNormal'
-import {useStyles} from './styles';
 import { InsertDriveFile } from '@material-ui/icons';
 import MostrarPDFModal from 'component/PdfModal'
 import ApiServices from 'service/ApiServices';

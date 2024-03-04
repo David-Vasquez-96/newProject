@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { AssignmentInd, AttachFile, Cancel, CreditCard, Description, Email, FormatListNumbered, LocationCity, NoteAdd, Person, VpnKey} from '@material-ui/icons';
+import React, {  useState } from 'react';
+import { AttachFile, Cancel, Description, FormatListNumbered, NoteAdd} from '@material-ui/icons';
 import {useStyles} from './style';
 import DialogoPersonalizado from 'component/DialogoPersonalizado';
 import Form from 'component/Form/FormTwoColumns';

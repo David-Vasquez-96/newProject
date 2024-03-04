@@ -5,7 +5,7 @@ import Title from 'component/TitleWithIcon';
 import { DeleteForever, Edit, LockOpen, RestorePage, VerifiedUser } from '@material-ui/icons';
 import Table from 'component/Table';
 import BotonElement from 'component/BotonTable'; 
-import { ButtonGroup, Icon } from '@material-ui/core';
+import { ButtonGroup} from '@material-ui/core';
 import ComponenteCrearEditarRol from './CrearEditarRol'
 import ComponenteEliminarRol from './EliminarRol'
 import ComponenteAgregarPermisosRol from './PermisosDeRol'

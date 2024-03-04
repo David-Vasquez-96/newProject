@@ -1,7 +1,7 @@
 import React from 'react';
 import { ButtonBase, CircularProgress, Container, Dialog, Grid } from '@material-ui/core';
 import { useStyles } from "./styles";
-import LogoAnimation from "./logoAnimation";
+// import LogoAnimation from "./logoAnimation";
 
 export default function SimpleBackdrop(props) {
   const classes = useStyles();

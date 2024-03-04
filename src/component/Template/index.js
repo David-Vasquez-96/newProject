@@ -10,7 +10,7 @@ import mapDispatchToProps from './mapDispatchToProps';
 import Home from 'page/Home/';
 import PerfilDelUsuario from 'page/UserProfile';
 import ComponentNewLogin from 'page/Security/Login/NewLogin'
-import PaginaEnMantenimiento from 'page/PageInMaintenance'
+// import PaginaEnMantenimiento from 'page/PageInMaintenance'
 import Profile from 'page/Security/Profile/';
 import CambiarContrseña from '../../page/UserProfile/CambiarContreña/Form'
 import CambiarContrseñaSinCode from 'page/UserProfile/CambiarContreñaSinCode/Form'

@@ -1,10 +1,7 @@
 import React from 'react';
-import Alert from 'react-s-alert';
-import { Icon, Button, CircularProgress, Slide } from '@material-ui/core/';
+import { Icon, Button, Slide } from '@material-ui/core/';
 import { Check } from "@material-ui/icons";
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
-//Api services
-import ApiServices from 'service/ApiServices';
 //Styles
 import { useStyles } from './Style';
 import AlertDialogSlide from 'component/AlertElementSimple';
@@ -15,8 +12,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function ConfirmationElement(props) {
     const classes = useStyles(props);
-
-
 
     return (
         <div>

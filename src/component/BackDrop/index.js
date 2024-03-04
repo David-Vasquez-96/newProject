@@ -10,7 +10,7 @@ export default function SimpleBackdrop(props) {
   return (
     <Backdrop className={classes.backdrop} open={props.open}>
         <Container maxWidth="xs" className={classes.colorComponente}>
-            <Grid container direction="row" justify="center" alignItems="center" >
+            <Grid container direction="row" justifyContent="center" alignItems="center" >
                 <Grid className={classes.rootContainer} item xs={12} > 
                     <CircularProgress size={70} className={classes.circularProgress} color="inherit" />
                     <div className={classes.title}> {props.title ? props.title : 'Cargando ...'}</div>

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { 
     userList: [
-        {codigo: 123456, nombreCompleto: 'CARLOS HUMBERTO HERRERA RUIZ', usuario: 'CHHERRERAR', email: 'CHHERRERAR@GMAIL.COM', contraseña: 'Claridad0204#', rolUsuario: {id: 1, name: 'ADMINISTRADOR'}, empresa: {id: 1, name: 'Project X'}},
+        // {codigo: 123456, nombreCompleto: 'CARLOS HUMBERTO HERRERA RUIZ', usuario: 'CHHERRERAR', email: 'CHHERRERAR@GMAIL.COM', contraseña: 'Claridad0204#', rolUsuario: {id: 1, name: 'ADMINISTRADOR'}, empresa: {id: 1, name: 'Project X'}},
     ],
 };
 

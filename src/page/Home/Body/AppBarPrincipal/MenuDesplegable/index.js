@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import clsx from 'clsx';
 import {SwipeableDrawer, Divider, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Collapse, Icon} from '@material-ui/core';
-import { Description, DesktopWindows, Dns, ExpandLess, ExpandMore, FormatListNumbered, ListAlt, People, Security } from '@material-ui/icons';
+import { ExpandLess, ExpandMore, } from '@material-ui/icons';
 import {Link } from 'react-router-dom';
 import {useStyles} from './style';
-
 // REDUX **************************
 import { useSelector, useDispatch} from 'react-redux';
-import { setMenu, setForms } from 'store/reducers/SecuritySlice';
+import { setMenu } from 'store/reducers/SecuritySlice';
 
 export default function SwipeableTemporaryDrawer(props) {
     const classes = useStyles();

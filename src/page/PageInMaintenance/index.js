@@ -6,9 +6,7 @@ import {useStyles} from './style';
 import { Redirect } from 'react-router-dom';
 import IconElement from 'component/IconElement/index'; 
 // import Footer from 'pages/Home/Footer2';
-import Avatar from '@material-ui/core/Avatar';
 // import Title from 'components/TitleWithIcon';
-import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 
  const  Login= (props)=> {
     const classes = useStyles(props);

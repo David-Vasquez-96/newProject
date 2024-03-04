@@ -20,7 +20,6 @@ export default function FormControlInput(props) {
         disabled={props.disabled}
         select
         label={props.label}
-        disabled={props.disabled}
         className={classes.textField}
         SelectProps={{
           MenuProps: {

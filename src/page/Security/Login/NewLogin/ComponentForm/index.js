@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useStyles } from "./style";
 import Form from 'component/Form/FormTwoColumns';
-import { AccountCircle, ExitToApp, HighlightOff, Mail, PersonAdd } from "@material-ui/icons";
-import { Button, CssBaseline, Icon } from "@material-ui/core";
+import { AccountCircle, ExitToApp, Mail } from "@material-ui/icons";
+import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import DialogLoadingMessage from 'component/LoadingMessage/index'
 import LoadingDialog from 'component/Loading'
 import Alert from 'react-s-alert';
 import UserAccount from './UserAccount';
@@ -22,8 +21,6 @@ const ComponentForm = (props) => {
     const [loadingMessage, setLoadingMessage] = useState({loading:false, title:''});
     const [userAccount,] = useState(new UserAccount());
     const [apiErrors,setApiErrors] = useState([]);
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
 
     const [elements,] = useState({
         email: {    
@@ -92,11 +89,12 @@ const ComponentForm = (props) => {
             <div className={classes.contenedorSecundarioLogin}>
                 {/* <DialogLoadingMessage open={loadingMessage.loading} title={loadingMessage.title}/> */}
                 <LoadingDialog open={loadingMessage.loading} text={loadingMessage.title}/>
-                {/* <div className={classes.title}>Bienvenido al Portal Web TSE {screenWidth} x {screenHeight}</div> */}
                 <AccountCircle className={classes.loginIcon} style={{ fontSize: 100 }}/>
-                <div className={classes.title}>Iniciar sesión {anchoDePantalla}</div>
+                <div className={classes.title}>Iniciar sesión </div>
+                {/* <div className={classes.title}>Iniciar sesión {anchoDePantalla}</div> */}
                 <Form elements= {elements}  buttonList={buttonList} stylesFormControl={classes.formControlLogin}/>
-                <Button onClick={recuperarContraseña} className={classes.passwordButton}>¿Has olvidado tu contraseña?</Button>
+                <Button onClick={()=>{}} className={classes.passwordButton}>¿Has olvidado tu contraseña?</Button>
+                {/* <Button onClick={recuperarContraseña} className={classes.passwordButton}>¿Has olvidado tu contraseña?</Button> */}
             </div>
         </div>
     );

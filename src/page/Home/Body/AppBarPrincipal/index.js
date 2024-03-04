@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import mapStateToProps from './mapStateToProps';
 import mapDispatchToProps from './mapDispatchToProps';
 import UserAccount from 'page/Security/Login/FormElements/UserAccount';
 import { useHistory } from "react-router-dom";
 import { AppBar, Button, Icon, IconButton, ListItemIcon, MenuItem, MenuList, Popover, Toolbar, Typography } from '@material-ui/core';
-import { AccountCircle, ArrowBack, AssignmentInd, Menu, Input } from '@material-ui/icons';
+import { AccountCircle, AssignmentInd, Menu, Input } from '@material-ui/icons';
 import {useStyles} from './style';
-import { publicMenu } from 'constant/index';
 import MenuDesplegable from './MenuDesplegable'
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from 'store/reducers/SecuritySlice';

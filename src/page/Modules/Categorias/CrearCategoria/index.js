@@ -4,7 +4,7 @@ import {useStyles} from './style';
 import DialogoPersonalizado from 'component/DialogoPersonalizado';
 import ComponentCircle from 'page/Home/Body/Documents/ComponentCircle'
 import Form from 'component/Form/FormTwoColumns';
-import { Button, Divider } from '@material-ui/core';
+import {Divider } from '@material-ui/core';
 import Alert from 'react-s-alert';
 // REDUX **************************
 import { useSelector } from 'react-redux';

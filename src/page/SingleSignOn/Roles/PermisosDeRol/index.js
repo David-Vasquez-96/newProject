@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import {useStyles} from './style';
 import DialogoPersonalizado from 'component/DialogoPersonalizado';
 import Title from 'component/TitleWithIcon';
-import { DeleteForever, Edit, LockOpen, VerifiedUser } from '@material-ui/icons';
+import { VerifiedUser } from '@material-ui/icons';
 import Table from 'component/Table';
-import BotonElement from 'component/BotonTable'; 
 import { ButtonGroup, FormControlLabel, Switch} from '@material-ui/core';
 import Alert from 'react-s-alert';
-import { cloneDeep } from 'lodash';
 
 // REDUX **************************
 import { useSelector, useDispatch} from 'react-redux';

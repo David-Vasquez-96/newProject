@@ -4,7 +4,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useStyles } from './style';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { Grid, IconButton, InputAdornment, Tooltip } from '@material-ui/core';
-import { Block, Edit, AccountCircle } from '@material-ui/icons';
+import { Block, Edit } from '@material-ui/icons';
 
 export default function ComboBoxAutoComplete(props) {
     const classes = useStyles();

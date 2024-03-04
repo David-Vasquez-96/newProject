@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {useStyles} from './style';
 import DialogoPersonalizado from 'component/DialogoPersonalizado';
 import { ErrorOutline } from '@material-ui/icons';
