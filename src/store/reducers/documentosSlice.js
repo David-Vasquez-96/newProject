@@ -29,11 +29,11 @@ const initialState = {
     folderData: {},
     // archivos
     filesList:[
-        // {idCarpeta: 1, idSubCarpeta: 1, idCategoria: {id: 1, name: 'Instructivos'}, id:1, formato: '.pdf', type: 1,  name: 'Documentos', version: 'V.5', usuario: 'MDHERRERAV', publicacion: '30/06/2023', base64:''},
-        // {idCarpeta: 2, idSubCarpeta: 1, idCategoria: {id: 2, name: 'Politicas'}, id:2, formato: '.xlsx', type: 2, name: 'Archivos', version: 'V.10', usuario: 'JRAMIREZ', publicacion: '12/06/2023', base64:''},
-        // {idCarpeta: 1, idSubCarpeta: 2, idCategoria: {id: 3, name: 'Procedimientos'}, id:3, formato: '.docx', type: 3, name: 'Tecnicas de estudio', version: 'V.8', usuario: 'PPEREZ', publicacion: '11/06/2023', base64:''},
-        // {idCarpeta: 3, idSubCarpeta: 1, idCategoria: {id: 4, name: 'Manuales'}, id:4, formato: '.png', type: 4, name: 'Procesos', version: 'V.2', usuario: 'CMVASQUEZ', publicacion: '18/05/2023', base64:''},
-        // {idCarpeta: 3, idSubCarpeta: 1, idCategoria: {id: 1, name: 'Instructivos'}, id:5, formato: '.mp4', type: 5, name: 'Lineamientos', version: 'V.5', usuario: 'JJMORALES', publicacion: '01/05/2023', base64:''},
+        {idCarpeta: 1, idSubCarpeta: 1, idCategoria: {id: 1, name: 'Instructivos'}, id:1, formato: '.pdf', type: 1,  name: 'INSTRUCTIVO AMPLIACION DE HIPOTECAS', version: 'V.5', usuario: 'MDHERRERAV', publicacion: '30/06/2023', base64:''},
+        {idCarpeta: 2, idSubCarpeta: 1, idCategoria: {id: 2, name: 'Politicas'}, id:2, formato: '.xlsx', type: 2, name: 'Archivos', version: 'V.10', usuario: 'JRAMIREZ', publicacion: '12/06/2023', base64:''},
+        {idCarpeta: 1, idSubCarpeta: 2, idCategoria: {id: 3, name: 'Procedimientos'}, id:3, formato: '.docx', type: 3, name: 'Tecnicas de estudio de la maestria', version: 'V.8', usuario: 'PPEREZ', publicacion: '11/06/2023', base64:''},
+        {idCarpeta: 3, idSubCarpeta: 1, idCategoria: {id: 4, name: 'Manuales'}, id:4, formato: '.png', type: 4, name: 'Procesos', version: 'V.2', usuario: 'CMVASQUEZ', publicacion: '18/05/2023', base64:''},
+        {idCarpeta: 3, idSubCarpeta: 1, idCategoria: {id: 1, name: 'Instructivos'}, id:5, formato: '.mp4', type: 5, name: 'Lineamientos', version: 'V.5', usuario: 'JJMORALES', publicacion: '01/05/2023', base64:''},
     ],
     datosDeDocumento: {},
     saveNewFile: {idCarpeta: 0, idSubCarpeta: 0, idCategoria: 0, id:0, formato: '', type: 0,  name: '', version: '', usuario: '', publicacion: '', base64:''},

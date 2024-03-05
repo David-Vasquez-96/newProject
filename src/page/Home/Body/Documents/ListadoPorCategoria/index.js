@@ -8,8 +8,10 @@ import BotonElement from 'component/BotonTable';
 import { ButtonGroup } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import ComponenteVisualizarArchivo from 'page/Modules/Documentos/Archivos/VisualizarArchivos'
+import ComponenteCard from './ComponenteCardCategoria'
 // REDUX **************************
 import { useSelector} from 'react-redux';
+import { Alert } from '@material-ui/lab';
 
 const ComponenteListadoPorCategoria=(props)=> {
     const classes = useStyles(props);
@@ -84,16 +86,18 @@ const ComponenteListadoPorCategoria=(props)=> {
         <div className={classes.containerPrincipal}>
             <AppBar />
             <Title title={'Listado de documentos de ' + newCategory?.name} icon={<Description />} />
-            <div className={classes.containerTable}>
-                <Table 
-                    title={"Listado"}
-                    header = {header}
-                    // service={ApiServices[this.state.controller]}
-                    // refreshList={this.showList}
-                    data={JSON.parse(JSON.stringify(data))} 
-                    // showSearcher={true}
-                    showFilterGeneral={false}
-                />
+            <div className={classes.contendorDelListado}>
+                {
+                    (data.length > 0) ? (
+                        data.map((label, index) =>(
+                            <div className={classes.cardComponent}>
+                                <ComponenteCard data={label}/>
+                            </div>
+                        ))
+                    ): (
+                        <Alert className={classes.alert} severity="warning" variant="outlined">Sin registros.</Alert>
+                    )                    
+                }
             </div>
             {/* componente para visualizar un archivo ******************************************* */}
             {

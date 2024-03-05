@@ -2,13 +2,18 @@ import React from 'react';
 import {useStyles} from './style';
 import ComponentCard from './ComponentCard'
 import Alert from '@material-ui/lab/Alert';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
+import { saveNewProcessData } from 'store/reducers/ProcesosSlice';
 
 const PageProcess=(props)=> {
     const classes = useStyles(props);
+    const history = useHistory();
+    const dispatch = useDispatch();
     const processList = useSelector( state => state.proceso.processList);
     const FuncionMostrarListadoDeProcesos = (data) =>{
-        // history.push("/listadoPorCategorias", {})
+        dispatch(saveNewProcessData({title: data?.title, id: data?.id}))
+        history.push("/listadoPorProcesos", {})
     }
     return (
         <div className={classes.ProcesosPrincipal}>
