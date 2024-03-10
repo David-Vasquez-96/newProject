@@ -283,13 +283,15 @@ const splitDate = function (date) {
   if (date !== undefined) {
     if (date !== null) {
       var arr1 = date.split("-");
+      if (arr1.length === 1) return date;
       var arr2 = arr1[2].split("T");
       var fecha = new Date(date);
       // var hora = fecha.getHours();
       // var minutos = fecha.getMinutes();
       // var segundos = fecha.getSeconds();
-      //var finalDate = arr1[0] + "-" + arr1[1] + "-" + arr2[0]+'T00:00:00.000Z';
+      // var finalDate = arr1[0] + "-" + arr1[1] + "-" + arr2[0]+' '+hora+':'+minutos+':'+segundos;
       var finalDate = arr2[0] + "/" + arr1[1] + "/" + arr1[0];
+      // console.log(finalDate)
       return finalDate;
     }
   }

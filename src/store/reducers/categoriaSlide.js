@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { 
     categoryList: [
-        {id: 1, borderColor: {r:'238', g:'75', b:'154', a:'100'}, icon: 'assets/PerfilUsuario.png', name: 'Instructivos'},
-        {id: 2, borderColor: {r:'146', g:'31', b:'143', a:'100'}, icon: 'assets/PerfilUsuario.png', name: 'Politicas'},
-        {id: 3, borderColor: {r:'243', g:'101', b:'14', a:'100'}, icon: 'assets/PerfilUsuario.png', name: 'Procedimientos'},
-        {id: 4, borderColor: {r:'54', g:'182', b:'111', a:'100'}, icon: 'assets/PerfilUsuario.png', name: 'Manuales'},
-        {id: 5, borderColor: {r:'253', g:'189', b:'0', a:'100'}, icon: 'assets/PerfilUsuario.png', name: 'Matrices'},
+        // {id: 1, borderColor: {r:'238', g:'75', b:'154', a:'100'}, icon: 'assets/PerfilUsuario.png', name: 'Instructivos'},
+        // {id: 2, borderColor: {r:'146', g:'31', b:'143', a:'100'}, icon: 'assets/PerfilUsuario.png', name: 'Politicas'},
+        // {id: 3, borderColor: {r:'243', g:'101', b:'14', a:'100'}, icon: 'assets/PerfilUsuario.png', name: 'Procedimientos'},
+        // {id: 4, borderColor: {r:'54', g:'182', b:'111', a:'100'}, icon: 'assets/PerfilUsuario.png', name: 'Manuales'},
+        // {id: 5, borderColor: {r:'253', g:'189', b:'0', a:'100'}, icon: 'assets/PerfilUsuario.png', name: 'Matrices'},
         // {borderColor: {r:'253', g:'189', b:'0', a:'100'}, icon: 'assets/PerfilUsuario.png', title: 'Matrices'},
         // {borderColor: {r:'253', g:'189', b:'0', a:'100'}, icon: 'assets/PerfilUsuario.png', title: 'Matrices'},
         // {borderColor: '#EE4B9A', icon: 'assets/PerfilUsuario.png', title: 'Planes'},

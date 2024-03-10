@@ -34,41 +34,6 @@ const ComponenteListadoPorCategoria=(props)=> {
         if(current?.length > 0) return setData(current);
         else return setData([]);
     }     
-    const [header] = useState([
-        // { title: 'ID del Archivo', field: 'id', cellStyle: { width: '200px'}},
-        { title: 'Categoría', field: 'idCategoria.name', cellStyle: { width: '200px'}},
-        { title: 'Formato', field: 'type', filtering: true, 
-            lookup: formato,
-            render: rowData=>
-                (rowData?.formato === '.pdf') ?
-                    <img className={classes.mobileIcon} src={'assets/pdf2.png'} />
-                : (rowData?.formato === '.xlsx') ?
-                    <img className={classes.mobileIcon} src={'assets/excel.png'} />
-                : (rowData?.formato === '.docx') ?
-                    <img className={classes.mobileIcon} src={'assets/word.png'} />
-                : (rowData?.formato === '.png') ?
-                    <img className={classes.mobileIcon} src={'assets/imagen.png'} />
-                : (rowData?.formato === '.mp4') ?
-                    <img className={classes.mobileIcon} src={'assets/video.png'} />
-                : null
-        },
-        { title: 'Nombre del Documento', field: 'name', cellStyle: { width: '200px'}},
-        // { title: 'Versión', field: 'version', cellStyle: { width: '200px'}},
-        // { title: 'Añadido por', field: 'usuario', cellStyle: { width: '200px'}},
-        { title: 'Última actualización', field: 'publicacion', cellStyle: { width: '200px'}},
-        { title: 'Acciones', field: '', filtering: false,
-            render: rowData=>
-                <div>
-                    <ButtonGroup color="primary" aria-label="outlined primary button group">
-                        {
-                            (rowData?.formato === '.xlsx' || rowData?.formato === '.docx') ? null
-                            : 
-                            <BotonElement icon={<Visibility style={{color: '#066bbd'}}/>} title="Visualizar" handleFunction={()=>FuctionOpenFileViewer(rowData)}/>
-                        }
-                    </ButtonGroup>
-                </div>
-        },         
-    ]);
     // funciones para visualizar un archivo *******************************************************
     const [openFileViewer, setOpenFileViewer] = useState({open: false, data: {}});
     const FuctionOpenFileViewer = (data) =>{
@@ -90,8 +55,8 @@ const ComponenteListadoPorCategoria=(props)=> {
                 {
                     (data.length > 0) ? (
                         data.map((label, index) =>(
-                            <div className={classes.cardComponent}>
-                                <ComponenteCard data={label}/>
+                            <div className={classes.cardComponent} key={index}>
+                                <ComponenteCard key={index} data={label} FuctionOpenFileViewer={FuctionOpenFileViewer}/>
                             </div>
                         ))
                     ): (

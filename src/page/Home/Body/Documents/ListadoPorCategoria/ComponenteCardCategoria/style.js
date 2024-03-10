@@ -11,9 +11,10 @@ export const useStyles = makeStyles(theme=>({
         // padding: '10px 5px',
         backgroundColor: 'white',
         '&:hover': {
-            background: 'linear-gradient(0deg, #1d5079 20%, #205690 62%)',
+            background: 'darkblue',
+            // background: 'linear-gradient(0deg, #1d5079 20%, #205690 62%)',
             color: 'white',
-        }
+        },
     },
     iconos: {
         width: '100%',
