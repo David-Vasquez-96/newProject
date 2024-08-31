@@ -24,11 +24,11 @@ const ComponentForm = (props) => {
 
     const [elements,] = useState({
         email: {    
-            idelement: "email", value: '', label: "Correo electrónico *", pattern:"^[\\w0-9._%+-]+@[\\w0-9.-]+\\.\\w{2,10}$", style: classes.formControlLogin,
+            idelement: "email", value: '', label: "Ingrese su correo electrónico *", pattern:"^[\\w0-9._%+-]+@[\\w0-9.-]+\\.\\w{2,10}$", style: classes.formControlLogin,
             validators: ['required'], errorMessages:['Ingrese su correo.'], isError:false, elementType:'inputOutlined', icon: <Mail/> 
         },        
         password: { 
-            idelement: "password",  value:'', label: "Clave", pattern:"^[\\w_\\sÑñáéíóúÁÉÍÓÚ().!@#$%^&*/-]{6,20}$", validators: ['required'],
+            idelement: "password",  value:'', label: "Ingrese su contraseña *", pattern:"^[\\w_\\sÑñáéíóúÁÉÍÓÚ().!@#$%^&*/-]{6,20}$", validators: ['required'],
             errorMessages:['Ingrese su contraseña.'], isError:false, elementType:'password', variant: 'outlined', style: classes.formControlLogin,
         },
     });
